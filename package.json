@@ -1,0 +1,22 @@
+{
+    "name": "businessdirectorysystem",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/SofianM17/Business-Directory-System.git"
+    },
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/SofianM17/Business-Directory-System/issues"
+    },
+    "homepage": "https://github.com/SofianM17/Business-Directory-System#readme",
+    "dependencies": {
+        "mongodb": "^4.4.1"
+    }
+}
