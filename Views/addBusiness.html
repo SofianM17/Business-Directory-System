@@ -11,10 +11,30 @@
 </head>
 
 <body>
+    <header class="navbar mb-3">
+        <button class="btn">
+            <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                <rect width="55" height="55" fill="url(#pattern0)"/>
+                <defs>
+                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
+                <use xlink:href="#image0_49_637" transform="scale(0.01)"/>
+                </pattern>
+                <image id="image0_49_637" width="100" height="100" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAACS0lEQVR4nO3cPU5bQRTF8eMoDT1SKoqkipQSKSlgD5FA0Ecu2YRbFkBpZQ3swUBDKiiokOgjsQRT8ApjOe/duXdG7+L8f5ILy0/j0ZyZI8tfEgAAAAAAAPA+TCqM8VXSzwrjbINLSQ9jT+JE0pKblt1ahHyIDoC6CCQZAkmGQJIhkGQIJJmPFcZ4lvSnwjjb4HnsCQAAAABAqRofUP2SdFZhnG1wIen32JO40fgfDGW5XQfXMnxC9iQ9VRhnWywlfdbrmrhE31w8EWGsmkg6igxQIxC8FVqTyO6mrjYL1VbkhFBXm4VqKxoINnOvjXeHU1f93LXlPSHUVT93bUUCQT/XGnl2OXVl46otzwmhrmxcteUNBDbFa1W606mrMsW1VXpCqKsyxbXlCQRlitasZLdTVz5FtVVyQk5FGB4TScfWi0sCoa78zGtn3fHUVYy5tqwnhLqKMdeWNRDqKs60hpZdT13VYaotywmhruow1ZYlkO/xuaDzY+gCSyCcjnoG15IffSZDIMkQSDIEkgyBJEMgyVj+yeFS0uPK/UNJBz3X/5U0j0zKYFfSdOCaeTeXlqbdXP7lStJi5f5di0nM1P+jlfsWT7rm28Aclt01rd0PzGFWOiCVlQyBJEMgyRBIMgSSDIEkQyDJEEgyBJIMgSRDIMkQSDIEkgyBJEMgydT4q/F1XyTdNhh31U7j8UfTIpAdSfsNxv0vUFnJEEgyBJIMgSRDIMkQSDKel70LSee1J9JA6y/JSa9fxvvU8/ii5zEAAAAAAADgXXsBR4vVclA5yhwAAAAASUVORK5CYII="/>
+                </defs>
+                </svg>
+                
+        </button>
+        <button class="btn">
+            <svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M30 8L27.18 10.82L32.34 16H12V20H32.34L27.18 25.16L30 28L40 18L30 8ZM4 4H20V0H4C1.8 0 0 1.8 0 4V32C0 34.2 1.8 36 4 36H20V32H4V4Z" fill="black"/>
+                </svg>
+                
+        </button>
+    </header>
     <h1>
         Create New Business Profile
     </h1>
-    <form>
+    <form id="create-business-form">
         <label for="business-name-field">Business Name</label>
         <input type="text" placeholder="Enter the name of your business" id="business-name-field" class="form-control">
 
@@ -46,18 +66,7 @@
             <input type="text" placeholder="Type your address here" id="location-field" class="form-control">
 
             <label for="phone-field">Phone number</label>
-            <input type="text" placeholder="(XXX) xxx-xxxx" id="phone-field" class="form-control">
-
-        </div>
-
-        <h2>Contact Information</h2>
-        <div class="wrapper2">
-
-            <label for="location-field">Location</label>
-            <input type="text" placeholder="Type your address here" id="location-field" class="form-control">
-
-            <label for="phone-field">Phone number</label>
-            <input type="text" placeholder="(XXX) xxx-xxxx" id="phone-field" class="form-control">
+            <input type="tel" placeholder="(XXX) xxx-xxxx" id="phone-field" class="form-control">
 
         </div>
 
@@ -69,19 +78,111 @@
 
         <h2>Hours</h2>
         <div class="wrapper4">
+
             <div class="day">
                 <input type="checkbox" id="monday-check" class="form-check-input">
                 <label for="monday-check" class="form-check-label">Monday</label>
-                <div class="monday-input-group">
-                    <input type="time">
-                </div>
 
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="10:00" class="form-control">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
+                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="day">
+                <input type="checkbox" id="tuesday-check" class="form-check-input">
+                <label for="tuesday-check" class="form-check-label">Tuesday</label>
+
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="10:00" class="form-control">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
+                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="day">
+                <input type="checkbox" id="wednesday-check" class="form-check-input">
+                <label for="wednesday-check" class="form-check-label">Wednesday</label>
+
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="10:00" class="form-control">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
+                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="day">
+                <input type="checkbox" id="thursday-check" class="form-check-input">
+                <label for="thursday-check" class="form-check-label">Thursday</label>
+
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="10:00" class="form-control">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
+                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="day">
+                <input type="checkbox" id="friday-check" class="form-check-input">
+                <label for="friday-check" class="form-check-label">Friday</label>
+
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="10:00" class="form-control">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
+                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="day">
+                <input type="checkbox" id="saturday-check" class="form-check-input">
+                <label for="saturday-check" class="form-check-label">Saturday</label>
+
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="10:00" class="form-control">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
+                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="day">
+                <input type="checkbox" id="sunday-check" class="form-check-input">
+                <label for="sunday-check" class="form-check-label">Sunday</label>
+
+                <div class="input-group mb-3">
+                    <input type="text" placeholder="10:00" class="form-control">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
+                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
 
+        <button type="submit" id="submit-btn" class="btn" style="background-color: #49CB8F; color: white">Publish Business</button>
+
     </form>
 
-    <script src="../Javascript/businessOwnerClient.js"></script>
+    <script src="../businessOwnerClient.js"></script>
 </body>
 
 </html>
