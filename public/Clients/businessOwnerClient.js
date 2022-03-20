@@ -90,10 +90,6 @@ $(document).ready(() => {
             selectedCategories.splice(index, 1);
 
         }
-
-        // change the checked property to false of all price range
-        // checkboxes except this checkbox
-        businessData.priceType.not(this).prop('checked', false);
     });
 
     $('.dropdown-toggle')
