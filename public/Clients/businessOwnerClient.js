@@ -22,7 +22,7 @@ class BusinessDay {
     }
 }
 
-let selectedPrice;
+let selectedPrice = '';
 let selectedCategories = [];
 
 
@@ -70,6 +70,11 @@ $(document).ready(() => {
         // change the checked property to false of all price range
         // checkboxes except this checkbox
         businessData.priceType.not(this).prop('checked', false);
+
+        // replace the selectedPrice with an empty price if no price is selected
+        if (!$(this).prop('checked')) {
+            selectedPrice = '';
+        }
     });
 
     // Detect a change in categories
