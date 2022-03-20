@@ -3,18 +3,31 @@ const { MongoClient } = require('mongodb');
 const fetch = require('node-fetch');
 const express = require('express');
 const http = require('http');
+const { response } = require('express');
 
 const app = express();
 const server = http.createServer(app);
 
+// set up a static directory and json data parsing
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.json({ limit: '1mb' }));
 
-
+// set up the port to run on
 const PORT = 3000 || process.env.PORT;
 server.listen(PORT, console.log(`server running on port ${PORT}`));
 
+app.get('/', (req, res) => {})
+
+
+// display the add business page on a get request of this url
 app.get('/add-business', (req, res) => {
     res.sendFile(__dirname + '/public/Views/addBusiness.html')
+})
+
+// Handle post request for add business page
+app.post("/add-business", (req, res) => {
+    console.log(req.body);
+    res.send("success");
 })
 
 
