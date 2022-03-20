@@ -1,3 +1,4 @@
+const path = require('path');
 const { MongoClient } = require('mongodb');
 const fetch = require('node-fetch');
 const express = require('express');
@@ -6,10 +7,13 @@ const http = require('http');
 const app = express();
 const server = http.createServer(app);
 
+app.use(express.static(path.join(__dirname, 'public')));
+
+
 const PORT = 3000 || process.env.PORT;
 server.listen(PORT, console.log(`server running on port ${PORT}`));
 
-app.get('/', (req, res) => {
+app.get('/add-business', (req, res) => {
     res.sendFile(__dirname + '/public/Views/addBusiness.html')
 })
 
