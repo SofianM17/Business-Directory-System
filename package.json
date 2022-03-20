@@ -17,6 +17,7 @@
     },
     "homepage": "https://github.com/SofianM17/Business-Directory-System#readme",
     "dependencies": {
-        "mongodb": "^4.4.1"
+        "mongodb": "^4.4.1",
+        "node-fetch": "^3.2.3"
     }
 }

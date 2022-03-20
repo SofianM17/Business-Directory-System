@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Business</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <h1>
+        Create New Business Profile
+    </h1>
+    <form>
+        <label for="business-name-field">Business Name</label>
+        <input type="text" placeholder="Enter the name of your business" id="business-name-field" class="form-control">
+
+        <div class="wrapper1">
+            <div class="price-range">
+                <h2>Price Range</h2>
+                <input type="button" value="$" class="price-range-btn btn btn-primary btn-md" id="price1">
+                <input type="button" value="$$" class="price-range-btn btn btn-primary btn-md" id="price2">
+                <input type="button" value="$$$" class="price-range-btn btn btn-primary btn-md" id="price3">
+                <input type="button" value="$$$$+" class="price-range-btn btn btn-primary btn-md" id="price4">
+            </div>
+            <div class="select-category">
+                <h2>Select Categories</h2>
+                <input type="button" value="Dining" class="category-btn btn btn-primary btn-md" id="cat1">
+                <input type="button" value="Shopping" class="category-btn btn btn-primary btn-md" id="cat2">
+                <input type="button" value="Groceries" class="category-btn btn btn-primary btn-md" id="cat3">
+                <input type="button" value="Health" class="category-btn btn btn-primary btn-md" id="cat4">
+
+            </div>
+        </div>
+
+        <label for="about-field">About</label>
+        <textarea id="about-field" placeholder="Add some information about your business. Keep it short and sweet, or add a snazzy tagline to capture your customer's attention." class="form-control" rows="3"></textarea>
+
+        <h2>Contact Information</h2>
+        <div class="wrapper2">
+
+            <label for="location-field">Location</label>
+            <input type="text" placeholder="Type your address here" id="location-field" class="form-control">
+
+            <label for="phone-field">Phone number</label>
+            <input type="text" placeholder="(XXX) xxx-xxxx" id="phone-field" class="form-control">
+
+        </div>
+
+        <h2>Contact Information</h2>
+        <div class="wrapper2">
+
+            <label for="location-field">Location</label>
+            <input type="text" placeholder="Type your address here" id="location-field" class="form-control">
+
+            <label for="phone-field">Phone number</label>
+            <input type="text" placeholder="(XXX) xxx-xxxx" id="phone-field" class="form-control">
+
+        </div>
+
+        <h2>Add Other Info</h2>
+        <div class="wrapper3">
+            <label for="url-field">URL</label>
+            <input type="text" placeholder="www.example.com" id="url-field" class="form-control">
+        </div>
+
+        <h2>Hours</h2>
+        <div class="wrapper4">
+            <div class="day">
+                <input type="checkbox" id="monday-check" class="form-check-input">
+                <label for="monday-check" class="form-check-label">Monday</label>
+                <div class="monday-input-group">
+                    <input type="time">
+                </div>
+
+            </div>
+        </div>
+
+    </form>
+
+    <script src="../Javascript/businessOwnerClient.js"></script>
+</body>
+
+</html>
