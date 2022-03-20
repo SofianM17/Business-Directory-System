@@ -1,4 +1,18 @@
 const { MongoClient } = require('mongodb');
+const fetch = require('node-fetch');
+const express = require('express');
+const http = require('http');
+
+const app = express();
+const server = http.createServer(app);
+
+const PORT = 3000 || process.env.PORT;
+server.listen(PORT, console.log(`server running on port ${PORT}`));
+
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + '/public/Views/addBusiness.html')
+})
+
 
 async function connectDatabase() {
     const uri = "mongodb+srv://businessDirSysAdmin:cYmACq0vr704SLbN@cluster0.4kjcl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"

@@ -1,8 +1,17 @@
-let createBusinessForm = document.getElementById('create-business-form');
-let businessNameField = document.getElementById('business-name-field');
-let aboutField = document.getElementById('about-field')
+let businessData = {
+    businessForm: $('#create-business-form'),
+    businessName: $('#business-name-field'),
+    businessAbout: $('#about-field')
+}
 
-createBusinessForm.addEventListener('submit', () => {
-    let businessName = businessNameField.value;
-    let about = aboutField.value;
+businessData.businessForm.on('submit', (e) => {
+    e.preventDefault();
+
+    let fd = new FormData();
+
+    let businessName = businessData.businessName.val();
+    let about = businessData.businessAbout.val();
+
 })
+
+function checkPriceRange() {}
