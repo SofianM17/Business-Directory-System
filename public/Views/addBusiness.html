@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <header class="navbar mb-3">
+    <header class="navbar mb-3 ps-2 pe-2" style="background-color:#3CA7BE">
         <button class="btn">
             <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="55" height="55" fill="url(#pattern0)"/>
@@ -33,190 +33,160 @@
                 
         </button>
     </header>
-    <h1>
-        Create New Business Profile
-    </h1>
-    <form id="create-business-form">
-        <label for="business-name-field">Business Name</label>
-        <input type="text" placeholder="Enter the name of your business" id="business-name-field" class="form-control">
 
-        <div class="wrapper1">
-            <h2>Price Range</h2>
-            <div class="price-range">
+    <div class="container-sm ps-3 pe-3">
+        <h1 class="text-center fw-bolder mt-4">
+            Create New Business Profile
+        </h1>
+        <form id="create-business-form">
+            <label for="business-name-field" class="mt-4 ps-2 fs">Business Name</label>
+            <input type="text" placeholder="Enter the name of your business" id="business-name-field" class="form-control">
 
-                <input type="checkbox" class="btn-check priceCheck" id="price1" autocomplete="off">
-                <label for="price1" class="btn btn-outline-primary">
-                    $
-                </label>
+            <div class="wrapper1 d-flex flex-column justify-content-center align-items-start">
+                <h2 class="mt-4 fs-4 mb-3">Price Range</h2>
+                <div class="price-range">
 
-                <input type="checkbox" class="btn-check priceCheck" id="price2" autocomplete="off">
-                <label for="price2" class="btn btn-outline-primary">
-                    $$
-                </label>
+                    <input type="checkbox" class="btn-check priceCheck" id="price1" autocomplete="off">
+                    <label for="price1" class="btn btn-outline-primary">
+                        $
+                    </label>
 
-                <input type="checkbox" class="btn-check priceCheck" id="price3" autocomplete="off">
-                <label for="price3" class="btn btn-outline-primary">
-                    $$$
-                </label>
+                    <input type="checkbox" class="btn-check priceCheck" id="price2" autocomplete="off">
+                    <label for="price2" class="btn btn-outline-primary">
+                        $$
+                    </label>
 
-                <input type="checkbox" class="btn-check priceCheck" id="price4" autocomplete="off">
-                <label for="price4" class="btn btn-outline-primary">
-                    $$$+
-                </label>
+                    <input type="checkbox" class="btn-check priceCheck" id="price3" autocomplete="off">
+                    <label for="price3" class="btn btn-outline-primary">
+                        $$$
+                    </label>
 
-            </div>
+                    <input type="checkbox" class="btn-check priceCheck" id="price4" autocomplete="off">
+                    <label for="price4" class="btn btn-outline-primary">
+                        $$$+
+                    </label>
 
-            <div class="select-category">
-                <h2>Select Categories</h2>
+                </div>
 
-                <input type="checkbox" class="btn-check catCheck" id="cat1" autocomplete="off">
-                <label for="cat1" class="btn btn-outline-primary">
-                    Dining
-                </label>
+                <div class="select-category">
+                    <h2 class="mt-4 fs-4 mb-3">Select Categories</h2>
 
-                <input type="checkbox" class="btn-check catCheck" id="cat2" autocomplete="off">
-                <label for="cat2" class="btn btn-outline-primary">
-                    Shopping
-                </label>
+                    <input type="checkbox" class="btn-check catCheck" id="cat1" autocomplete="off">
+                    <label for="cat1" class="btn btn-outline-primary">
+                        Dining
+                    </label>
 
-                <input type="checkbox" class="btn-check catCheck" id="cat3" autocomplete="off">
-                <label for="cat3" class="btn btn-outline-primary">
-                    Groceries
-                </label>
+                    <input type="checkbox" class="btn-check catCheck" id="cat2" autocomplete="off">
+                    <label for="cat2" class="btn btn-outline-primary">
+                        Shopping
+                    </label>
 
-                <input type="checkbox" class="btn-check catCheck" id="cat4" autocomplete="off">
-                <label for="cat4" class="btn btn-outline-primary">
-                    Health
-                </label>
+                    <input type="checkbox" class="btn-check catCheck" id="cat3" autocomplete="off">
+                    <label for="cat3" class="btn btn-outline-primary">
+                        Groceries
+                    </label>
 
-            </div>
-        </div>
+                    <input type="checkbox" class="btn-check catCheck" id="cat4" autocomplete="off">
+                    <label for="cat4" class="btn btn-outline-primary">
+                        Health
+                    </label>
 
-        <label for="about-field">About</label>
-        <textarea id="about-field" placeholder="Add some information about your business. Keep it short and sweet, or add a snazzy tagline to capture your customer's attention." class="form-control" rows="3"></textarea>
-
-        <h2>Contact Information</h2>
-        <div class="wrapper2">
-
-            <label for="location-field">Location</label>
-            <input type="text" placeholder="Type your address here" id="location-field" class="form-control">
-
-            <label for="phone-field">Phone number</label>
-            <input type="tel" placeholder="(XXX) xxx-xxxx" id="phone-field" class="form-control">
-
-        </div>
-
-        <h2>Add Other Info</h2>
-        <div class="wrapper3">
-            <label for="url-field">URL</label>
-            <input type="text" placeholder="www.example.com" id="url-field" class="form-control">
-        </div>
-
-        <h2>Hours</h2>
-        <div class="wrapper4">
-
-            <div class="day">
-                <input type="checkbox" id="monday-check" class="form-check-input">
-                <label for="monday-check" class="form-check-label">Monday</label>
-
-                <div class="input-group mb-3">
-                    <input type="text" placeholder="10:00" class="form-control">
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
-                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
-                    </ul>
                 </div>
             </div>
 
-            <div class="day">
-                <input type="checkbox" id="tuesday-check" class="form-check-input">
-                <label for="tuesday-check" class="form-check-label">Tuesday</label>
+            <label for="about-field" class="mt-4 ps-2">About</label>
+            <textarea id="about-field" placeholder="Add some information about your business. Keep it short and sweet, or add a snazzy tagline to capture your customer's attention." class="form-control" rows="3"></textarea>
 
-                <div class="input-group mb-3">
-                    <input type="text" placeholder="10:00" class="form-control">
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
-                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
-                    </ul>
-                </div>
+            <h2 class="mt-4 fs-4 mb-3">Contact Information</h2>
+            <div class="wrapper2">
+
+                <label for="location-field" class="ps-2">Location</label>
+                <input type="text" placeholder="Type your address here" id="location-field" class="form-control">
+
+                <label for="phone-field" class="ps-2 mt-3">Phone number</label>
+                <input type="tel" placeholder="(XXX) xxx-xxxx" id="phone-field" class="form-control">
+
             </div>
 
-            <div class="day">
-                <input type="checkbox" id="wednesday-check" class="form-check-input">
-                <label for="wednesday-check" class="form-check-label">Wednesday</label>
-
-                <div class="input-group mb-3">
-                    <input type="text" placeholder="10:00" class="form-control">
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
-                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
-                    </ul>
-                </div>
+            <h2 class="mt-4 fs-4 mb-3">Add Other Info</h2>
+            <div class="wrapper3">
+                <label for="url-field" class="ps-2">Website</label>
+                <input type="text" placeholder="www.example.com" id="url-field" class="form-control">
             </div>
 
-            <div class="day">
-                <input type="checkbox" id="thursday-check" class="form-check-input">
-                <label for="thursday-check" class="form-check-label">Thursday</label>
+            <h2 class="mt-4 fs-4 mb-3">Hours</h2>
+            <div class="wrapper4">
 
-                <div class="input-group mb-3">
-                    <input type="text" placeholder="10:00" class="form-control">
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
-                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
-                    </ul>
+                <div class="day day1">
+                    <div class="day-checkbox mb-3 text-center">
+                        <input type="checkbox" id="monday-check" class="form-check-input day1">
+                        <label for="monday-check" class="form-check-label">Monday</label>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <div class="input-group day1 me-3">
+                            <input type="text" placeholder="10:00" class="form-control day1 time-input">
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle day1" data-bs-toggle="dropdown" id="">AM</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
+                                <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
+                            </ul>
+                        </div>
+
+                        <p class="pt-2">
+                            to
+                        </p>
+
+                        <div class="input-group day1 ms-3">
+                            <input type="text" placeholder="10:00" class="form-control day1 time-input">
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle day1" data-bs-toggle="dropdown" id="">AM</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
+                                <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
+
+                <div class="day day2">
+                    <div class="day-checkbox mb-3 text-center mt-3">
+                        <input type="checkbox" id="tuesday-check" class="form-check-input day2">
+                        <label for="tuesday-check" class="form-check-label">Tuesday</label>
+                    </div>
+
+                    <div class="d-flex mb-4">
+                        <div class="input-group day2 me-3">
+                            <input type="text" placeholder="10:00" class="form-control day2 time-input">
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle day2" data-bs-toggle="dropdown" id="">AM</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
+                                <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
+                            </ul>
+                        </div>
+
+                        <p class="pt-2">
+                            to
+                        </p>
+
+                        <div class="input-group day2 ms-3">
+                            <input type="text" placeholder="10:00" class="form-control day2 time-input">
+                            <button type="button" class="btn btn-outline-secondary dropdown-toggle day2" data-bs-toggle="dropdown" id="">AM</button>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
+                                <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="day">
-                <input type="checkbox" id="friday-check" class="form-check-input">
-                <label for="friday-check" class="form-check-label">Friday</label>
-
-                <div class="input-group mb-3">
-                    <input type="text" placeholder="10:00" class="form-control">
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
-                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
-                    </ul>
-                </div>
+            <div class="submit-cont d-flex flex-column align-items-center justify-content-center">
+                <button type="submit" id="submit-btn" class="btn mt-4 mb-5" style="background-color: #49CB8F; color: white">Publish Business</button>
             </div>
+        </form>
+    </div>
 
-            <div class="day">
-                <input type="checkbox" id="saturday-check" class="form-check-input">
-                <label for="saturday-check" class="form-check-label">Saturday</label>
-
-                <div class="input-group mb-3">
-                    <input type="text" placeholder="10:00" class="form-control">
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
-                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="day">
-                <input type="checkbox" id="sunday-check" class="form-check-input">
-                <label for="sunday-check" class="form-check-label">Sunday</label>
-
-                <div class="input-group mb-3">
-                    <input type="text" placeholder="10:00" class="form-control">
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="">AM</button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" class="AM" href="#">AM</a></li>
-                        <li><a class="dropdown-item" class="PM" href="#">PM</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <button type="submit" id="submit-btn" class="btn" style="background-color: #49CB8F; color: white">Publish Business</button>
-
-    </form>
 
     <script src="../Clients/businessOwnerClient.js"></script>
 </body>

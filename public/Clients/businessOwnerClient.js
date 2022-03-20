@@ -6,11 +6,25 @@ let businessData = {
     businessAbout: $('#about-field'),
     businessLocation: $('#location-field'),
     businessPhone: $('#phone-field'),
+    businessWebsite: $('#url-field'),
 
+    days: $('.day'),
+    businessHours: {
+        Monday: $('#day1'),
+    }
+}
+
+class BusinessDay {
+    constructor(day, timeOpen, timeClose) {
+        this.day = day;
+        this.timeOpen = timeOpen;
+        this.timeClose = timeClose;
+    }
 }
 
 let selectedPrice;
 let selectedCategories = [];
+
 
 // send a post request to the server
 // containing form data
@@ -28,6 +42,7 @@ function submitData() {
             about: businessData.businessAbout.val(),
             location: businessData.businessLocation.val(),
             phoneNum: businessData.businessPhone.val(),
+            website: businessData.businessWebsite.val(),
 
         })
 
@@ -35,8 +50,6 @@ function submitData() {
 
 
 }
-
-
 
 // event handler for form submission
 businessData.businessForm.on('submit', (e) => {
@@ -73,10 +86,12 @@ $(document).ready(() => {
 
         }
 
-        console.log(selectedCategories);
-
         // change the checked property to false of all price range
         // checkboxes except this checkbox
         businessData.priceType.not(this).prop('checked', false);
     });
+
+    $('.dropdown-toggle')
+
+
 });
