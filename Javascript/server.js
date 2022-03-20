@@ -35,8 +35,13 @@ async function connectDatabase() {
         // });
 
         // Get business by category from the database (Example)
-        await getBusinessByName(client, "Italian");
+        await getBusinessByCategory(client, "Italian");
 
+        // update business with name "Tom's Pizzeria"  to "Tom's Pizza" (Example)
+        // await updateBusiness(client, "Tom's Pizzeria", { name: "Tom's Pizza" });
+
+        // delete business with name "Tom's Pizzeria"
+        // await deleteBusiness(client, "Tom's Pizzeria")
 
     } catch (e) {
         console.error(e);
@@ -50,14 +55,24 @@ connectDatabase().catch(console.error);
 
 // adds a single business profile as a new document into the database
 async function addBusiness(client, newBusiness) {
-    await client.db("businessesDB").collection("businesses").insertOne(newBusiness);
+    const result = await client.db("businessesDB").collection("businesses").insertOne(newBusiness);
 }
 
 // returns all of the documents with a matching category field from the database
-async function getBusinessByName(client, category) {
+async function getBusinessByCategory(client, category) {
     const cursor = client.db("businessesDB").collection("businesses").find({ categories: category });
     const results = await cursor.toArray();
 
     // print name for first result
     console.log(results[0].name);
+}
+
+// Find the business by its name and update the business with updatedInfo
+async function updateBusiness(client, businessName, updatedInfo) {
+    const result = await client.db("businessesDB").collection("businesses").updateOne({ name: businessName }, { $set: updatedInfo });
+}
+
+// Find the business by its name and delete the business
+async function deleteBusiness(client, businessName) {
+    const result = await client.db("businessesDB").collection("businesses").deleteOne({ name: businessName });
 }
