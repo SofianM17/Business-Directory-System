@@ -71,6 +71,7 @@ $(document).ready(() => {
         // checkboxes except this checkbox
         businessData.priceType.not(this).prop('checked', false);
 
+        // replace the selectedPrice with an empty price if no price is selected
         if (!$(this).prop('checked')) {
             selectedPrice = '';
         }
