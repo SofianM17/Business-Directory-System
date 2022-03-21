@@ -84,6 +84,10 @@ $('#check-address-btn').on('click', () => {
     $('#checkAddress').show(400);
     $('#check-address-btn').prop("disabled", true);
 
+    setTimeout(() => {
+        $('#checkAddress').hide(400)
+    }, 20000)
+
 })
 
 // send a post request to the server
@@ -169,11 +173,32 @@ $(document).ready(() => {
     businessData.businessForm.on('submit', (e) => {
         e.preventDefault();
 
-        // post the form data to the server
-        submitData();
+        let criteriaSatisfied = true;
+
+        // if a price range and at least 1 category have been selected
+        if (selectedPrice == '' && selectedCategories.length == 0) {
+            console.log('invalid');
+            criteriaSatisfied = false;
+        }
+        if (businessData.businessName.val() === '') {
+            businessData.businessName.addClass('is-invalid');
+            criteriaSatisfied = false;
+        }
+
+        if (criteriaSatisfied) {
+            // post the form data to the server
+            submitData();
+        }
 
 
     })
+
+    // mask for phone number field
+    // mask borrowed from https://stackoverflow.com/questions/17651207/mask-us-phone-number-string-with-javascript
+    $('#phone-field').on('input', function(e) {
+        var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+    });
 
     $('.dropdown-toggle')
 
