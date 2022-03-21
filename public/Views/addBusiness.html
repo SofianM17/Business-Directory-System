@@ -40,7 +40,7 @@
         </h1>
         <form id="create-business-form">
             <label for="business-name-field" class="mt-4 ps-2 fs">Business Name</label>
-            <input type="text" placeholder="Enter the name of your business" id="business-name-field" class="form-control">
+            <input type="text" placeholder="Enter the name of your business" id="business-name-field" class="form-control" required>
 
             <div class="wrapper1 d-flex flex-column justify-content-center align-items-start">
                 <h2 class="mt-4 fs-4 mb-3">Price Range</h2>
@@ -123,8 +123,31 @@
             <h2 class="mt-4 fs-4 mb-3">Contact Information</h2>
             <div class="wrapper2">
 
-                <label for="location-field" class="ps-2">Location</label>
-                <input type="text" placeholder="Type your address here" id="location-field" class="form-control">
+                <!-- <div class="row">
+                    <div class="col">
+                      
+                    </div>
+                    <div class="col">
+                      <input type="text" class="form-control" placeholder="Last name" aria-label="Last name">
+                    </div>
+                  </div> -->
+
+
+                <label for="bld-no-field" class="ps-2">Building Number</label>
+                <input type="text" name="bld-no-field" placeholder="Enter your building number (i.e. 4321)" id="bld-no-field" class="form-control" required>
+
+                <label for="street-field" class="ps-2">Street</label>
+                <input type="text" name="street-field" placeholder="Enter your street (i.e. 17 Ave SW)" id="street-field" class="form-control" required>
+
+                <label for="city-field" class="ps-2">City</label>
+                <input type="text" placeholder="Enter your city or district" id="city-field" class="form-control" required>
+
+                <label for="prov-field" class="ps-2">Province / State</label>
+                <input type="text" placeholder="Enter your province or state" id="prov-field" class="form-control" required>
+
+                <label for="country-field" class="ps-2">Country</label>
+                <input type="text" placeholder="Enter your country" id="country-field" class="form-control" required>
+
 
                 <label for="phone-field" class="ps-2 mt-3">Phone number</label>
                 <input type="tel" placeholder="(XXX) xxx-xxxx" id="phone-field" class="form-control">

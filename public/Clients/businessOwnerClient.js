@@ -4,14 +4,23 @@ let businessData = {
     priceType: $('.priceCheck'),
     categoryType: $('.catCheck'),
     businessAbout: $('#about-field'),
-    businessLocation: $('#location-field'),
+
+    businessLocation: {
+        locationWrap: $('.wrapper2'),
+        unit: $('#bld-no-field'),
+        street: $('#street-field'),
+        city: $('#city-field'),
+        province: $('#prov-field'),
+        country: $('#country-field')
+    },
+
     businessPhone: $('#phone-field'),
     businessWebsite: $('#url-field'),
 
-    days: $('.day'),
-    businessHours: {
-        Monday: $('#day1'),
-    }
+    // days: $('.day'),
+    // businessHours: {
+    //     Monday: $('#day1'),
+    // }
 }
 
 class BusinessDay {
@@ -28,25 +37,40 @@ let selectedCategories = [];
 
 // send a post request to the server
 // containing form data
-function submitData() {
+async function submitData() {
 
-    fetch("/add-business", {
+    let obj = {
+        name: businessData.businessName.val(),
+        priceRange: selectedPrice,
+        categories: selectedCategories,
+        about: businessData.businessAbout.val(),
+        location: {
+            unit: businessData.businessLocation.unit.val(),
+            street: businessData.businessLocation.street.val(),
+            city: businessData.businessLocation.city.val(),
+            province: businessData.businessLocation.province.val(),
+            country: businessData.businessLocation.country.val()
+        },
+        phoneNum: businessData.businessPhone.val(),
+        website: businessData.businessWebsite.val(),
+
+    };
+
+    let response = await fetch("/validate-form", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-            name: businessData.businessName.val(),
-            priceRange: selectedPrice,
-            categories: selectedCategories,
-            about: businessData.businessAbout.val(),
-            location: businessData.businessLocation.val(),
-            phoneNum: businessData.businessPhone.val(),
-            website: businessData.businessWebsite.val(),
+        body: JSON.stringify(obj)
 
-        })
+    })
 
-    });
+    let data = await response.json();
+
+    if (data.validation == "NOT_CONFIRMED") {
+        businessData.businessLocation.locationWrap.addClass('is-invalid')
+    }
+    console.log(data);
 
 
 }
@@ -57,6 +81,7 @@ businessData.businessForm.on('submit', (e) => {
 
     // post the form data to the server
     submitData();
+
 
 })
 
