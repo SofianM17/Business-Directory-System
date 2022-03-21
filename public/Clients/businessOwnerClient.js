@@ -155,6 +155,11 @@ $(document).ready(() => {
         }
     });
 
+    // remove invalid alerts when user updates input or textarea field
+    $('input, textarea').on('input', function() {
+        $(this).removeClass('is-invalid');
+    })
+
     // enable / disable check address button
     businessData.businessAddress.on('input', function() {
 
@@ -183,6 +188,13 @@ $(document).ready(() => {
         if (businessData.businessName.val() === '') {
             businessData.businessName.addClass('is-invalid');
             criteriaSatisfied = false;
+        }
+        if (businessData.businessAbout.val() === '') {
+            businessData.businessAbout.addClass('is-invalid');
+            criteriaSatisfied = false;
+        }
+        if (businessData.businessAddress.val() === '') {
+            businessData.businessAddress.addClass('is-invalid');
         }
 
         if (criteriaSatisfied) {
