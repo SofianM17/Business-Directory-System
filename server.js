@@ -25,9 +25,10 @@ app.get('/add-business', (req, res) => {
 })
 
 // Handle post request for add business page
-app.post("/add-business", (req, res) => {
-    console.log(req.body);
-    res.send("success");
+app.post("/submit-form", (req, res) => {
+    let formRequest = req.body;
+    console.log(formRequest);
+
 })
 
 
