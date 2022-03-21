@@ -5,15 +5,16 @@ let businessData = {
     categoryType: $('.catCheck'),
     businessAbout: $('#about-field'),
 
-    businessLocation: {
-        locationWrap: $('.wrapper2'),
-        unit: $('#bld-no-field'),
-        street: $('#street-field'),
-        city: $('#city-field'),
-        province: $('#prov-field'),
-        country: $('#country-field')
-    },
+    // businessLocation: {
+    //     locationWrap: $('.wrapper2'),
+    //     unit: $('#bld-no-field'),
+    //     street: $('#street-field'),
+    //     city: $('#city-field'),
+    //     province: $('#prov-field'),
+    //     country: $('#country-field')
+    // },
 
+    businessAddress: $('#address-field'),
     businessPhone: $('#phone-field'),
     businessWebsite: $('#url-field'),
 
@@ -22,6 +23,13 @@ let businessData = {
     //     Monday: $('#day1'),
     // }
 }
+
+let expandClosedFlag = false;
+
+// constants for location validation
+const ADDRESS_HIGH_CONFIDENCE = 0.8;
+const ADDRESS_LOW_CONFIDENCE = 0.2;
+const validationResult = {}
 
 class BusinessDay {
     constructor(day, timeOpen, timeClose) {
@@ -34,6 +42,49 @@ class BusinessDay {
 let selectedPrice = '';
 let selectedCategories = [];
 
+async function validateAddress() {
+    const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(businessData.businessAddress.val())}&apiKey=dd6853e113004f1a83795613f67a78a8`;
+
+    let response = await fetch(url);
+    let data = await response.json();
+
+    console.log(data);
+
+    const address = data.features[0].properties;
+
+    console.log(address.rank.confidence);
+
+    // formatted address (predicted if not fully provided)
+    console.log(address.formatted);
+
+    return { address: address.formatted };
+}
+
+// display predicted address information if check address clicked
+$('#check-address-btn').on('click', () => {
+    //expandClosedFlag = !expandClosedFlag;
+
+    let addressCard = document.getElementById('address-card');
+    validateAddress().then(params => {
+
+        while (addressCard.firstChild) {
+            addressCard.removeChild(addressCard.firstChild);
+        }
+
+        let heading = document.createElement('p');
+        let addressText = document.createElement('p');
+
+        heading.textContent = 'Here is the address we found based on the information you provided:'
+        addressText.textContent = params.address;
+
+        addressCard.appendChild(heading);
+        addressCard.appendChild(addressText);
+    })
+
+    $('#checkAddress').show(400);
+    $('#check-address-btn').prop("disabled", true);
+
+})
 
 // send a post request to the server
 // containing form data
@@ -44,19 +95,13 @@ async function submitData() {
         priceRange: selectedPrice,
         categories: selectedCategories,
         about: businessData.businessAbout.val(),
-        location: {
-            unit: businessData.businessLocation.unit.val(),
-            street: businessData.businessLocation.street.val(),
-            city: businessData.businessLocation.city.val(),
-            province: businessData.businessLocation.province.val(),
-            country: businessData.businessLocation.country.val()
-        },
+        address: businessData.businessAddress.val(),
         phoneNum: businessData.businessPhone.val(),
         website: businessData.businessWebsite.val(),
 
     };
 
-    let response = await fetch("/validate-form", {
+    let response = await fetch("/submit-form", {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -67,25 +112,14 @@ async function submitData() {
 
     let data = await response.json();
 
-    if (data.validation == "NOT_CONFIRMED") {
-        businessData.businessLocation.locationWrap.addClass('is-invalid')
-    }
     console.log(data);
 
 
 }
 
-// event handler for form submission
-businessData.businessForm.on('submit', (e) => {
-    e.preventDefault();
-
-    // post the form data to the server
-    submitData();
-
-
-})
-
 $(document).ready(() => {
+
+    $('#checkAddress').hide();
 
     // Detect a change in price ranges
     businessData.priceType.change(function() {
@@ -116,6 +150,30 @@ $(document).ready(() => {
 
         }
     });
+
+    // enable / disable check address button
+    businessData.businessAddress.on('input', function() {
+
+        // toggle the dropdown address info div if a change in input is detected
+        $('#checkAddress').hide(400);
+
+        if ($(this).val() != '') {
+            $('#check-address-btn').removeAttr('disabled');
+        } else {
+            $('#check-address-btn').prop('disabled', true);
+        }
+
+    })
+
+    // event handler for form submission
+    businessData.businessForm.on('submit', (e) => {
+        e.preventDefault();
+
+        // post the form data to the server
+        submitData();
+
+
+    })
 
     $('.dropdown-toggle')
 

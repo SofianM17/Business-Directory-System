@@ -5,11 +5,6 @@ const express = require('express');
 const http = require('http');
 const { response } = require('express');
 
-// constants for location validation
-const ADDRESS_HIGH_CONFIDENCE = 0.95;
-const ADDRESS_LOW_CONFIDENCE = 0.2;
-const validationResult = {}
-
 const app = express();
 const server = http.createServer(app);
 
@@ -30,50 +25,9 @@ app.get('/add-business', (req, res) => {
 })
 
 // Handle post request for add business page
-app.post("/validate-form", (req, res) => {
+app.post("/submit-form", (req, res) => {
     let formRequest = req.body;
     console.log(formRequest);
-
-    const url = `https://api.geoapify.com/v1/geocode/search?housenumber=${encodeURIComponent(formRequest.location.unit)}&street=${encodeURIComponent(formRequest.location.street)}&city=${encodeURIComponent(formRequest.location.city)}&state=${encodeURIComponent(formRequest.location.province)}&country=${encodeURIComponent(formRequest.location.country)}&apiKey=dd6853e113004f1a83795613f67a78a8`;
-
-    fetch(url)
-        .then(resp => resp.json())
-        .then((geocodingResult) => {
-            console.log(geocodingResult);
-
-            // address is invalid
-            if (geocodingResult.features.length === 0) {
-                validationResult.validation = 'NOT_CONFIRMED_NO_FEATURE';
-                return validationResult;
-            }
-
-            const address = geocodingResult.features[0].properties;
-
-            // Validate address
-            if (address.rank.confidence >= ADDRESS_HIGH_CONFIDENCE) {
-                validationResult.validation = 'CONFIRMED';
-                validationResult.validation_details = '';
-            } else if (address.rank.confidence < ADDRESS_LOW_CONFIDENCE) {
-                validationResult.validation = 'NOT_CONFIRMED';
-                validationResult.validation_details = '';
-            } else {
-                validationResult.validation = 'PARTIALLY_CONFIRMED';
-                if (address.rank.confidence_street_level >= ADDRESS_HIGH_CONFIDENCE) {
-                    validationResult.validation_details = 'BUILDING_NOT_FOUND';
-                } else if (address.rank.confidence_city_level >= ADDRESS_HIGH_CONFIDENCE) {
-                    validationResult.validation_details = 'STREET_NOT_FOUND';
-                } else {
-                    validationResult.validation_details = 'CITY_NOT_FOUND';
-                }
-            }
-
-            console.log(address.rank.confidence);
-
-            return validationResult;
-        })
-        .then(validationRes => (res.json(validationRes)));
-
-    // respond with the validation result
 
 })
 

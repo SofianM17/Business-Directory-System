@@ -133,7 +133,7 @@
                   </div> -->
 
 
-                <label for="bld-no-field" class="ps-2">Building Number</label>
+                <!-- <label for="bld-no-field" class="ps-2">Building Number</label>
                 <input type="text" name="bld-no-field" placeholder="Enter your building number (i.e. 4321)" id="bld-no-field" class="form-control" required>
 
                 <label for="street-field" class="ps-2">Street</label>
@@ -146,11 +146,25 @@
                 <input type="text" placeholder="Enter your province or state" id="prov-field" class="form-control" required>
 
                 <label for="country-field" class="ps-2">Country</label>
-                <input type="text" placeholder="Enter your country" id="country-field" class="form-control" required>
+                <input type="text" placeholder="Enter your country" id="country-field" class="form-control" required> -->
+
+                <div id="address-wrap">
+                    <label for="address-field" class="ps-2">Address</label>
+                    <input type="text" placeholder="i.e. 1412 17 Ave SW, Calgary, Alberta, Canada" id="address-field" class="form-control" required>
+
+                    <button class="btn btn-primary" id="check-address-btn" type="button" disabled>
+                          Check address
+                    </button>
+                    <div id="checkAddress">
+                        <div class="card card-body" id="address-card">
+
+                        </div>
+                    </div>
+                </div>
 
 
                 <label for="phone-field" class="ps-2 mt-3">Phone number</label>
-                <input type="tel" placeholder="(XXX) xxx-xxxx" id="phone-field" class="form-control">
+                <input type="tel" placeholder="(XXX) xxx-xxxx" id="phone-field" class="form-control" maxlength="10">
 
             </div>
 
