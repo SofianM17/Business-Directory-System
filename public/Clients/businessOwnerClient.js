@@ -201,6 +201,11 @@ $(document).ready(() => {
 
     })
 
+    // toggle AM/PM selection on buttons
+    $('.dropdown-item').on('click', function() {
+        $(this).parent().parent().prev().text($(this).text());
+    });
+
     // display predicted address information if check address clicked
     $('#check-address-btn').on('click', () => {
 
