@@ -25,10 +25,13 @@ app.get('/add-business', (req, res) => {
 })
 
 // Handle post request for add business page
-app.post("/submit-form", (req, res) => {
+app.post("/submit-form", async(req, res) => {
     let formRequest = req.body;
     console.log(formRequest);
 
+    let client = await connectDatabase();
+    await addBusiness(client, formRequest);
+    client.close();
 })
 
 
@@ -40,50 +43,19 @@ async function connectDatabase() {
     try {
         await client.connect();
 
-        // Add a business into the database (Example)
-        // await addBusiness(client, {
-        //     name: "Tom's Pizzeria",
-        //     categories: ["Restaurant", "Italian", "Pizza", "Dine-In", "Take-out", "Dining"],
-        //     description: "A family-owned restaurant established in 1997 serving the broader Calgary area. With each bite is an authentic Italian taste that is unique only to our recipe.",
-        //     contact: {
-        //         website: "www.toms-pizza.com",
-        //         phoneNumber: "(403) 119 2954"
-        //     },
-        //     location: "1212 104 Ave. SW Calgary",
-        //     hours: {
-        //         Mon: "10:00AM - 10:00PM",
-        //         Tues: "10:00AM - 10:00PM",
-        //         Wed: "10:00AM - 10:00PM",
-        //         Thurs: "10:00AM - 10:00PM",
-        //         Fri: "10:00AM - 10:00PM",
-        //         Sat: "10:00AM - 10:00PM",
-        //         Sun: "Closed"
-        //     },
-        //     reviews: [{
-        //         name: "Maria",
-        //         rating: "4.5",
-        //         review: "The service was excellent and the food was delicious!"
-        //     }]
-        // });
-
-        // Get business by category from the database (Example)
-        await getBusinessByCategory(client, "Italian");
-
-        // update business with name "Tom's Pizzeria"  to "Tom's Pizza" (Example)
-        // await updateBusiness(client, "Tom's Pizzeria", { name: "Tom's Pizza" });
-
-        // delete business with name "Tom's Pizzeria"
-        // await deleteBusiness(client, "Tom's Pizzeria")
+        return client;
 
     } catch (e) {
         console.error(e);
-    } finally {
-        await client.close();
     }
+
+    // finally {
+    //     await client.close();
+    // }
 }
 
 // deals with case of rejected promise
-connectDatabase().catch(console.error);
+//connectDatabase().catch(console.error);
 
 // adds a single business profile as a new document into the database
 async function addBusiness(client, newBusiness) {
