@@ -85,46 +85,58 @@ async function validateAddress() {
     return { address: address.formatted };
 }
 
+function getTimePeriod(timeField) {
+    if (timeField.val() != '') {
+        return ' ' + timeField.next().text();
+    } else {
+        return ''
+    }
+}
+
+
 // send a post request to the server
 // containing form data
 async function submitData() {
+
+    let geoApResponse = await validateAddress();
+    let formattedAddress = geoApResponse.address;
 
     let obj = {
         name: businessData.businessName.val(),
         priceRange: selectedPrice,
         categories: selectedCategories,
         about: businessData.businessAbout.val(),
-        address: businessData.businessAddress.val(),
+        address: formattedAddress,
         phoneNum: businessData.businessPhone.val(),
         website: businessData.businessWebsite.val(),
         hours: {
             monday: {
-                startTime: businessData.days.monday.timeStart.val(),
-                endTime: businessData.days.monday.timeEnd.val()
+                startTime: businessData.days.monday.timeStart.val() + getTimePeriod(businessData.days.monday.timeStart),
+                endTime: businessData.days.monday.timeEnd.val() + getTimePeriod(businessData.days.monday.timeEnd)
             },
             tuesday: {
-                startTime: businessData.days.tuesday.timeStart.val(),
-                endTime: businessData.days.tuesday.timeEnd.val()
+                startTime: businessData.days.tuesday.timeStart.val() + getTimePeriod(businessData.days.tuesday.timeStart),
+                endTime: businessData.days.tuesday.timeEnd.val() + getTimePeriod(businessData.days.tuesday.timeEnd)
             },
             wednesday: {
-                startTime: businessData.days.wednesday.timeStart.val(),
-                endTime: businessData.days.wednesday.timeEnd.val()
+                startTime: businessData.days.wednesday.timeStart.val() + getTimePeriod(businessData.days.wednesday.timeStart),
+                endTime: businessData.days.wednesday.timeEnd.val() + getTimePeriod(businessData.days.wednesday.timeEnd)
             },
             thursday: {
-                startTime: businessData.days.thursday.timeStart.val(),
-                endTime: businessData.days.thursday.timeEnd.val()
+                startTime: businessData.days.thursday.timeStart.val() + getTimePeriod(businessData.days.thursday.timeStart),
+                endTime: businessData.days.thursday.timeEnd.val() + getTimePeriod(businessData.days.thursday.timeEnd)
             },
             friday: {
-                startTime: businessData.days.friday.timeStart.val(),
-                endTime: businessData.days.friday.timeEnd.val()
+                startTime: businessData.days.friday.timeStart.val() + getTimePeriod(businessData.days.friday.timeStart),
+                endTime: businessData.days.friday.timeEnd.val() + getTimePeriod(businessData.days.friday.timeEnd)
             },
             saturday: {
-                startTime: businessData.days.saturday.timeStart.val(),
-                endTime: businessData.days.saturday.timeEnd.val()
+                startTime: businessData.days.saturday.timeStart.val() + getTimePeriod(businessData.days.saturday.timeStart),
+                endTime: businessData.days.saturday.timeEnd.val() + getTimePeriod(businessData.days.saturday.timeEnd)
             },
             sunday: {
-                startTime: businessData.days.sunday.timeStart.val(),
-                endTime: businessData.days.sunday.timeEnd.val()
+                startTime: businessData.days.sunday.timeStart.val() + getTimePeriod(businessData.days.sunday.timeStart),
+                endTime: businessData.days.sunday.timeEnd.val() + getTimePeriod(businessData.days.sunday.timeEnd)
             }
         }
 
@@ -322,6 +334,10 @@ $(document).ready(() => {
         var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
         e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
     });
+
+    $('.time-field').on('input', function(e) {
+
+    })
 
     $('.dropdown-toggle')
 
