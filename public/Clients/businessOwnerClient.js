@@ -316,6 +316,7 @@ $(document).ready(() => {
         }
         if (businessData.businessAddress.val() === '') {
             businessData.businessAddress.addClass('is-invalid');
+            criteriaSatisfied = false;
         }
 
         if (criteriaSatisfied) {
@@ -329,15 +330,10 @@ $(document).ready(() => {
     })
 
     // mask for phone number field
-    // mask borrowed from https://stackoverflow.com/questions/17651207/mask-us-phone-number-string-with-javascript
-    $('#phone-field').on('input', function(e) {
-        var x = e.target.value.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-        e.target.value = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
-    });
+    $('#phone-field').mask("(999) 999-9999");
 
-    $('.time-field').on('input', function(e) {
-
-    })
+    // mask for time input
+    $('.time-field').mask("99:99");
 
     $('.dropdown-toggle')
 
