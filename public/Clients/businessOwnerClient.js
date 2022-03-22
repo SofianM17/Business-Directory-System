@@ -5,43 +5,68 @@ let businessData = {
     categoryType: $('.catCheck'),
     businessAbout: $('#about-field'),
 
-    // businessLocation: {
-    //     locationWrap: $('.wrapper2'),
-    //     unit: $('#bld-no-field'),
-    //     street: $('#street-field'),
-    //     city: $('#city-field'),
-    //     province: $('#prov-field'),
-    //     country: $('#country-field')
-    // },
-
     businessAddress: $('#address-field'),
     businessPhone: $('#phone-field'),
     businessWebsite: $('#url-field'),
 
-    // days: $('.day'),
-    // businessHours: {
-    //     Monday: $('#day1'),
-    // }
-}
-
-let expandClosedFlag = false;
-
-// constants for location validation
-const ADDRESS_HIGH_CONFIDENCE = 0.8;
-const ADDRESS_LOW_CONFIDENCE = 0.2;
-const validationResult = {}
-
-class BusinessDay {
-    constructor(day, timeOpen, timeClose) {
-        this.day = day;
-        this.timeOpen = timeOpen;
-        this.timeClose = timeClose;
+    days: {
+        allDays: $('.form-check-input'),
+        monday: {
+            check: $('#monday-check'),
+            timeStart: $('#monday-time-start'),
+            timeEnd: $('#monday-time-end'),
+            timeStartToggle: $('#monday-time-start-toggle'),
+            timeEndToggle: $('#monday-time-end-toggle'),
+        },
+        tuesday: {
+            check: $('#tuesday-check'),
+            timeStart: $('#tuesday-time-start'),
+            timeEnd: $('#tuesday-time-end'),
+            timeStartToggle: $('#tuesday-time-start-toggle'),
+            timeEndToggle: $('#tuesday-time-end-toggle'),
+        },
+        wednesday: {
+            check: $('#wednesday-check'),
+            timeStart: $('#wednesday-time-start'),
+            timeEnd: $('#wednesday-time-end'),
+            timeStartToggle: $('#wednesday-time-start-toggle'),
+            timeEndToggle: $('#wednesday-time-end-toggle'),
+        },
+        thursday: {
+            check: $('#thursday-check'),
+            timeStart: $('#thursday-time-start'),
+            timeEnd: $('#thursday-time-end'),
+            timeStartToggle: $('#thursday-time-start-toggle'),
+            timeEndToggle: $('#thursday-time-end-toggle'),
+        },
+        friday: {
+            check: $('#friday-check'),
+            timeStart: $('#friday-time-start'),
+            timeEnd: $('#friday-time-end'),
+            timeStartToggle: $('#friday-time-start-toggle'),
+            timeEndToggle: $('#friday-time-end-toggle'),
+        },
+        saturday: {
+            check: $('#saturday-check'),
+            timeStart: $('#saturday-time-start'),
+            timeEnd: $('#saturday-time-end'),
+            timeStartToggle: $('#saturday-time-start-toggle'),
+            timeEndToggle: $('#saturday-time-end-toggle'),
+        },
+        sunday: {
+            check: $('#sunday-check'),
+            timeStart: $('#sunday-time-start'),
+            timeEnd: $('#sunday-time-end'),
+            timeStartToggle: $('#sunday-time-start-toggle'),
+            timeEndToggle: $('#sunday-time-end-toggle'),
+        }
     }
 }
 
 let selectedPrice = '';
 let selectedCategories = [];
 
+// use the fetch API to validate, format, and estimate (if needed) the requested address
 async function validateAddress() {
     const url = `https://api.geoapify.com/v1/geocode/search?text=${encodeURIComponent(businessData.businessAddress.val())}&apiKey=dd6853e113004f1a83795613f67a78a8`;
 
@@ -60,36 +85,6 @@ async function validateAddress() {
     return { address: address.formatted };
 }
 
-// display predicted address information if check address clicked
-$('#check-address-btn').on('click', () => {
-    //expandClosedFlag = !expandClosedFlag;
-
-    let addressCard = document.getElementById('address-card');
-    validateAddress().then(params => {
-
-        while (addressCard.firstChild) {
-            addressCard.removeChild(addressCard.firstChild);
-        }
-
-        let heading = document.createElement('p');
-        let addressText = document.createElement('p');
-
-        heading.textContent = 'Here is the address we found based on the information you provided:'
-        addressText.textContent = params.address;
-
-        addressCard.appendChild(heading);
-        addressCard.appendChild(addressText);
-    })
-
-    $('#checkAddress').show(400);
-    $('#check-address-btn').prop("disabled", true);
-
-    setTimeout(() => {
-        $('#checkAddress').hide(400)
-    }, 20000)
-
-})
-
 // send a post request to the server
 // containing form data
 async function submitData() {
@@ -102,6 +97,36 @@ async function submitData() {
         address: businessData.businessAddress.val(),
         phoneNum: businessData.businessPhone.val(),
         website: businessData.businessWebsite.val(),
+        hours: {
+            monday: {
+                startTime: businessData.days.monday.timeStart.val(),
+                endTime: businessData.days.monday.timeEnd.val()
+            },
+            tuesday: {
+                startTime: businessData.days.tuesday.timeStart.val(),
+                endTime: businessData.days.tuesday.timeEnd.val()
+            },
+            wednesday: {
+                startTime: businessData.days.wednesday.timeStart.val(),
+                endTime: businessData.days.wednesday.timeEnd.val()
+            },
+            thursday: {
+                startTime: businessData.days.thursday.timeStart.val(),
+                endTime: businessData.days.thursday.timeEnd.val()
+            },
+            friday: {
+                startTime: businessData.days.friday.timeStart.val(),
+                endTime: businessData.days.friday.timeEnd.val()
+            },
+            saturday: {
+                startTime: businessData.days.saturday.timeStart.val(),
+                endTime: businessData.days.saturday.timeEnd.val()
+            },
+            sunday: {
+                startTime: businessData.days.sunday.timeStart.val(),
+                endTime: businessData.days.sunday.timeEnd.val()
+            }
+        }
 
     };
 
@@ -121,9 +146,89 @@ async function submitData() {
 
 }
 
+// toggles the disabled state of time fields
+function toggleTime(timeStartField, timeEndField, timeStartToggle, timeEndToggle) {
+    timeStartField.prop('disabled', (i, v) => { return !v });
+    timeEndField.prop('disabled', (i, v) => { return !v });
+    timeStartToggle.prop('disabled', (i, v) => { return !v });
+    timeEndToggle.prop('disabled', (i, v) => { return !v });
+}
+
 $(document).ready(() => {
 
     $('#checkAddress').hide();
+
+    // Detect a change in day checkboxes
+    businessData.days.allDays.on('change', function() {
+        let monday = businessData.days.monday;
+        let tuesday = businessData.days.tuesday;
+        let wednesday = businessData.days.wednesday;
+        let thursday = businessData.days.thursday;
+        let friday = businessData.days.friday;
+        let saturday = businessData.days.saturday;
+        let sunday = businessData.days.sunday;
+
+        // if this change was on the Monday checkbox
+        if ($(this).is(monday.check)) {
+            // toggle the disabled status of Monday's times
+            toggleTime(monday.timeStart, monday.timeEnd, monday.timeStartToggle, monday.timeEndToggle);
+        }
+
+        // check for remaining days
+        if ($(this).is(tuesday.check)) {
+            toggleTime(tuesday.timeStart, tuesday.timeEnd, tuesday.timeStartToggle, tuesday.timeEndToggle);
+        }
+
+        if ($(this).is(wednesday.check)) {
+            toggleTime(wednesday.timeStart, wednesday.timeEnd, wednesday.timeStartToggle, wednesday.timeEndToggle);
+        }
+
+        if ($(this).is(thursday.check)) {
+            toggleTime(thursday.timeStart, thursday.timeEnd, thursday.timeStartToggle, thursday.timeEndToggle);
+        }
+
+        if ($(this).is(friday.check)) {
+            toggleTime(friday.timeStart, friday.timeEnd, friday.timeStartToggle, friday.timeEndToggle);
+        }
+
+        if ($(this).is(saturday.check)) {
+            toggleTime(saturday.timeStart, saturday.timeEnd, saturday.timeStartToggle, saturday.timeEndToggle);
+        }
+
+        if ($(this).is(sunday.check)) {
+            toggleTime(sunday.timeStart, sunday.timeEnd, sunday.timeStartToggle, sunday.timeEndToggle);
+        }
+
+    })
+
+    // display predicted address information if check address clicked
+    $('#check-address-btn').on('click', () => {
+
+        let addressCard = document.getElementById('address-card');
+        validateAddress().then(params => {
+
+            while (addressCard.firstChild) {
+                addressCard.removeChild(addressCard.firstChild);
+            }
+
+            let heading = document.createElement('p');
+            let addressText = document.createElement('p');
+
+            heading.textContent = 'Here is the address we found based on the information you provided:'
+            addressText.textContent = params.address;
+
+            addressCard.appendChild(heading);
+            addressCard.appendChild(addressText);
+        })
+
+        $('#checkAddress').show(400);
+        $('#check-address-btn').prop("disabled", true);
+
+        setTimeout(() => {
+            $('#checkAddress').hide(400)
+        }, 20000)
+
+    });
 
     // Detect a change in price ranges
     businessData.priceType.change(function() {
@@ -182,7 +287,6 @@ $(document).ready(() => {
 
         // if a price range and at least 1 category have been selected
         if (selectedPrice == '' && selectedCategories.length == 0) {
-            console.log('invalid');
             criteriaSatisfied = false;
         }
         if (businessData.businessName.val() === '') {
@@ -200,6 +304,8 @@ $(document).ready(() => {
         if (criteriaSatisfied) {
             // post the form data to the server
             submitData();
+        } else {
+            window.scrollTo(0, 0);
         }
 
 
