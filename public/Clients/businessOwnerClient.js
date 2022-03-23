@@ -111,30 +111,37 @@ async function submitData() {
         website: businessData.businessWebsite.val(),
         hours: {
             monday: {
+                day: "Monday",
                 startTime: businessData.days.monday.timeStart.val() + getTimePeriod(businessData.days.monday.timeStart),
                 endTime: businessData.days.monday.timeEnd.val() + getTimePeriod(businessData.days.monday.timeEnd)
             },
             tuesday: {
+                day: "Tuesday",
                 startTime: businessData.days.tuesday.timeStart.val() + getTimePeriod(businessData.days.tuesday.timeStart),
                 endTime: businessData.days.tuesday.timeEnd.val() + getTimePeriod(businessData.days.tuesday.timeEnd)
             },
             wednesday: {
+                day: "Wednesday",
                 startTime: businessData.days.wednesday.timeStart.val() + getTimePeriod(businessData.days.wednesday.timeStart),
                 endTime: businessData.days.wednesday.timeEnd.val() + getTimePeriod(businessData.days.wednesday.timeEnd)
             },
             thursday: {
+                day: "Thursday",
                 startTime: businessData.days.thursday.timeStart.val() + getTimePeriod(businessData.days.thursday.timeStart),
                 endTime: businessData.days.thursday.timeEnd.val() + getTimePeriod(businessData.days.thursday.timeEnd)
             },
             friday: {
+                day: "Friday",
                 startTime: businessData.days.friday.timeStart.val() + getTimePeriod(businessData.days.friday.timeStart),
                 endTime: businessData.days.friday.timeEnd.val() + getTimePeriod(businessData.days.friday.timeEnd)
             },
             saturday: {
+                day: "Saturday",
                 startTime: businessData.days.saturday.timeStart.val() + getTimePeriod(businessData.days.saturday.timeStart),
                 endTime: businessData.days.saturday.timeEnd.val() + getTimePeriod(businessData.days.saturday.timeEnd)
             },
             sunday: {
+                day: "Sunday",
                 startTime: businessData.days.sunday.timeStart.val() + getTimePeriod(businessData.days.sunday.timeStart),
                 endTime: businessData.days.sunday.timeEnd.val() + getTimePeriod(businessData.days.sunday.timeEnd)
             }
