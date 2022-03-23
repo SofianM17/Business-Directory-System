@@ -4,9 +4,34 @@ async function fetchProfile() {
     let businessData = await response.json();
     return businessData;
 }
+
+function appendBusinessHours(day) {
+    let startTime;
+    let endTime;
+    if (day.startTime === "") {
+        startTime = "closed";
+    } else {
+        startTime = day.startTime;
+    }
+    if (day.endTime === "") {
+        endTime = "closed"
+    } else {
+        endTime = day.endTime;
+    }
+
+    if (startTime != "closed" && endTime != "closed") {
+        $("<li>" + "<p>" + day.day + "</p>" + "<p>" + startTime + ' - ' + endTime + "</p>" + "</li>").appendTo('#hours-list');
+    } else {
+        $("<li>" + "<p>" + day.day + "</p>" + "<p>closed</p>" + "</li>").appendTo('#hours-list');
+    }
+}
+
 $(document).ready(async function() {
 
     let data = await fetchProfile();
+    let days = [data.hours.monday, data.hours.tuesday, data.hours.wednesday,
+        data.hours.thursday, data.hours.friday, data.hours.saturday, data.hours.sunday
+    ];
 
     // add title to title div
     $("<h1>" + data.name + "</h1>").appendTo('#title');
@@ -44,5 +69,12 @@ $(document).ready(async function() {
         // append website
         $("<li>" + data.website + "</li>").appendTo('#contact-info-list')
     }
+
+    // append the business hour for each day.
+    for (let day of days) {
+        appendBusinessHours(day);
+    }
+
+
 
 });
