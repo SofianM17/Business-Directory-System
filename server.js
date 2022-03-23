@@ -28,12 +28,12 @@ app.get('/add-business', (req, res) => {
 });
 
 // display the business profile page on a get request of this url
-app.get('/business-profile/:id', async(req, res) => {
-    res.sendFile(__dirname + '/public/Views/businessProfile.html');
+app.get('/business-profile-owner/:id', async(req, res) => {
+    res.sendFile(__dirname + '/public/Views/businessProfileOwner.html');
 });
 
 // display the business profile page on a get request of this url
-app.get('/business-profile/generate/:id', async(req, res) => {
+app.get('/business-profile-owner/generate/:id', async(req, res) => {
     let client = await connectDatabase();
     let oId = new ObjectId(req.params.id);
     let businessData = await getBusinessById(client, oId);
