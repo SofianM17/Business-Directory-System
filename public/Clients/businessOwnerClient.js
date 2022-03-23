@@ -323,7 +323,7 @@ $(document).ready(() => {
             // post the form data to the server and redirect to profile
             submitData()
                 .then(id => {
-                    window.location.replace('/business-profile/' + id);
+                    window.location.replace('/business-profile-owner/' + id);
                 });
         } else {
             window.scrollTo(0, 0);
