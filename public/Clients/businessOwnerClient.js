@@ -153,7 +153,7 @@ async function submitData() {
 
     let data = await response.json();
 
-    console.log(data);
+    return data;
 
 
 }
@@ -320,8 +320,11 @@ $(document).ready(() => {
         }
 
         if (criteriaSatisfied) {
-            // post the form data to the server
-            submitData();
+            // post the form data to the server and redirect to profile
+            submitData()
+                .then(id => {
+                    window.location.replace('/business-profile/' + id);
+                });
         } else {
             window.scrollTo(0, 0);
         }
