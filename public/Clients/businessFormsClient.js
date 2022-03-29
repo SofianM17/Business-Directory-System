@@ -158,7 +158,7 @@ async function submitData() {
         },
         body: JSON.stringify(obj)
 
-    })
+    });
 
     let data = await response.json();
 
@@ -176,6 +176,33 @@ function toggleTime(timeStartField, timeEndField, timeStartToggle, timeEndToggle
 }
 
 $(document).ready(() => {
+
+    // if the current page is the edit business page
+    if (window.location.href.indexOf("/edit-business/") > -1) {
+        // populate the fields with the business data
+        fetch('/business-get/' + window.location.href.split('/')[4])
+            .then(response => {
+                return response.json();
+            })
+            .then(data => {
+                businessData.businessName.val(data.name);
+                businessData.businessAbout.val(data.about);
+                businessData.businessAddress.val(data.address.address);
+                $('#check-address-btn').prop('disabled', false);
+                businessData.businessPhone.val(data.phoneNum);
+                businessData.businessWebsite.val(data.website);
+
+                for (category of data.categories) {
+                    // for (bdCat of businessData.categoryType) {
+                    //     if (category === $("label[for=id:'" + bdCat.prop('id') + "']").text().trim()) {
+                    //         bdCat.prop('checked', true);
+                    //     }
+                    // }
+                }
+
+                console.log(businessData.categoryType);
+            })
+    }
 
     $('#checkAddress').hide();
 
@@ -289,7 +316,7 @@ $(document).ready(() => {
     // remove invalid alerts when user updates input or textarea field
     $('input, textarea').on('input', function() {
         $(this).removeClass('is-invalid');
-    })
+    });
 
     // enable / disable check address button
     businessData.businessAddress.on('input', function() {
@@ -303,7 +330,7 @@ $(document).ready(() => {
             $('#check-address-btn').prop('disabled', true);
         }
 
-    })
+    });
 
     // event handler for form submission
     businessData.businessForm.on('submit', (e) => {
@@ -343,7 +370,7 @@ $(document).ready(() => {
         }
 
 
-    })
+    });
 
     // mask for phone number field
     $('#phone-field').mask("(999) 999-9999");
@@ -351,7 +378,7 @@ $(document).ready(() => {
     // mask for time input
     $('.time-field').mask("99:99");
 
-    $('.dropdown-toggle')
+    // $('.dropdown-toggle')
 
 
 });

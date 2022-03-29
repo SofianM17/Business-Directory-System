@@ -3,7 +3,7 @@
 
 // request data from the server based on the id in the url
 async function fetchProfile() {
-    let response = await fetch('/business-profile-owner/generate/' + window.location.href.split('/')[4]);
+    let response = await fetch('/business-get/' + window.location.href.split('/')[4]);
     let businessData = await response.json();
     return businessData;
 }
@@ -115,6 +115,9 @@ $(document).ready(async function() {
         appendBusinessHours(day);
     }
 
-
+    // Redirect to edit page of this business
+    $('#edit-btn').on('click', () => {
+        window.location.href = "/edit-business/" + data["_id"];
+    })
 
 });
