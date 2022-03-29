@@ -1,0 +1,35 @@
+.intro {
+    margin: 32px 37px 32px 37px;
+}
+
+.about {
+    margin: 0px 37px 32px 37px;
+}
+
+.location {
+    margin: 0px 37px 0px 37px;
+    .location-title {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        img {
+            margin: 0px 0px 12px 3px;
+        }
+    }
+    #map {
+        padding: 0;
+        margin-top: (32px/2px);
+        height: 381px;
+        width: 289.76px
+    }
+}
+
+.contact-info {
+    margin: 32px 37px 0px 37px;
+    li {
+        list-style: none;
+    }
+    ul {
+        padding: 0px;
+    }
+}
