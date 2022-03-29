@@ -327,6 +327,10 @@ $(document).ready(() => {
             businessData.businessAddress.addClass('is-invalid');
             criteriaSatisfied = false;
         }
+        if (businessData.businessPhone.val() === '') {
+            businessData.businessPhone.addClass('is-invalid');
+            criteriaSatisfied = false;
+        }
 
         if (criteriaSatisfied) {
             // post the form data to the server and redirect to profile
