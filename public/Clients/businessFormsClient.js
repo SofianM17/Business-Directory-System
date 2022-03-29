@@ -65,6 +65,7 @@ let businessData = {
 
 let selectedPrice = '';
 let selectedCategories = [];
+let editId;
 
 // use the fetch API to validate, format, and estimate (if needed) the requested address
 async function validateAddress() {
@@ -151,19 +152,36 @@ async function submitData() {
 
     };
 
-    // create new business
-    let response = await fetch("/submit-form", {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(obj)
+    // send the appropriate request based on url
 
-    });
+    if (window.location.href.indexOf("/edit-business/") > -1) {
+        let response = await fetch("/submit-form-edit/" + editId, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(obj)
 
-    let data = await response.json();
 
-    return data;
+        });
+        let data = await response.json();
+        return data;
+    }
+
+    if (window.location.href.indexOf("/add-business") > -1) {
+        // create new business
+        let response = await fetch("/submit-form-create", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(obj)
+
+        });
+        let data = await response.json();
+
+        return data;
+    }
 
 
 }
@@ -174,6 +192,16 @@ function toggleTime(timeStartField, timeEndField, timeStartToggle, timeEndToggle
     timeEndField.prop('disabled', (i, v) => { return !v });
     timeStartToggle.prop('disabled', (i, v) => { return !v });
     timeEndToggle.prop('disabled', (i, v) => { return !v });
+
+    // reset the values for the fields if they are disabled
+    if (timeStartField.prop('disabled')) {
+        timeStartField.val('');
+        timeStartToggle.text('AM');
+    }
+    if (timeEndField.prop('disabled')) {
+        timeEndField.val('');
+        timeEndToggle.text('AM');
+    }
 }
 
 $(document).ready(() => {
@@ -186,6 +214,7 @@ $(document).ready(() => {
                 return response.json();
             })
             .then(data => {
+                editId = data['_id'];
                 // populate fields with data
                 businessData.businessName.val(data.name);
                 businessData.businessAbout.val(data.about);
@@ -193,24 +222,58 @@ $(document).ready(() => {
                 businessData.businessPhone.val(data.phoneNum);
                 businessData.businessWebsite.val(data.website);
 
-                // check the correct price range
-
-                // list of all elements that correspond to checkboxes
+                // list of all elements that correspond to checkboxes besides times
                 let checkboxItems = data.categories.concat([data.priceRange]);
 
-                // check category checkboxes
+                // check category and price range checkboxes
                 let counterLimit = $('label').length - 1;
                 for (item of checkboxItems) {
                     for (let counter = 0; counter < counterLimit; counter++) {
                         if (item == $('label')[counter].textContent.trim()) {
                             var id = ($('label')[counter]).getAttribute('for');
-                            $('input[id=' + id + ']').prop('checked', true);
+                            $('input[id=' + id + ']').prop('checked', true).trigger('change');
+                        }
+                    }
+                }
+
+                // check hours checkboxes and populate hours
+                counterLimit = $('label').length - 1;
+                for (day in data.hours) {
+                    if (data.hours[day].startTime !== '') {
+                        for (let counter = 0; counter < counterLimit; counter++) {
+                            if (data.hours[day].day == $('label')[counter].textContent.trim()) {
+                                var id = ($('label')[counter]).getAttribute('for');
+
+                                // check the checkbox
+                                $('input[id=' + id + ']').prop('checked', true);
+
+                                // enable the fields
+                                let startTimeField = $('input[id=' + data.hours[day].day.toLowerCase() + '-time-start]');
+                                let endTimeField = $('input[id=' + data.hours[day].day.toLowerCase() + '-time-end]');
+                                startTimeField.prop('disabled', false);
+                                endTimeField.prop('disabled', false);
+
+                                // populate the fields with the correct time
+                                // Only populate the time values, not the period (i.e. AM or PM)
+                                startTimeField.val(data.hours[day].startTime.split(" ")[0]);
+                                endTimeField.val(data.hours[day].endTime.split(" ")[0]);
+
+                                // dropdown buttons for time periods (AM or PM) - enable them and populate the right time period
+                                let timeStartDropdown = $('#' + data.hours[day].day.toLowerCase() + '-time-start-toggle');
+                                timeStartDropdown.prop('disabled', false);
+                                timeStartDropdown.text(data.hours[day].startTime.split(" ")[1]);
+
+                                let timeEndDropdown = $('#' + data.hours[day].day.toLowerCase() + '-time-end-toggle');
+                                timeEndDropdown.prop('disabled', false);
+                                timeEndDropdown.text(data.hours[day].endTime.split(" ")[1]);
+                            }
                         }
                     }
                 }
             })
     }
 
+    // hide the check address button's dropdown card
     $('#checkAddress').hide();
 
     // Detect a change in day checkboxes
@@ -256,7 +319,7 @@ $(document).ready(() => {
 
     })
 
-    // toggle AM/PM selection on buttons
+    // toggle text for AM/PM selection on buttons
     $('.dropdown-item').on('click', function() {
         $(this).parent().parent().prev().text($(this).text());
     });
@@ -345,8 +408,11 @@ $(document).ready(() => {
 
         let criteriaSatisfied = true;
 
-        // if a price range and at least 1 category have been selected
-        if (selectedPrice == '' && selectedCategories.length == 0) {
+        // conditions for preventing the form from submitting
+        if (selectedPrice == '') {
+            criteriaSatisfied = false;
+        }
+        if (selectedCategories.length == 0) {
             criteriaSatisfied = false;
         }
         if (businessData.businessName.val() === '') {

@@ -48,7 +48,7 @@ app.get('/business-get/:id', async(req, res) => {
 })
 
 // Handle post request for add business page
-app.post("/submit-form", async(req, res) => {
+app.post("/submit-form-create", async(req, res) => {
     let formRequest = req.body;
     formRequest["_id"] = new ObjectId();
     curId = formRequest["_id"];
@@ -57,6 +57,18 @@ app.post("/submit-form", async(req, res) => {
     let client = await connectDatabase();
     await addBusiness(client, formRequest);
     res.send(curId);
+    client.close();
+});
+
+// Handle post request for edit business page
+app.post("/submit-form-edit/:id", async(req, res) => {
+    let formRequest = req.body;
+    let objId = new ObjectId(req.params.id);
+    console.log(formRequest);
+
+    let client = await connectDatabase();
+    await updateBusiness(client, objId, formRequest);
+    res.send(objId);
     client.close();
 });
 
@@ -102,9 +114,9 @@ async function getBusinessByCategory(client, category) {
     console.log(results[0].name);
 }
 
-// Find the business by its name and update the business with updatedInfo
-async function updateBusiness(client, businessName, updatedInfo) {
-    const result = await client.db("businessesDB").collection("businesses").updateOne({ name: businessName }, { $set: updatedInfo });
+// Find the business by its id and replace the business with updated one
+async function updateBusiness(client, businessId, updatedInfo) {
+    const result = await client.db("businessesDB").collection("businesses").replaceOne({ "_id": businessId }, updatedInfo);
 }
 
 // Find the business by its name and delete the business
