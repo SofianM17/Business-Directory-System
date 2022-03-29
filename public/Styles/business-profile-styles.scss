@@ -1,5 +1,17 @@
 .intro {
     margin: 32px 37px 32px 37px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .buttons {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        row-gap: 10px;
+        button {
+            border: none;
+        }
+    }
 }
 
 .about {

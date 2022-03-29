@@ -27,13 +27,18 @@ app.get('/add-business', (req, res) => {
     res.sendFile(__dirname + '/public/Views/addBusiness.html');
 });
 
+// display the edit business page on a get request of this url
+app.get('/edit-business/:id', (req, res) => {
+    res.sendFile(__dirname + '/public/Views/editBusiness.html');
+});
+
 // display the business profile page on a get request of this url
 app.get('/business-profile-owner/:id', async(req, res) => {
     res.sendFile(__dirname + '/public/Views/businessProfileOwner.html');
 });
 
-// display the business profile page on a get request of this url
-app.get('/business-profile-owner/generate/:id', async(req, res) => {
+// This request returns the business found in the database by id
+app.get('/business-get/:id', async(req, res) => {
     let client = await connectDatabase();
     let oId = new ObjectId(req.params.id);
     let businessData = await getBusinessById(client, oId);
