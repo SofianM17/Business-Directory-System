@@ -151,6 +151,7 @@ async function submitData() {
 
     };
 
+    // create new business
     let response = await fetch("/submit-form", {
         method: "POST",
         headers: {
@@ -185,22 +186,28 @@ $(document).ready(() => {
                 return response.json();
             })
             .then(data => {
+                // populate fields with data
                 businessData.businessName.val(data.name);
                 businessData.businessAbout.val(data.about);
                 businessData.businessAddress.val(data.address.address);
-                $('#check-address-btn').prop('disabled', false);
                 businessData.businessPhone.val(data.phoneNum);
                 businessData.businessWebsite.val(data.website);
 
-                for (category of data.categories) {
-                    // for (bdCat of businessData.categoryType) {
-                    //     if (category === $("label[for=id:'" + bdCat.prop('id') + "']").text().trim()) {
-                    //         bdCat.prop('checked', true);
-                    //     }
-                    // }
-                }
+                // check the correct price range
 
-                console.log(businessData.categoryType);
+                // list of all elements that correspond to checkboxes
+                let checkboxItems = data.categories.concat([data.priceRange]);
+
+                // check category checkboxes
+                let counterLimit = $('label').length - 1;
+                for (item of checkboxItems) {
+                    for (let counter = 0; counter < counterLimit; counter++) {
+                        if (item == $('label')[counter].textContent.trim()) {
+                            var id = ($('label')[counter]).getAttribute('for');
+                            $('input[id=' + id + ']').prop('checked', true);
+                        }
+                    }
+                }
             })
     }
 
@@ -358,6 +365,7 @@ $(document).ready(() => {
             businessData.businessPhone.addClass('is-invalid');
             criteriaSatisfied = false;
         }
+
 
         if (criteriaSatisfied) {
             // post the form data to the server and redirect to profile
