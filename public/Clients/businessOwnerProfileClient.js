@@ -24,9 +24,9 @@ function appendBusinessHours(day) {
     }
 
     if (startTime != "closed" && endTime != "closed") {
-        $("<li>" + "<p>" + day.day + "</p>" + "<p>" + startTime + ' - ' + endTime + "</p>" + "</li>").appendTo('#hours-list');
+        $("<li>" + "<p id='day'>" + day.day + "</p>" + "<p id='open-time'>" + startTime + ' - ' + endTime + "</p>" + "</li>").appendTo('#hours-list');
     } else {
-        $("<li>" + "<p>" + day.day + "</p>" + "<p>closed</p>" + "</li>").appendTo('#hours-list');
+        $("<li>" + "<p id='day'>" + day.day + "</p>" + "<p id='closed'>closed</p>" + "</li>").appendTo('#hours-list');
     }
 }
 
@@ -35,7 +35,7 @@ function appendBusinessHours(day) {
 function displayMap(longitude, latitude) {
 
     // create map
-    var map = L.map("map").setView([latitude, longitude], 15);
+    var map = L.map("map").setView([latitude, longitude], 15.5);
 
     const apiKey = "dd6853e113004f1a83795613f67a78a8";
 
@@ -101,17 +101,14 @@ $(document).ready(async function() {
     // append address to location section
     $("<p>" + data.address.address + "</p>").appendTo('#location-address');
 
-    // if data contains a phone number
-    if (data.phoneNum != '') {
-        // append contact information
-        $("<li>" + data.phoneNum + "</li>").appendTo('#contact-info-list')
-    }
 
     // if data contains a website
     if (data.website != '') {
-        // append website
-        $("<li>" + data.website + "</li>").appendTo('#contact-info-list')
+        $("<li id='website' style='border-bottom: 1px solid #A5A5A5'>" + "<a href='https://" + data.website + "'>" + data.website + "</a>" + "<img src='../Resources/icons8-external-link-64.png'>" + "</li>").appendTo('#contact-info-list')
     }
+
+    // append phone number information to list
+    $("<li id='phone-num'>" + data.phoneNum + "<img src='../Resources/icons8-phone-50.png'> </li>").appendTo('#contact-info-list')
 
     // append the business hour for each day.
     for (let day of days) {
