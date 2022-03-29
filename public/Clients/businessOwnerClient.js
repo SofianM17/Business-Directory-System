@@ -82,7 +82,7 @@ async function validateAddress() {
     // formatted address (predicted if not fully provided)
     console.log(address.formatted);
 
-    return { address: address.formatted };
+    return { address: address.formatted, longitude: address.lon, latitude: address.lat };
 }
 
 function getTimePeriod(timeField) {
@@ -100,13 +100,15 @@ async function submitData() {
 
     let geoApResponse = await validateAddress();
     let formattedAddress = geoApResponse.address;
+    let latitude = geoApResponse.latitude;
+    let longitude = geoApResponse.longitude;
 
     let obj = {
         name: businessData.businessName.val(),
         priceRange: selectedPrice,
         categories: selectedCategories,
         about: businessData.businessAbout.val(),
-        address: formattedAddress,
+        address: { address: formattedAddress, latitude: latitude, longitude: longitude },
         phoneNum: businessData.businessPhone.val(),
         website: businessData.businessWebsite.val(),
         hours: {
