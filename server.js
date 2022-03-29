@@ -38,6 +38,7 @@ app.get('/business-profile-owner/generate/:id', async(req, res) => {
     let oId = new ObjectId(req.params.id);
     let businessData = await getBusinessById(client, oId);
     res.send(businessData[0]);
+    console.log(businessData[0]);
     client.close();
 })
 

@@ -1,3 +1,6 @@
+// arcGIS API
+
+
 // request data from the server based on the id in the url
 async function fetchProfile() {
     let response = await fetch('/business-profile-owner/generate/' + window.location.href.split('/')[4]);
@@ -28,10 +31,21 @@ function appendBusinessHours(day) {
 
 $(document).ready(async function() {
 
+    const apiKey = "AAPK25a6a0f82f4d4a8c9f944defa9b4bc187CpHxavhcOLTZi1KSHBS6aValXdRA0QTTnzh-ceib1aBlBU045LD0Gkp6sG2n6IS";
+    const basemapEnum = "ArcGIS:Streets";
+
     let data = await fetchProfile();
     let days = [data.hours.monday, data.hours.tuesday, data.hours.wednesday,
         data.hours.thursday, data.hours.friday, data.hours.saturday, data.hours.sunday
     ];
+
+    const map = L.map("map", {
+        minZoom: 2
+    }).setView([data.address.latitude, data.address.longitude], 13);
+
+    L.esri.Vector.vectorBasemapLayer(basemapEnum, {
+        apiKey: apiKey
+    }).addTo(map);
 
     // add title to title div
     $("<h1>" + data.name + "</h1>").appendTo('#title');
@@ -56,7 +70,7 @@ $(document).ready(async function() {
     $("<p>" + data.about + "</p>").appendTo('#description');
 
     // append address to location section
-    $("<p>" + data.address + "</p>").appendTo('#location-address');
+    $("<p>" + data.address.address + "</p>").appendTo('#location-address');
 
     // if data contains a phone number
     if (data.phoneNum != '') {
