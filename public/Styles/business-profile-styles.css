@@ -1,0 +1,47 @@
+.intro {
+  margin: 32px 37px 32px 37px;
+}
+
+.about {
+  margin: 0px 37px 32px 37px;
+}
+
+.location {
+  margin: 0px 37px 0px 37px;
+}
+
+.location .location-title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+}
+
+.location .location-title img {
+  margin: 0px 0px 12px 3px;
+}
+
+.location #map {
+  padding: 0;
+  margin-top: 16;
+  height: 381px;
+  width: 289.76px;
+}
+
+.contact-info {
+  margin: 32px 37px 0px 37px;
+}
+
+.contact-info li {
+  list-style: none;
+}
+
+.contact-info ul {
+  padding: 0px;
+}
+/*# sourceMappingURL=business-profile-styles.css.map */
