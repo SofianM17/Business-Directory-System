@@ -454,5 +454,10 @@ $(document).ready(() => {
 
     // $('.dropdown-toggle')
 
+    // return to the previous page if the edit form is canceled
+    $('#submit-btn-cancel').on('click', () => {
+        window.history.back();
+    })
+
 
 });
