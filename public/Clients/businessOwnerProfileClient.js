@@ -120,4 +120,9 @@ $(document).ready(async function() {
         window.location.href = "/edit-business/" + data["_id"];
     })
 
+    // request to delete the form if the delete button is clicked
+    $('#delete-btn').on('click', () => {
+        window.location.href = "/delete-business/" + data["_id"];
+    })
+
 });
