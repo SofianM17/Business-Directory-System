@@ -5,6 +5,7 @@ const fetch = require('node-fetch');
 const express = require('express');
 const http = require('http');
 const { response } = require('express');
+const { del } = require('express/lib/application');
 
 const app = express();
 const server = http.createServer(app);
@@ -21,6 +22,10 @@ let curId;
 
 app.get('/', (req, res) => {})
 
+// display a page for confirming deletion of business
+app.get('/delete-business/:id', (req, res) => {
+    res.sendFile(__dirname + '/public/Views/deleteBusinessConfirmation.html')
+})
 
 // display the add business page on a get request of this url
 app.get('/add-business', (req, res) => {
@@ -72,6 +77,14 @@ app.post("/submit-form-edit/:id", async(req, res) => {
     client.close();
 });
 
+// Handle request to delete the business from the database
+app.post("/submit-form-delete/:id", async(req, res) => {
+    let objId = new ObjectId(req.params.id);
+    let client = await connectDatabase();
+    await deleteBusiness(client, objId);
+    client.close();
+})
+
 
 async function connectDatabase() {
     const uri = "mongodb+srv://businessDirSysAdmin:cYmACq0vr704SLbN@cluster0.4kjcl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
@@ -119,7 +132,7 @@ async function updateBusiness(client, businessId, updatedInfo) {
     const result = await client.db("businessesDB").collection("businesses").replaceOne({ "_id": businessId }, updatedInfo);
 }
 
-// Find the business by its name and delete the business
-async function deleteBusiness(client, businessName) {
-    const result = await client.db("businessesDB").collection("businesses").deleteOne({ name: businessName });
+// Find the business by its id and delete the business
+async function deleteBusiness(client, businessId) {
+    const result = await client.db("businessesDB").collection("businesses").deleteOne({ "_id": businessId });
 }
