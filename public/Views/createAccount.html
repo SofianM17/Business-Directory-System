@@ -32,17 +32,20 @@
       <h1 class="text-center fw-bolder mt-4">Create New Account</h1>
       <form id="account-creation-form" class="container-fluid mt-4">
         <div class="row justify-content-center pe-2 ps-2">
+          <label>User Account Type</label>
           <button
             type="button"
             class="btn btn-outline-secondary dropdown-toggle"
             data-bs-toggle="dropdown"
             id="account-type-field"
           >
-            Select your user account type
+            Customer
           </button>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" class="AM">Customer</a></li>
-            <li><a class="dropdown-item" class="PM">Business Owner</a></li>
+            <li><a class="dropdown-item" class="Customer">Customer</a></li>
+            <li>
+              <a class="dropdown-item" class="BusinessOwner">Business Owner</a>
+            </li>
           </ul>
         </div>
 
@@ -79,5 +82,6 @@
         </div>
       </form>
     </div>
+    <script src="../Clients/accountCreationForm.js"></script>
   </body>
 </html>
