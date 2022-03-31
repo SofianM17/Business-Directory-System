@@ -52,6 +52,37 @@ app.get("/business-get/:id", async (req, res) => {
   client.close();
 });
 
+// display the create account page on a get request of this url
+app.get("/create-account", (req, res) => {
+  res.sendFile(__dirname + "/public/Views/createAccount.html");
+});
+
+//This verifies if a user with this username already exists.
+app.get("/users/:id", async (req, res) => {
+  let client = await connectDatabase();
+  let result = await findUserByUsername(client, req.params.id);
+  if (result != null) {
+    res.status(200).send("user exists");
+  } else {
+    res.status(404).send("user does not exist");
+  }
+  client.close();
+});
+
+// Handle post request for create account page
+// TODO: NOT DONE YET
+app.post("/submit-form-create-account", async (req, res) => {
+  let formRequest = req.body;
+  formRequest["_id"] = new ObjectId();
+  curId = formRequest["_id"];
+  console.log(formRequest);
+
+  let client = await connectDatabase();
+  await createAccount(client, formRequest);
+  res.send(curId);
+  client.close();
+});
+
 // Handle post request for add business page
 app.post("/submit-form-create", async (req, res) => {
   let formRequest = req.body;
@@ -107,6 +138,23 @@ async function connectDatabase() {
 
 // deals with case of rejected promise
 //connectDatabase().catch(console.error);
+
+// adds a single new account as a new document into the database
+async function createAccount(client, newAccount) {
+  const result = await client
+    .db("businessesDB")
+    .collection("users")
+    .insertOne(newAccount);
+}
+
+// Find a user by their username
+async function findUserByUsername(client, username) {
+  const user = await client
+    .db("businessesDB")
+    .collection("users")
+    .findOne({ username: username });
+  return user;
+}
 
 // adds a single business profile as a new document into the database
 async function addBusiness(client, newBusiness) {
