@@ -30,26 +30,8 @@
     </header>
     <div class="container-sm ps-3 pe-3">
       <h1 class="text-center fw-bolder mt-4">Create New Account</h1>
-      <form id="account-creation-form" class="container-fluid mt-4">
-        <div class="row justify-content-center pe-2 ps-2">
-          <label>User Account Type</label>
-          <button
-            type="button"
-            class="btn btn-outline-secondary dropdown-toggle"
-            data-bs-toggle="dropdown"
-            id="account-type-field"
-          >
-            Customer
-          </button>
-          <ul class="dropdown-menu">
-            <li><a class="dropdown-item" class="Customer">Customer</a></li>
-            <li>
-              <a class="dropdown-item" class="BusinessOwner">Business Owner</a>
-            </li>
-          </ul>
-        </div>
-
-        <label for="username-field" class="mt-4 ps-2 fs">Username</label>
+      <form id="account-creation-form" class="container mt-4">
+        <label for="username-field" class="ps-2 fs">Username</label>
         <input type="text" id="username-field" class="form-control" />
 
         <label for="password-field" class="mt-4 ps-2 fs">Password</label>
@@ -64,8 +46,26 @@
           class="form-control"
         />
 
+        <div class="d-grid">
+          <label class="mb-0 mt-4 ms-2">User Account Type</label>
+          <button
+            type="button"
+            class="btn btn-outline-secondary dropdown-toggle flex-column mt-0"
+            data-bs-toggle="dropdown"
+            id="account-type-field"
+          >
+            Customer
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" class="Customer">Customer</a></li>
+            <li>
+              <a class="dropdown-item" class="BusinessOwner">Business Owner</a>
+            </li>
+          </ul>
+        </div>
+
         <div
-          class="submit-cont d-flex flex-column align-items-center justify-content-center"
+          class="submit-cont d-flex flex-column align-items-center justify-content-center mt-4"
         >
           <button
             type="submit"
@@ -75,11 +75,8 @@
           >
             Create New Account
           </button>
-          <!---TODO: Add JS to 
-            -Verify unique username and password with db
-            -Error upon no success. Else, link to user homepage where they can create and view their business
+          <!---TODO: Add JS to link to user homepage where they can create and view their business / user home
           -->
-          <!--Solve merge conflicts-->
         </div>
       </form>
     </div>
