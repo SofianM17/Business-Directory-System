@@ -52,6 +52,28 @@ app.get('/business-get/:id', async(req, res) => {
     client.close();
 })
 
+// display customer homepage on a get request of this url
+app.get('/customer-homepage' , async(req, res) => {
+    res.sendFile(__dirname + '/public/Views/customerHomepage.html');
+});
+ 
+// display customer search results on a get request of this url
+app.get('/search/:query', async(req, res) => {
+    res.sendFile(__dirname + '/public/Views/searchResults.html');
+});
+ 
+// display customer search results on a get request of this url
+// TODO: add search by name
+app.get('/search/generate/:query' , async(req, res) => {
+    let client = await connectDatabase();
+    let searchQuery = new RegExp(req.params.query, 'i');
+    if (searchQuery){
+        let categoryResults = await getBusinessByCategory(client, searchQuery);
+        res.send(categoryResults);
+    }
+    client.close();
+});
+
 // Handle post request for add business page
 app.post("/submit-form-create", async(req, res) => {
     let formRequest = req.body;
@@ -121,10 +143,11 @@ async function getBusinessById(client, id) {
 // returns all of the documents with a matching category field from the database
 async function getBusinessByCategory(client, category) {
     const cursor = client.db("businessesDB").collection("businesses").find({ categories: category });
-    const results = await cursor.toArray();
+    return cursor.toArray();
+    //const results = await cursor.toArray();
 
     // print name for first result
-    console.log(results[0].name);
+    //console.log(results[0].name);
 }
 
 // Find the business by its id and replace the business with updated one
