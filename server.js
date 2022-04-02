@@ -6,6 +6,9 @@ const express = require("express");
 const http = require("http");
 const { response } = require("express");
 const { del } = require("express/lib/application");
+const jwt = require("jsonwebtoken");
+const cors = require("cors");
+const expressjwt = require("express-jwt");
 
 const app = express();
 const server = http.createServer(app);
@@ -13,6 +16,9 @@ const server = http.createServer(app);
 // set up a static directory and json data parsing
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.json({ limit: "1mb" }));
+
+//set up cors to prevent some fail to load errors
+app.use(cors());
 
 // set up the port to run on
 const PORT = 3000 || process.env.PORT;
@@ -57,6 +63,11 @@ app.get("/create-account", (req, res) => {
   res.sendFile(__dirname + "/public/Views/createAccount.html");
 });
 
+// display the login page on a get request of this url
+app.get("/login", (req, res) => {
+  res.sendFile(__dirname + "/public/Views/login.html");
+});
+
 //This verifies if a user with this username already exists.
 app.get("/users/:id", async (req, res) => {
   let client = await connectDatabase();
@@ -81,6 +92,48 @@ app.post("/submit-form-create-account", async (req, res) => {
   await createAccount(client, formRequest);
   res.send(curId);
   client.close();
+});
+
+// Handle post request for login page
+// TODO: Needs to redirect to the correct page
+app.post("/login-request", async (req, res) => {
+  if (!req.body.username || !req.body.password) {
+    res.status(400).send("Error: A username or password was not entered.");
+    return;
+  }
+  // else look for the user
+  let client = await connectDatabase();
+  let user = await findUserByUsername(client, req.body.username);
+  if (user == null) {
+    // user does not exist
+    res.status(404).send("Error: user does not exist");
+    client.close();
+    return;
+  }
+  //Check if password matches
+  if (user.password != req.body.password) {
+    res.status(403).send(`Error: password is incorrect`);
+    client.close();
+    return;
+  }
+  // Issue a JSON web token to sign in otherwise
+  const token = jwt.sign(
+    {
+      sub: user._id,
+      username: user.username,
+      accountType: user.accountType,
+    },
+    user.accountType,
+    { expiresIn: "3 hours" }
+  );
+  res.status(200).send({ access_token: token });
+  client.close();
+});
+
+//test user auth
+const jwtCheck = expressjwt({ secret: "customer", algorithms: ["HS256"] });
+app.get("/user/:id", jwtCheck, (req, res) => {
+  res.status(200).send(`You are logged in as customer! jwtCheck=${jwtCheck}`);
 });
 
 // Handle post request for add business page
