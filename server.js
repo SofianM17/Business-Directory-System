@@ -9,6 +9,7 @@ const { del } = require("express/lib/application");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const expressjwt = require("express-jwt");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const server = http.createServer(app);
@@ -20,11 +21,60 @@ app.use(express.json({ limit: "1mb" }));
 //set up cors to prevent some fail to load errors
 app.use(cors());
 
+// set up cookie parsing to handle logins
+app.use(cookieParser());
+
 // set up the port to run on
 const PORT = 3000 || process.env.PORT;
 server.listen(PORT, console.log(`server running on port ${PORT}`));
 
 let curId;
+
+// Set up JSON Web Token Authentication
+// get the access token from the cookie
+function getAccessToken(req) {
+  var token = req.cookies.access_token;
+  if (token) {
+    console.log("here");
+    return token;
+  }
+  return null;
+}
+
+// Used to make requests for the correct page
+function makeSecret(req, accountType) {
+  secret = accountType + "/" + req.params.id;
+  console.log(secret);
+  return secret;
+}
+
+// Verify that the customer has access to this page
+const customerLoggedIn = function (req, res, next) {
+  const token = getAccessToken(req);
+  const secret = makeSecret(req, "customer");
+  try {
+    jwt.verify(token, secret);
+    next();
+  } catch (error) {
+    res
+      .status(403)
+      .send({ error: "You are not authorized to view this page." });
+  }
+};
+
+// Verify that the business user has access to this page
+const businessLoggedIn = function (req, res, next) {
+  const token = getAccessToken(req);
+  const secret = makeSecret(req, "business");
+  try {
+    jwt.verify(token, secret);
+    next();
+  } catch (error) {
+    res
+      .status(403)
+      .send({ error: "You are not authorized to view this page." });
+  }
+};
 
 app.get("/", (req, res) => {});
 
@@ -46,6 +96,16 @@ app.get("/edit-business/:id", (req, res) => {
 // display the business profile page on a get request of this url
 app.get("/business-profile-owner/:id", async (req, res) => {
   res.sendFile(__dirname + "/public/Views/businessProfileOwner.html");
+});
+
+// display the business owner dashboard page on a get request of this url
+app.get("/business-dashboard/:id", businessLoggedIn, async (req, res) => {
+  res.sendFile(__dirname + "/public/Views/businessDashboard.html");
+});
+
+// display the customer dashboard page on a get request of this url
+app.get("/customer-dashboard/:id", customerLoggedIn, async (req, res) => {
+  res.sendFile(__dirname + "/public/Views/customerDashboard.html");
 });
 
 // This request returns the business found in the database by id
@@ -81,24 +141,40 @@ app.get("/users/:id", async (req, res) => {
 });
 
 // Handle post request for create account page
-// TODO: NOT DONE YET
+// TODO: NOT DONE YET, remove console logs
 app.post("/submit-form-create-account", async (req, res) => {
   let formRequest = req.body;
   formRequest["_id"] = new ObjectId();
   curId = formRequest["_id"];
   console.log(formRequest);
+  console.log(curId);
 
   let client = await connectDatabase();
-  await createAccount(client, formRequest);
-  res.send(curId);
-  client.close();
+  createAccount(client, formRequest).then(
+    () => {
+      // if created
+      let token = createLoginToken(formRequest);
+
+      // Set cookies with 3 hour expiry and send
+      res.cookie("access_token", token, { maxAge: 10800000 }); // 3 hours
+      res.cookie("accountType", formRequest.accountType, { maxAge: 10800000 });
+      res.cookie("user", "" + formRequest["_id"], { maxAge: 10800000 });
+      res.status(201).send({ accountCreated: "true" });
+      client.close();
+    },
+    () => {
+      // if not created
+      res.status(400).send({ accountCreated: "false" });
+      client.close();
+    }
+  );
 });
 
 // Handle post request for login page
 // TODO: Needs to redirect to the correct page
 app.post("/login-request", async (req, res) => {
   if (!req.body.username || !req.body.password) {
-    res.status(400).send("Error: A username or password was not entered.");
+    res.status(400).send({ error: "A username or password was not entered." });
     return;
   }
   // else look for the user
@@ -106,35 +182,45 @@ app.post("/login-request", async (req, res) => {
   let user = await findUserByUsername(client, req.body.username);
   if (user == null) {
     // user does not exist
-    res.status(404).send("Error: user does not exist");
+    res.status(404).send({ error: `User ${req.body.username} does not exist` });
     client.close();
     return;
   }
   //Check if password matches
   if (user.password != req.body.password) {
-    res.status(403).send(`Error: password is incorrect`);
+    res.status(403).send({ error: "Password is incorrect. Please try again." });
     client.close();
     return;
   }
   // Issue a JSON web token to sign in otherwise
-  const token = jwt.sign(
+  const token = createLoginToken(user);
+  // Set cookies with 3 hour expiry and send
+  res.cookie("access_token", token, { maxAge: 10800000 }); // 3 hours
+  res.cookie("accountType", user.accountType, { maxAge: 10800000 });
+  res.cookie("user", "" + user._id, { maxAge: 10800000 });
+  res.status(200).send({ login_success: "true" });
+  client.close();
+});
+
+/* Login token creation */
+function createLoginToken(user) {
+  let token = jwt.sign(
     {
       sub: user._id,
       username: user.username,
       accountType: user.accountType,
     },
-    user.accountType,
+    user.accountType + "/" + user._id,
     { expiresIn: "3 hours" }
   );
-  res.status(200).send({ access_token: token });
-  client.close();
-});
+  return token;
+}
 
-//test user auth
-const jwtCheck = expressjwt({ secret: "customer", algorithms: ["HS256"] });
-app.get("/user/:id", jwtCheck, (req, res) => {
-  res.status(200).send(`You are logged in as customer! jwtCheck=${jwtCheck}`);
-});
+// const businessjwtCheck = expressjwt({
+//   secret: (req) => makeSecret(req, "business"),
+//   algorithms: ["HS256"],
+//   getToken: (req) => getAccessToken(req),
+// });
 
 // Handle post request for add business page
 app.post("/submit-form-create", async (req, res) => {
