@@ -120,6 +120,11 @@ app.get("/customer-dashboard/:user", customerLoggedIn, async (req, res) => {
   res.sendFile(__dirname + "/public/Views/customerDashboard.html");
 });
 
+// display the business profile page on a get request of this url
+app.get('/business-profile-user/:id', async(req, res) => {
+    res.sendFile(__dirname + '/public/Views/businessProfileUser.html');
+});
+
 // This request returns the business found in the database by id
 app.get("/business-get/:id", async (req, res) => {
   let client = await connectDatabase();
