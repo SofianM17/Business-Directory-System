@@ -260,7 +260,7 @@ app.post("/submit-form-delete/:id", async (req, res) => {
   let objId = new ObjectId(req.params.id);
   let client = await connectDatabase();
   await deleteBusiness(client, objId);
-  // should do something here to redirect the user off the deletion page
+  res.status(200).send({ deletionSuccess: "true" });
   client.close();
 });
 
