@@ -35,23 +35,35 @@ let curId;
 function getAccessToken(req) {
   var token = req.cookies.access_token;
   if (token) {
-    console.log("here");
     return token;
   }
   return null;
 }
 
 // Used to make requests for the correct page
-function makeSecret(req, accountType) {
-  secret = accountType + "/" + req.params.id;
-  console.log(secret);
+async function makeSecret(req, accountType) {
+  if (req.params.user) {
+    // for user base pages
+    secret = accountType + "/" + req.params.user;
+  } else if (req.params.id) {
+    // for id based checks (business id) to see if business is associated with
+    // this user or not
+    let isAuthorized = await doesUserOwnBusiness(req);
+    if (isAuthorized == true) {
+      secret = accountType + "/" + req.cookies.user;
+    } else {
+      secret = ""; // will error out
+    }
+  } else {
+    secret = accountType + "/" + req.cookies.user;
+  }
   return secret;
 }
 
 // Verify that the customer has access to this page
-const customerLoggedIn = function (req, res, next) {
+const customerLoggedIn = async function (req, res, next) {
   const token = getAccessToken(req);
-  const secret = makeSecret(req, "customer");
+  const secret = await makeSecret(req, "customer");
   try {
     jwt.verify(token, secret);
     next();
@@ -63,9 +75,9 @@ const customerLoggedIn = function (req, res, next) {
 };
 
 // Verify that the business user has access to this page
-const businessLoggedIn = function (req, res, next) {
+const businessLoggedIn = async function (req, res, next) {
   const token = getAccessToken(req);
-  const secret = makeSecret(req, "business");
+  const secret = await makeSecret(req, "business");
   try {
     jwt.verify(token, secret);
     next();
@@ -79,32 +91,32 @@ const businessLoggedIn = function (req, res, next) {
 app.get("/", (req, res) => {});
 
 // display a page for confirming deletion of business
-app.get("/delete-business/:id", (req, res) => {
+app.get("/delete-business/:id", businessLoggedIn, (req, res) => {
   res.sendFile(__dirname + "/public/Views/deleteBusinessConfirmation.html");
 });
 
 // display the add business page on a get request of this url
-app.get("/add-business", (req, res) => {
+app.get("/add-business", businessLoggedIn, (req, res) => {
   res.sendFile(__dirname + "/public/Views/addBusiness.html");
 });
 
 // display the edit business page on a get request of this url
-app.get("/edit-business/:id", (req, res) => {
+app.get("/edit-business/:id", businessLoggedIn, (req, res) => {
   res.sendFile(__dirname + "/public/Views/editBusiness.html");
 });
 
 // display the business profile page on a get request of this url
-app.get("/business-profile-owner/:id", async (req, res) => {
+app.get("/business-profile-owner/:id", businessLoggedIn, async (req, res) => {
   res.sendFile(__dirname + "/public/Views/businessProfileOwner.html");
 });
 
 // display the business owner dashboard page on a get request of this url
-app.get("/business-dashboard/:id", businessLoggedIn, async (req, res) => {
+app.get("/business-dashboard/:user", businessLoggedIn, async (req, res) => {
   res.sendFile(__dirname + "/public/Views/businessDashboard.html");
 });
 
 // display the customer dashboard page on a get request of this url
-app.get("/customer-dashboard/:id", customerLoggedIn, async (req, res) => {
+app.get("/customer-dashboard/:user", customerLoggedIn, async (req, res) => {
   res.sendFile(__dirname + "/public/Views/customerDashboard.html");
 });
 
@@ -216,16 +228,11 @@ function createLoginToken(user) {
   return token;
 }
 
-// const businessjwtCheck = expressjwt({
-//   secret: (req) => makeSecret(req, "business"),
-//   algorithms: ["HS256"],
-//   getToken: (req) => getAccessToken(req),
-// });
-
 // Handle post request for add business page
 app.post("/submit-form-create", async (req, res) => {
   let formRequest = req.body;
   formRequest["_id"] = new ObjectId();
+  formRequest["businessOwner"] = new ObjectId(formRequest["businessOwner"]);
   curId = formRequest["_id"];
   console.log(formRequest);
 
@@ -238,6 +245,7 @@ app.post("/submit-form-create", async (req, res) => {
 // Handle post request for edit business page
 app.post("/submit-form-edit/:id", async (req, res) => {
   let formRequest = req.body;
+  formRequest["businessOwner"] = new ObjectId(formRequest["businessOwner"]);
   let objId = new ObjectId(req.params.id);
   console.log(formRequest);
 
@@ -309,6 +317,32 @@ async function getBusinessById(client, id) {
     .collection("businesses")
     .find({ _id: id });
   return cursor.toArray();
+}
+
+async function getBusinessesByBusinessOwner(client, ownerID) {
+  const cursor = client
+    .db("businessesDB")
+    .collection("businesses")
+    .find({ businessOwner: ObjectId(ownerID) });
+
+  const results = await cursor.toArray();
+  return results;
+}
+
+// Check if user owns the business. Used for authentication
+async function doesUserOwnBusiness(req) {
+  let client = await connectDatabase();
+  // Find if this business is associated with this owner
+  let results = await getBusinessesByBusinessOwner(client, req.cookies.user);
+  for (let business of results) {
+    if (req.params.id == business._id) {
+      // user owns the business
+      client.close();
+      return true;
+    }
+  }
+  client.close();
+  return false; // user doesn't own the business
 }
 
 // returns all of the documents with a matching category field from the database
