@@ -1,6 +1,3 @@
-// arcGIS API
-
-
 // request data from the server based on the id in the url
 async function fetchProfile() {
     let response = await fetch('/business-get/' + window.location.href.split('/')[4]);
@@ -32,6 +29,7 @@ function appendBusinessHours(day) {
 
 // displays a map using leaflet and the geoapify API
 // takes longitude and latitude coordinates for the map's positioning and point location
+// adapted from https://apidocs.geoapify.com/samples/maps/js-raster-leaflet/
 function displayMap(longitude, latitude) {
 
     // create map
