@@ -76,14 +76,14 @@ async function validateAddress() {
     let response = await fetch(url);
     let data = await response.json();
 
-    console.log(data);
+    //console.log(data);
 
     const address = data.features[0].properties;
 
-    console.log(address.rank.confidence);
+    //console.log(address.rank.confidence);
 
     // formatted address (predicted if not fully provided)
-    console.log(address.formatted);
+    //console.log(address.formatted);
 
     return {
         address: address.formatted,
