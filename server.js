@@ -117,7 +117,7 @@ app.get("/business-dashboard/:user", businessLoggedIn, async(req, res) => {
 
 // display the customer dashboard page on a get request of this url
 app.get("/customer-dashboard/:user", customerLoggedIn, async(req, res) => {
-    res.sendFile(__dirname + "/public/Views/customerDashboard.html");
+    res.sendFile(__dirname + "/public/Views/customerHomepage.html");
 });
 
 // display the business profile page on a get request of this url
@@ -237,11 +237,6 @@ function createLoginToken(user) {
     );
     return token;
 }
-
-// display customer homepage on a get request of this url
-app.get('/customer-homepage', async(req, res) => {
-    res.sendFile(__dirname + '/public/Views/customerHomepage.html');
-});
 
 // display customer search results on a get request of this url
 app.get('/search/:query', async(req, res) => {
