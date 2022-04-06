@@ -84,3 +84,14 @@ h2 {
   }
   margin-bottom: 40px;
 }
+
+.business_list {
+  padding: auto;
+  display: inline-block;
+  margin-left: 5px;
+  justify-content: space-between;
+
+  #businesses_list {
+    list-style: none;
+  }
+}

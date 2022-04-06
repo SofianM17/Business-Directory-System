@@ -33,20 +33,20 @@
         </button>
     </header>
 
-    <div class="container-sm ps-3 pe-3">
+    <div class="business_list">
         <h1 class="text-center fw-bolder mt-4">
             My Businesses
         </h1>
 
-        <div class="submit-cont d-flex flex-column align-items-center justify-content-center">
-            <button type="submit" id="add-btn" class="btn mt-4 mb-5 btn-lg" style="height: 150px; width: 200px; border-radius: 20px; background-color: white; color: black; border-color: black; border-width: 2px">Add New</button>
-        </div>
-
-        <h4 class="text-center fw-bolder mt-4">
-            You have not added any businesses! Add a new business to view and manage it here.
-        </h4>
-
+        <ul id = "businesses_list">
+            <li>
+                <a href="../Views/addBusiness.html" class="btn">
+                    Add New
+                    <img width="40" src = "../Resources/plus-512.jpg">
+                </a>
+            </li>
+        </ul>
     </div>
-
+    <script src="../Clients/getBusinesses.js"></script>
 </body>
 </html>

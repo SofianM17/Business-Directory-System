@@ -145,6 +145,13 @@ app.get("/login", (req, res) => {
     res.sendFile(__dirname + "/public/Views/login.html");
 });
 
+app.get("/businesses/:id", async(req, res) => {
+    let client = await connectDatabase();
+    let result = await getBusinessesByBusinessOwner(client, req.params.id);
+    res.send(result);
+    client.close();
+});
+
 //This verifies if a user with this username already exists.
 app.get("/users/:id", async(req, res) => {
     let client = await connectDatabase();
