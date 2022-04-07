@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
 .intro {
     margin: 32px 37px 32px 37px;
     display: flex;
@@ -93,6 +98,9 @@ h2 {
 @media only screen and (min-width: 768px) {
     .intro {
         margin-top: 56px;
+        h1 {
+            font-weight: 800;
+        }
     }
     .col-2 {
         padding: 34px 37px 0px 37px;
@@ -152,11 +160,12 @@ h2 {
     .business-hours {
         #hours-list {
             padding: 25px;
+            padding-left: 0;
             width: 100%;
-            border: 1px solid #a5a5a5;
             border-radius: 7px;
             display: grid;
             grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-rows: 1fr 1fr 1fr;
             // column-count: 4;
             // column-gap: 79px;
             // text-align: center;
@@ -165,7 +174,7 @@ h2 {
             // column-rule-width: 1px;
             li {
                 p {
-                    text-align: center;
+                    text-align: left;
                 }
             }
         }
@@ -179,18 +188,63 @@ h2 {
 }
 
 .business_list {
-    padding-top: 7.5em;
+    display: flex;
+    margin-top: 123px;
     list-style: none;
-    justify-content: space-around;
-    padding: auto;
-    margin-left: 50px;
-    li {
-        display: inline;
+    justify-content: space-evenly;
+    padding-left: 0;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 60px;
+    column-gap: 10px;
+    @media only screen and (min-width: 768px) {
+        row-gap: 100px;
+        column-gap: 100px;
+        margin-left: 50px;
+        margin-right: 50px;
+        justify-content: flex-start;
     }
-    .btn {
-        justify-content: space-evenly;
-        img {
-            width: 100px;
+    li {
+        a {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            img {
+                order: 1;
+            }
+            h6 {
+                order: 2;
+                font-size: 18px;
+                font-weight: 400;
+            }
         }
     }
+    .btn {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        border-radius: 35px;
+        border: transparent;
+        width: 140px;
+        height: 140px;
+        img {
+            width: 90px;
+            order: 1;
+            margin-bottom: 12px;
+        }
+        @media only screen and (min-width: 768px) {
+            width: 200px;
+            height: 200px;
+            img {
+                width: 100px;
+            }
+        }
+    }
+    @media only screen and (min-width: 1800px) {
+        margin-left: 400px;
+        margin-right: 400px;
+    }
+}
+
+.dash-title {
+    padding-top: 56px;
 }
