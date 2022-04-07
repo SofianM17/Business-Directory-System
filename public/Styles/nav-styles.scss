@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap');
+* {
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+    justify-content: space-between;
+    align-items: center;
+    .text-bus-icon,
+    .text-logout-icon,
+    .text-nav-btns {
+        display: none;
+    }
+    .logo {
+        display: none;
+    }
+    height: 80px;
+    @media only screen and (min-width: 768px) {
+        justify-content: flex-start;
+        column-gap: 50px;
+        .logo {
+            display: block;
+            margin-left: 10px;
+        }
+        .text-nav-btns,
+        .text-bus-icon,
+        .text-logout-icon {
+            display: block;
+            background: none;
+            outline: none;
+            border: none;
+            font-weight: 400;
+            color: #1a1a1a;
+            font-size: 18px;
+        }
+        .text-nav-btns {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+        }
+        .home-icon-btn,
+        .logout-icon-btn {
+            display: none;
+        }
+    }
+}
+
+.form-btn {
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+.title {
+    padding-top: 20px;
+    font-weight: 800;
+}
+
+@media only screen and (min-width: 768px) {
+    .title {
+        padding-top: 40px;
+        padding-bottom: 46px;
+        font-weight: 800;
+    }
+    .form-btn {
+        margin-top: 46px;
+        margin-bottom: 40px;
+    }
+}

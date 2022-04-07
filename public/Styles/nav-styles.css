@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap");
+* {
+  font-family: 'Roboto', sans-serif;
+}
+
+.navbar {
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 80px;
+}
+
+.navbar .text-bus-icon,
+.navbar .text-logout-icon,
+.navbar .text-nav-btns {
+  display: none;
+}
+
+.navbar .logo {
+  display: none;
+}
+
+@media only screen and (min-width: 768px) {
+  .navbar {
+    -webkit-box-pack: start;
+        -ms-flex-pack: start;
+            justify-content: flex-start;
+    -webkit-column-gap: 50px;
+            column-gap: 50px;
+  }
+  .navbar .logo {
+    display: block;
+    margin-left: 10px;
+  }
+  .navbar .text-nav-btns,
+  .navbar .text-bus-icon,
+  .navbar .text-logout-icon {
+    display: block;
+    background: none;
+    outline: none;
+    border: none;
+    font-weight: 400;
+    color: #1a1a1a;
+    font-size: 18px;
+  }
+  .navbar .text-nav-btns {
+    width: 80%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+  .navbar .home-icon-btn,
+  .navbar .logout-icon-btn {
+    display: none;
+  }
+}
+
+.form-btn {
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.title {
+  padding-top: 20px;
+  font-weight: 800;
+}
+
+@media only screen and (min-width: 768px) {
+  .title {
+    padding-top: 40px;
+    padding-bottom: 46px;
+    font-weight: 800;
+  }
+  .form-btn {
+    margin-top: 46px;
+    margin-bottom: 40px;
+  }
+}
+/*# sourceMappingURL=nav-styles.css.map */
