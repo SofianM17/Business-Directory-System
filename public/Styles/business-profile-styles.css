@@ -252,7 +252,7 @@ h2 {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 123px;
+  margin-top: 46px;
   list-style: none;
   -webkit-box-pack: space-evenly;
       -ms-flex-pack: space-evenly;
@@ -270,6 +270,7 @@ h2 {
 
 @media only screen and (min-width: 768px) {
   .business_list {
+    margin-top: 110px;
     row-gap: 100px;
     -webkit-column-gap: 100px;
             column-gap: 100px;
