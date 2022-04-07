@@ -20,7 +20,7 @@
 
 <body>
     <header class="navbar mb-3 ps-2 pe-2" style="background-color:#3CA7BE">
-        <button class="btn home">
+        <button class="btn dashboard">
             <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <rect width="55" height="55" fill="url(#pattern0)"/>
                 <defs>
@@ -113,6 +113,33 @@
     </div>
 
     <script src="../Clients/businessOwnerProfileClient.js"></script>
+    <script>
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(";");
+
+            for (let i = 0; i < ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == " ") {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        }
+        // Redirect to home when home is clicked
+        $('.dashboard').on('click', function() {
+            window.location.href = "/business-dashboard/" + getCookie("user");
+        })
+
+        //TO-DO: add logout
+        $('.logout').on('click', function() {
+            //window.location.href = "";
+        })
+    </script>
 </body>
 
 </html>
