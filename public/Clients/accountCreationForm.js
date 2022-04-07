@@ -94,7 +94,6 @@ async function checkConditions() {
   let criteriaSatisfied = true;
 
   if (accountData.password.val() != accountData.verifyPassword.val()) {
-    // for debug
     alert("Password mismatch. Please enter the same password.");
     criteriaSatisfied = false;
   }

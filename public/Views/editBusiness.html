@@ -1,130 +1,225 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Edit Business</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js" integrity="sha512-d4KkQohk+HswGs6A1d6Gak6Bb9rMWtxjOa0IiY49Q3TeFd5xAzjWXDCBW9RS7m86FQ4RzM2BdHmdJnnKRYknxw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"
+      integrity="sha512-d4KkQohk+HswGs6A1d6Gak6Bb9rMWtxjOa0IiY49Q3TeFd5xAzjWXDCBW9RS7m86FQ4RzM2BdHmdJnnKRYknxw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+  </head>
 
-</head>
-
-<body>
-    <header class="navbar mb-3 ps-2 pe-2" style="background-color:#3CA7BE">
-        <button class="btn">
-            <svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                <rect width="55" height="55" fill="url(#pattern0)"/>
-                <defs>
-                <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-                <use xlink:href="#image0_49_637" transform="scale(0.01)"/>
-                </pattern>
-                <image id="image0_49_637" width="100" height="100" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAACS0lEQVR4nO3cPU5bQRTF8eMoDT1SKoqkipQSKSlgD5FA0Ecu2YRbFkBpZQ3swUBDKiiokOgjsQRT8ApjOe/duXdG7+L8f5ILy0/j0ZyZI8tfEgAAAAAAAPA+TCqM8VXSzwrjbINLSQ9jT+JE0pKblt1ahHyIDoC6CCQZAkmGQJIhkGQIJJmPFcZ4lvSnwjjb4HnsCQAAAABAqRofUP2SdFZhnG1wIen32JO40fgfDGW5XQfXMnxC9iQ9VRhnWywlfdbrmrhE31w8EWGsmkg6igxQIxC8FVqTyO6mrjYL1VbkhFBXm4VqKxoINnOvjXeHU1f93LXlPSHUVT93bUUCQT/XGnl2OXVl46otzwmhrmxcteUNBDbFa1W606mrMsW1VXpCqKsyxbXlCQRlitasZLdTVz5FtVVyQk5FGB4TScfWi0sCoa78zGtn3fHUVYy5tqwnhLqKMdeWNRDqKs60hpZdT13VYaotywmhruow1ZYlkO/xuaDzY+gCSyCcjnoG15IffSZDIMkQSDIEkgyBJEMgyVj+yeFS0uPK/UNJBz3X/5U0j0zKYFfSdOCaeTeXlqbdXP7lStJi5f5di0nM1P+jlfsWT7rm28Aclt01rd0PzGFWOiCVlQyBJEMgyRBIMgSSDIEkQyDJEEgyBJIMgSRDIMkQSDIEkgyBJEMgydT4q/F1XyTdNhh31U7j8UfTIpAdSfsNxv0vUFnJEEgyBJIMgSRDIMkQSDKel70LSee1J9JA6y/JSa9fxvvU8/ii5zEAAAAAAADgXXsBR4vVclA5yhwAAAAASUVORK5CYII="/>
-                </defs>
-                </svg>
-                
-        </button>
-        <button class="btn">
-            <svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M30 8L27.18 10.82L32.34 16H12V20H32.34L27.18 25.16L30 28L40 18L30 8ZM4 4H20V0H4C1.8 0 0 1.8 0 4V32C0 34.2 1.8 36 4 36H20V32H4V4Z" fill="black"/>
-                </svg>
-                
-        </button>
+  <body>
+    <header class="navbar mb-3 ps-2 pe-2" style="background-color: #3ca7be">
+      <button class="home btn">
+        <svg
+          width="55"
+          height="55"
+          viewBox="0 0 55 55"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <rect width="55" height="55" fill="url(#pattern0)" />
+          <defs>
+            <pattern
+              id="pattern0"
+              patternContentUnits="objectBoundingBox"
+              width="1"
+              height="1"
+            >
+              <use xlink:href="#image0_49_637" transform="scale(0.01)" />
+            </pattern>
+            <image
+              id="image0_49_637"
+              width="100"
+              height="100"
+              xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAACS0lEQVR4nO3cPU5bQRTF8eMoDT1SKoqkipQSKSlgD5FA0Ecu2YRbFkBpZQ3swUBDKiiokOgjsQRT8ApjOe/duXdG7+L8f5ILy0/j0ZyZI8tfEgAAAAAAAPA+TCqM8VXSzwrjbINLSQ9jT+JE0pKblt1ahHyIDoC6CCQZAkmGQJIhkGQIJJmPFcZ4lvSnwjjb4HnsCQAAAABAqRofUP2SdFZhnG1wIen32JO40fgfDGW5XQfXMnxC9iQ9VRhnWywlfdbrmrhE31w8EWGsmkg6igxQIxC8FVqTyO6mrjYL1VbkhFBXm4VqKxoINnOvjXeHU1f93LXlPSHUVT93bUUCQT/XGnl2OXVl46otzwmhrmxcteUNBDbFa1W606mrMsW1VXpCqKsyxbXlCQRlitasZLdTVz5FtVVyQk5FGB4TScfWi0sCoa78zGtn3fHUVYy5tqwnhLqKMdeWNRDqKs60hpZdT13VYaotywmhruow1ZYlkO/xuaDzY+gCSyCcjnoG15IffSZDIMkQSDIEkgyBJEMgyVj+yeFS0uPK/UNJBz3X/5U0j0zKYFfSdOCaeTeXlqbdXP7lStJi5f5di0nM1P+jlfsWT7rm28Aclt01rd0PzGFWOiCVlQyBJEMgyRBIMgSSDIEkQyDJEEgyBJIMgSRDIMkQSDIEkgyBJEMgydT4q/F1XyTdNhh31U7j8UfTIpAdSfsNxv0vUFnJEEgyBJIMgSRDIMkQSDKel70LSee1J9JA6y/JSa9fxvvU8/ii5zEAAAAAAADgXXsBR4vVclA5yhwAAAAASUVORK5CYII="
+            />
+          </defs>
+        </svg>
+      </button>
+      <button class="logout btn">
+        <svg
+          width="40"
+          height="36"
+          viewBox="0 0 40 36"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M30 8L27.18 10.82L32.34 16H12V20H32.34L27.18 25.16L30 28L40 18L30 8ZM4 4H20V0H4C1.8 0 0 1.8 0 4V32C0 34.2 1.8 36 4 36H20V32H4V4Z"
+            fill="black"
+          />
+        </svg>
+      </button>
     </header>
 
     <div class="container-sm ps-3 pe-3">
-        <h1 class="text-center fw-bolder mt-4">
-            Edit Business Profile
-        </h1>
-        <form id="create-business-form">
-            <label for="business-name-field" class="mt-4 ps-2 fs">Business Name</label>
-            <input type="text" placeholder="Enter the name of your business" id="business-name-field" class="form-control">
+      <h1 class="text-center fw-bolder mt-4">Edit Business Profile</h1>
+      <form id="create-business-form">
+        <label for="business-name-field" class="mt-4 ps-2 fs"
+          >Business Name</label
+        >
+        <input
+          type="text"
+          placeholder="Enter the name of your business"
+          id="business-name-field"
+          class="form-control"
+        />
 
-            <div class="wrapper1 d-flex flex-column justify-content-center align-items-start">
-                <h2 class="mt-4 fs-4 mb-3">Price Range</h2>
-                <div class="price-range">
+        <div
+          class="wrapper1 d-flex flex-column justify-content-center align-items-start"
+        >
+          <h2 class="mt-4 fs-4 mb-3">Price Range</h2>
+          <div class="price-range">
+            <input
+              type="checkbox"
+              class="btn-check priceCheck"
+              id="price1"
+              autocomplete="off"
+            />
+            <label for="price1" class="btn btn-outline-primary"> $ </label>
 
-                    <input type="checkbox" class="btn-check priceCheck" id="price1" autocomplete="off">
-                    <label for="price1" class="btn btn-outline-primary">
-                        $
-                    </label>
+            <input
+              type="checkbox"
+              class="btn-check priceCheck"
+              id="price2"
+              autocomplete="off"
+            />
+            <label for="price2" class="btn btn-outline-primary"> $$ </label>
 
-                    <input type="checkbox" class="btn-check priceCheck" id="price2" autocomplete="off">
-                    <label for="price2" class="btn btn-outline-primary">
-                        $$
-                    </label>
+            <input
+              type="checkbox"
+              class="btn-check priceCheck"
+              id="price3"
+              autocomplete="off"
+            />
+            <label for="price3" class="btn btn-outline-primary"> $$$ </label>
 
-                    <input type="checkbox" class="btn-check priceCheck" id="price3" autocomplete="off">
-                    <label for="price3" class="btn btn-outline-primary">
-                        $$$
-                    </label>
+            <input
+              type="checkbox"
+              class="btn-check priceCheck"
+              id="price4"
+              autocomplete="off"
+            />
+            <label for="price4" class="btn btn-outline-primary"> $$$+ </label>
+          </div>
 
-                    <input type="checkbox" class="btn-check priceCheck" id="price4" autocomplete="off">
-                    <label for="price4" class="btn btn-outline-primary">
-                        $$$+
-                    </label>
+          <div id="select-category">
+            <h2 class="mt-4 fs-4 mb-3">Select Categories</h2>
 
-                </div>
+            <input
+              type="checkbox"
+              class="btn-check catCheck"
+              id="cat1"
+              autocomplete="off"
+            />
+            <label for="cat1" class="btn btn-outline-primary"> Dining </label>
 
-                <div id="select-category">
-                    <h2 class="mt-4 fs-4 mb-3">Select Categories</h2>
+            <input
+              type="checkbox"
+              class="btn-check catCheck"
+              id="cat2"
+              autocomplete="off"
+            />
+            <label for="cat2" class="btn btn-outline-primary"> Shopping </label>
 
-                    <input type="checkbox" class="btn-check catCheck" id="cat1" autocomplete="off">
-                    <label for="cat1" class="btn btn-outline-primary">
-                        Dining
-                    </label>
+            <input
+              type="checkbox"
+              class="btn-check catCheck"
+              id="cat3"
+              autocomplete="off"
+            />
+            <label for="cat3" class="btn btn-outline-primary">
+              Groceries
+            </label>
 
-                    <input type="checkbox" class="btn-check catCheck" id="cat2" autocomplete="off">
-                    <label for="cat2" class="btn btn-outline-primary">
-                        Shopping
-                    </label>
+            <input
+              type="checkbox"
+              class="btn-check catCheck"
+              id="cat4"
+              autocomplete="off"
+            />
+            <label for="cat4" class="btn btn-outline-primary"> Health </label>
 
-                    <input type="checkbox" class="btn-check catCheck" id="cat3" autocomplete="off">
-                    <label for="cat3" class="btn btn-outline-primary">
-                        Groceries
-                    </label>
+            <button
+              class="btn"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#collapseExample"
+              aria-expanded="false"
+              aria-controls="collapseExample"
+            >
+              <svg
+                width="24"
+                height="30"
+                viewBox="0 0 24 30"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M12.2822 15.2308H4.47046M12.2822 25.077V15.2308V25.077ZM12.2822 15.2308V5.38464V15.2308ZM12.2822 15.2308H20.0939H12.2822Z"
+                  stroke="black"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </button>
 
-                    <input type="checkbox" class="btn-check catCheck" id="cat4" autocomplete="off">
-                    <label for="cat4" class="btn btn-outline-primary">
-                        Health
-                    </label>
+            <div class="collapse mt-3" id="collapseExample">
+              <div class="d-flex">
+                <input
+                  type="checkbox"
+                  class="btn-check catCheck"
+                  id="cat5"
+                  autocomplete="off"
+                />
+                <label for="cat5" class="btn btn-outline-primary">
+                  Beauty
+                </label>
 
-                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        <svg width="24" height="30" viewBox="0 0 24 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12.2822 15.2308H4.47046M12.2822 25.077V15.2308V25.077ZM12.2822 15.2308V5.38464V15.2308ZM12.2822 15.2308H20.0939H12.2822Z" stroke="black" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </button>
-
-                    <div class="collapse mt-3" id="collapseExample">
-                        <div class=" d-flex">
-                            <input type="checkbox" class="btn-check catCheck" id="cat5" autocomplete="off">
-                            <label for="cat5" class="btn btn-outline-primary">
-                                Beauty
-                            </label>
-
-                            <input type="checkbox" class="btn-check catCheck" id="cat6" autocomplete="off">
-                            <label for="cat6" class="btn btn-outline-primary">
-                                Automotive
-                            </label>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
+                <input
+                  type="checkbox"
+                  class="btn-check catCheck"
+                  id="cat6"
+                  autocomplete="off"
+                />
+                <label for="cat6" class="btn btn-outline-primary">
+                  Automotive
+                </label>
+              </div>
             </div>
+          </div>
+        </div>
 
-            <label for="about-field" class="mt-4 ps-2">About</label>
-            <textarea id="about-field" placeholder="Add some information about your business. Keep it short and sweet, or add a snazzy tagline to capture your customer's attention." class="form-control" rows="3"></textarea>
+        <label for="about-field" class="mt-4 ps-2">About</label>
+        <textarea
+          id="about-field"
+          placeholder="Add some information about your business. Keep it short and sweet, or add a snazzy tagline to capture your customer's attention."
+          class="form-control"
+          rows="3"
+        ></textarea>
 
-            <h2 class="mt-4 fs-4 mb-3">Contact Information</h2>
-            <div class="wrapper2">
-
-                <!-- <div class="row">
+        <h2 class="mt-4 fs-4 mb-3">Contact Information</h2>
+        <div class="wrapper2">
+          <!-- <div class="row">
                     <div class="col">
                       
                     </div>
@@ -133,8 +228,7 @@
                     </div>
                   </div> -->
 
-
-                <!-- <label for="bld-no-field" class="ps-2">Building Number</label>
+          <!-- <label for="bld-no-field" class="ps-2">Building Number</label>
                 <input type="text" name="bld-no-field" placeholder="Enter your building number (i.e. 4321)" id="bld-no-field" class="form-control" required>
 
                 <label for="street-field" class="ps-2">Street</label>
@@ -149,266 +243,510 @@
                 <label for="country-field" class="ps-2">Country</label>
                 <input type="text" placeholder="Enter your country" id="country-field" class="form-control" required> -->
 
-                <div id="address-wrap">
-                    <label for="address-field" class="ps-2">Address</label>
-                    <input type="text" placeholder="i.e. 1412 17 Ave SW, Calgary, Alberta, Canada" id="address-field" class="form-control">
+          <div id="address-wrap">
+            <label for="address-field" class="ps-2">Address</label>
+            <input
+              type="text"
+              placeholder="i.e. 1412 17 Ave SW, Calgary, Alberta, Canada"
+              id="address-field"
+              class="form-control"
+            />
 
-                    <button class="btn btn-primary mt-2" id="check-address-btn" type="button" disabled>
-                          Check address
-                    </button>
-                    <div id="checkAddress">
-                        <div class="card card-body" id="address-card">
+            <button
+              class="btn btn-primary mt-2"
+              id="check-address-btn"
+              type="button"
+              disabled
+            >
+              Check address
+            </button>
+            <div id="checkAddress">
+              <div class="card card-body" id="address-card"></div>
+            </div>
+          </div>
 
-                        </div>
-                    </div>
-                </div>
+          <label for="phone-field" class="ps-2 mt-3">Phone number</label>
+          <input
+            type="tel"
+            placeholder="(XXX) xxx-xxxx"
+            id="phone-field"
+            class="form-control"
+          />
+        </div>
 
+        <h2 class="mt-4 fs-4 mb-3">Add Other Info</h2>
+        <div class="wrapper3">
+          <label for="url-field" class="ps-2">Website</label>
+          <input
+            type="text"
+            placeholder="www.example.com"
+            id="url-field"
+            class="form-control"
+          />
+        </div>
 
-                <label for="phone-field" class="ps-2 mt-3">Phone number</label>
-                <input type="tel" placeholder="(XXX) xxx-xxxx" id="phone-field" class="form-control">
-
+        <h2 class="mt-4 fs-4 mb-3">Hours</h2>
+        <div class="wrapper4">
+          <div class="day day1">
+            <div class="day-checkbox mb-3 text-center">
+              <input
+                type="checkbox"
+                id="monday-check"
+                class="form-check-input"
+              />
+              <label for="monday-check" class="form-check-label">Monday</label>
             </div>
 
-            <h2 class="mt-4 fs-4 mb-3">Add Other Info</h2>
-            <div class="wrapper3">
-                <label for="url-field" class="ps-2">Website</label>
-                <input type="text" placeholder="www.example.com" id="url-field" class="form-control">
+            <div class="d-flex mb-4">
+              <div class="input-group me-3">
+                <input
+                  type="text"
+                  id="monday-time-start"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="monday-time-start-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
+
+              <p class="pt-2">to</p>
+
+              <div class="input-group ms-3">
+                <input
+                  type="text"
+                  id="monday-time-end"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="monday-time-end-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="day day2">
+            <div class="day-checkbox mb-3 text-center">
+              <input
+                type="checkbox"
+                id="tuesday-check"
+                class="form-check-input"
+              />
+              <label for="tuesday-check" class="form-check-label"
+                >Tuesday</label
+              >
             </div>
 
-            <h2 class="mt-4 fs-4 mb-3">Hours</h2>
-            <div class="wrapper4">
+            <div class="d-flex mb-4">
+              <div class="input-group me-3">
+                <input
+                  type="text"
+                  id="tuesday-time-start"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="tuesday-time-start-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
 
-                <div class="day day1">
-                    <div class="day-checkbox mb-3 text-center">
-                        <input type="checkbox" id="monday-check" class="form-check-input">
-                        <label for="monday-check" class="form-check-label">Monday</label>
-                    </div>
+              <p class="pt-2">to</p>
 
-                    <div class="d-flex mb-4">
-                        <div class="input-group me-3">
-                            <input type="text" id='monday-time-start' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="monday-time-start-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
+              <div class="input-group ms-3">
+                <input
+                  type="text"
+                  id="tuesday-time-end"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="tuesday-time-end-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
-                        <p class="pt-2">
-                            to
-                        </p>
-
-                        <div class="input-group ms-3">
-                            <input type="text" id='monday-time-end' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="monday-time-end-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="day day2">
-                    <div class="day-checkbox mb-3 text-center">
-                        <input type="checkbox" id="tuesday-check" class="form-check-input">
-                        <label for="tuesday-check" class="form-check-label">Tuesday</label>
-                    </div>
-
-                    <div class="d-flex mb-4">
-                        <div class="input-group me-3">
-                            <input type="text" id='tuesday-time-start' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="tuesday-time-start-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-
-                        <p class="pt-2">
-                            to
-                        </p>
-
-                        <div class="input-group ms-3">
-                            <input type="text" id='tuesday-time-end' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="tuesday-time-end-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="day day3">
-                    <div class="day-checkbox mb-3 text-center">
-                        <input type="checkbox" id="wednesday-check" class="form-check-input">
-                        <label for="wednesday-check" class="form-check-label">Wednesday</label>
-                    </div>
-
-                    <div class="d-flex mb-4">
-                        <div class="input-group me-3">
-                            <input type="text" id='wednesday-time-start' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="wednesday-time-start-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-
-                        <p class="pt-2">
-                            to
-                        </p>
-
-                        <div class="input-group ms-3">
-                            <input type="text" id='wednesday-time-end' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="wednesday-time-end-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="day day4">
-                    <div class="day-checkbox mb-3 text-center">
-                        <input type="checkbox" id="thursday-check" class="form-check-input">
-                        <label for="thursday-check" class="form-check-label">Thursday</label>
-                    </div>
-
-                    <div class="d-flex mb-4">
-                        <div class="input-group me-3">
-                            <input type="text" id='thursday-time-start' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="thursday-time-start-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-
-                        <p class="pt-2">
-                            to
-                        </p>
-
-                        <div class="input-group ms-3">
-                            <input type="text" id='thursday-time-end' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="thursday-time-end-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="day day5">
-                    <div class="day-checkbox mb-3 text-center">
-                        <input type="checkbox" id="friday-check" class="form-check-input">
-                        <label for="friday-check" class="form-check-label">Friday</label>
-                    </div>
-
-                    <div class="d-flex mb-4">
-                        <div class="input-group me-3">
-                            <input type="text" id='friday-time-start' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="friday-time-start-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-
-                        <p class="pt-2">
-                            to
-                        </p>
-
-                        <div class="input-group ms-3">
-                            <input type="text" id='friday-time-end' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="friday-time-end-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="day day6">
-                    <div class="day-checkbox mb-3 text-center">
-                        <input type="checkbox" id="saturday-check" class="form-check-input">
-                        <label for="saturday-check" class="form-check-label">Saturday</label>
-                    </div>
-
-                    <div class="d-flex mb-4">
-                        <div class="input-group me-3">
-                            <input type="text" id='saturday-time-start' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="saturday-time-start-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-
-                        <p class="pt-2">
-                            to
-                        </p>
-
-                        <div class="input-group ms-3">
-                            <input type="text" id='saturday-time-end' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="saturday-time-end-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="day day7">
-                    <div class="day-checkbox mb-3 text-center">
-                        <input type="checkbox" id="sunday-check" class="form-check-input">
-                        <label for="sunday-check" class="form-check-label">Sunday</label>
-                    </div>
-
-                    <div class="d-flex mb-4">
-                        <div class="input-group me-3">
-                            <input type="text" id='sunday-time-start' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="sunday-time-start-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-
-                        <p class="pt-2">
-                            to
-                        </p>
-
-                        <div class="input-group ms-3">
-                            <input type="text" id='sunday-time-end' placeholder="10:00" class="form-control time-field" disabled>
-                            <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" id="sunday-time-end-toggle" disabled>AM</button>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" class="AM">AM</a></li>
-                                <li><a class="dropdown-item" class="PM">PM</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-
-
+          <div class="day day3">
+            <div class="day-checkbox mb-3 text-center">
+              <input
+                type="checkbox"
+                id="wednesday-check"
+                class="form-check-input"
+              />
+              <label for="wednesday-check" class="form-check-label"
+                >Wednesday</label
+              >
             </div>
 
-            <div class="submit-cont d-flex flex-column align-items-center justify-content-center">
-                <button type="submit" id="submit-btn" class="btn mt-4 btn-lg" style="background-color: #49CB8F; width: 168px; color: white;">Save Changes</button>
-                <button type="submit" id="submit-btn-cancel" class="btn mt-4 mb-5 btn-lg" style="width: 168px; background-color: #c1c1c1; color: white;">Cancel</button>
+            <div class="d-flex mb-4">
+              <div class="input-group me-3">
+                <input
+                  type="text"
+                  id="wednesday-time-start"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="wednesday-time-start-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
 
+              <p class="pt-2">to</p>
+
+              <div class="input-group ms-3">
+                <input
+                  type="text"
+                  id="wednesday-time-end"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="wednesday-time-end-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
             </div>
-        </form>
+          </div>
+
+          <div class="day day4">
+            <div class="day-checkbox mb-3 text-center">
+              <input
+                type="checkbox"
+                id="thursday-check"
+                class="form-check-input"
+              />
+              <label for="thursday-check" class="form-check-label"
+                >Thursday</label
+              >
+            </div>
+
+            <div class="d-flex mb-4">
+              <div class="input-group me-3">
+                <input
+                  type="text"
+                  id="thursday-time-start"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="thursday-time-start-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
+
+              <p class="pt-2">to</p>
+
+              <div class="input-group ms-3">
+                <input
+                  type="text"
+                  id="thursday-time-end"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="thursday-time-end-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="day day5">
+            <div class="day-checkbox mb-3 text-center">
+              <input
+                type="checkbox"
+                id="friday-check"
+                class="form-check-input"
+              />
+              <label for="friday-check" class="form-check-label">Friday</label>
+            </div>
+
+            <div class="d-flex mb-4">
+              <div class="input-group me-3">
+                <input
+                  type="text"
+                  id="friday-time-start"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="friday-time-start-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
+
+              <p class="pt-2">to</p>
+
+              <div class="input-group ms-3">
+                <input
+                  type="text"
+                  id="friday-time-end"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="friday-time-end-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="day day6">
+            <div class="day-checkbox mb-3 text-center">
+              <input
+                type="checkbox"
+                id="saturday-check"
+                class="form-check-input"
+              />
+              <label for="saturday-check" class="form-check-label"
+                >Saturday</label
+              >
+            </div>
+
+            <div class="d-flex mb-4">
+              <div class="input-group me-3">
+                <input
+                  type="text"
+                  id="saturday-time-start"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="saturday-time-start-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
+
+              <p class="pt-2">to</p>
+
+              <div class="input-group ms-3">
+                <input
+                  type="text"
+                  id="saturday-time-end"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="saturday-time-end-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="day day7">
+            <div class="day-checkbox mb-3 text-center">
+              <input
+                type="checkbox"
+                id="sunday-check"
+                class="form-check-input"
+              />
+              <label for="sunday-check" class="form-check-label">Sunday</label>
+            </div>
+
+            <div class="d-flex mb-4">
+              <div class="input-group me-3">
+                <input
+                  type="text"
+                  id="sunday-time-start"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="sunday-time-start-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
+
+              <p class="pt-2">to</p>
+
+              <div class="input-group ms-3">
+                <input
+                  type="text"
+                  id="sunday-time-end"
+                  placeholder="10:00"
+                  class="form-control time-field"
+                  disabled
+                />
+                <button
+                  type="button"
+                  class="btn btn-outline-secondary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  id="sunday-time-end-toggle"
+                  disabled
+                >
+                  AM
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" class="AM">AM</a></li>
+                  <li><a class="dropdown-item" class="PM">PM</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="submit-cont d-flex flex-column align-items-center justify-content-center"
+        >
+          <button
+            type="submit"
+            id="submit-btn"
+            class="btn mt-4 btn-lg"
+            style="background-color: #49cb8f; width: 168px; color: white"
+          >
+            Save Changes
+          </button>
+          <button
+            type="submit"
+            id="submit-btn-cancel"
+            class="btn mt-4 mb-5 btn-lg"
+            style="width: 168px; background-color: #c1c1c1; color: white"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
     </div>
 
-
     <script src="../Clients/businessFormsClient.js"></script>
-</body>
-
+    <script src="../Clients/header.js"></script>
+  </body>
 </html>
