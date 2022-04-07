@@ -244,13 +244,27 @@ app.get('/search/:query', async(req, res) => {
 });
 
 // display customer search results on a get request of this url
-// TODO: add search by name
 app.get('/search/generate/:query', async(req, res) => {
     let client = await connectDatabase();
-    let searchQuery = new RegExp(req.params.query, 'i');
-    if (searchQuery) {
-        let categoryResults = await getBusinessByCategory(client, searchQuery);
-        res.send(categoryResults);
+    let searchQuery = req.params.query;
+    let regex = new RegExp(searchQuery, 'i');
+
+    switch(req.params.query){
+        // search by category 
+        case 'dining':
+        case 'shopping':
+        case 'groceries':
+        case 'automotive':
+        case 'health':
+        case 'beauty':
+            let categoryResults = await getBusinessByCategory(client, regex);
+            res.send(categoryResults);
+            break;
+        // search by name
+        default:
+            let searchResults = await getBusinessName(client, regex);
+            res.send(searchResults);
+            break;
     }
     client.close();
 });
@@ -374,12 +388,20 @@ async function doesUserOwnBusiness(req) {
 
 // returns all of the documents with a matching category field from the database
 async function getBusinessByCategory(client, category) {
-    const cursor = client.db("businessesDB").collection("businesses").find({ categories: category });
+    const cursor = client
+        .db("businessesDB")
+        .collection("businesses")
+        .find({ categories: category });
     return cursor.toArray();
-    //const results = await cursor.toArray();
+}
 
-    // print name for first result
-    //console.log(results[0].name);
+// returns all of the documents with a matching namefield from the database
+async function getBusinessName(client, businessName) {
+    const cursor = client
+        .db("businessesDB")
+        .collection("businesses")
+        .find({ name: businessName });
+    return cursor.toArray();
 }
 
 // Find the business by its id and replace the business with updated one
