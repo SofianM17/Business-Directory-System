@@ -1,66 +1,39 @@
-function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(";");
+$(document).ready(function () {
+  // Redirect page if search is initiated
+  $("#search-bar").keypress(function (event) {
+    if (event.which == 13) {
+      event.preventDefault();
 
-    for (let i = 0; i < ca.length; i++) {
-        let c = ca[i];
-        while (c.charAt(0) == " ") {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-        }
+      //redirect to search page after pressing enter in search bar
+      if ($("#search-bar").val() != null) {
+        window.location.href = "/search/" + $("#search-bar").val();
+      }
     }
-    return "";
-}
+  });
 
-$(document).ready(function() {
-    // Redirect page if search is initiated
-    $('#search-bar').keypress(function(event) {
-        if(event.which == 13) {
-            event.preventDefault();
+  // search by category
+  // redirects to search page for when buttons are pressed
+  $("#dining").on("click", function () {
+    window.location.href = "/search/dining";
+  });
 
-            //redirect to search page after pressing enter in search bar
-            if($('#search-bar').val() != null){
-                window.location.href = "/search/" + $('#search-bar').val();
-            }
-        }
-    })
+  $("#shopping").on("click", function () {
+    window.location.href = "/search/shopping";
+  });
 
-    // Redirect to home when home button is clicked
-    $('.home').on('click', function() {
-        window.location.href = "/customer-dashboard/" + getCookie("user");;
-    })
+  $("#groceries").on("click", function () {
+    window.location.href = "/search/groceries";
+  });
 
-    // TO-DO: Add logout redirect
-    $('.logout').on('click', function() {
-        //window.location.href = "";
-    })
+  $("#automotive").on("click", function () {
+    window.location.href = "/search/automotive";
+  });
 
-    // search by category
-    // redirects to search page for when buttons are pressed
-    $('#dining').on('click', function() {
-        window.location.href = "/search/dining";
-    })
+  $("#health").on("click", function () {
+    window.location.href = "/search/health";
+  });
 
-    $('#shopping').on('click', function() {
-        window.location.href = "/search/shopping";
-    })
-
-    $('#groceries').on('click', function() {
-        window.location.href = "/search/groceries";
-    })
-
-    $('#automotive').on('click', function() {
-        window.location.href = "/search/automotive";
-    })
-
-    $('#health').on('click', function() {
-        window.location.href = "/search/health";
-    })
-
-    $('#beauty').on('click', function() {
-        window.location.href = "/search/beauty";
-    })
+  $("#beauty").on("click", function () {
+    window.location.href = "/search/beauty";
+  });
 });
