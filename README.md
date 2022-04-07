@@ -7,6 +7,9 @@ This system allows business owners to add a profile of their business which is s
 - http://localhost:3000/edit-business/ID displays an edit business profile page for the business with the specified ID
 - http://localhost:3000/create-account displays the page which creates a new account for either a business owner or a customer
 - http://localhost:3000/login displays the page which allows either user type to login
+- http://localhost:3000/customer-dashboard/ID displays a user homepage/dashboard if a customer is logged in
+- http://localhost:3000/search/SEARCHQUERY displays a page with search results based on the customers search query
+- http://localhost:3000/business-profile-user/ID displays a business profile for the customer with the specified ID
 
 ## Notes about login:
 

@@ -242,7 +242,6 @@ app.get('/search/generate/:query', async(req, res) => {
     let searchQuery = req.params.query;
     let regex = new RegExp(searchQuery, 'i');
 
-    
     switch(req.params.query){
         // search by category 
         case 'dining':
@@ -382,13 +381,19 @@ async function doesUserOwnBusiness(req) {
 
 // returns all of the documents with a matching category field from the database
 async function getBusinessByCategory(client, category) {
-    const cursor = client.db("businessesDB").collection("businesses").find({ categories: category });
+    const cursor = client
+        .db("businessesDB")
+        .collection("businesses")
+        .find({ categories: category });
     return cursor.toArray();
 }
 
 // returns all of the documents with a matching namefield from the database
 async function getBusinessName(client, businessName) {
-    const cursor = client.db("businessesDB").collection("businesses").find({ name: businessName });
+    const cursor = client
+        .db("businessesDB")
+        .collection("businesses")
+        .find({ name: businessName });
     return cursor.toArray();
 }
 
