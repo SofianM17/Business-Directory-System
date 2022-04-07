@@ -186,12 +186,12 @@ h2 {
   }
   .contact-info {
     width: 100%;
-    margin: 0;
+    margin: 0px;
     max-width: 1500px;
   }
   .about {
     width: 100%;
-    margin: 0;
+    margin: 0px;
     height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
