@@ -1,148 +1,265 @@
 .intro {
-  margin: 32px 37px 32px 37px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+    margin: 32px 37px 32px 37px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 .intro .buttons {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  row-gap: 10px;
-  width: 75px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    row-gap: 10px;
+    width: 75px;
 }
 
 .about {
-  margin: 0px 37px 32px 37px;
+    margin: 0px 37px 32px 37px;
 }
 
 h2 {
-  margin-bottom: 18px;
+    margin-bottom: 18px;
 }
 
 .location {
-  margin: 0px 37px 0px 37px;
+    margin: 0px 37px 0px 37px;
 }
 
 .location .location-title {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: start;
-      -ms-flex-pack: start;
-          justify-content: flex-start;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: flex-start;
 }
 
 .location .location-title img {
-  margin: 0px 0px 22px 3px;
+    margin: 0px 0px 22px 3px;
 }
 
 .location #map {
-  padding: 0;
-  margin-top: 16;
-  height: 381px;
-  width: 240px;
-  margin-right: 37px;
-  border-radius: 7px;
+    padding: 0;
+    margin-top: 16;
+    height: 381px;
+    width: 100%;
+    margin-right: 37px;
+    border-radius: 7px;
 }
 
 .contact-info {
-  margin: 32px 37px 0px 37px;
+    margin: 32px 37px 0px 37px;
 }
 
 .contact-info li {
-  list-style: none;
-  padding: 10px 13px 10px 13px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+    list-style: none;
+    padding: 10px 13px 10px 13px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
 }
 
 .contact-info li img {
-  width: 22px;
-  height: 22px;
+    width: 22px;
+    height: 22px;
 }
 
 .contact-info li a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .contact-info ul {
-  padding: 0px;
-  border: 1px solid #a5a5a5;
-  border-radius: 7px;
+    padding: 0px;
+    border: 1px solid #a5a5a5;
+    border-radius: 7px;
 }
 
 .business-hours {
-  margin: 34px 37px 0px 37px;
-  margin-bottom: 40px;
+    margin: 34px 37px 0px 37px;
+    margin-bottom: 40px;
 }
 
 .business-hours ul {
-  list-style: none;
-  padding-left: 0;
+    list-style: none;
+    padding-left: 0;
 }
 
 .business-hours li {
-  margin-bottom: 12px;
+    margin-bottom: 12px;
 }
 
 .business-hours #closed {
-  color: #ac0000;
+    color: #ac0000;
 }
 
 .business-hours #open-time {
-  color: #00680a;
+    color: #00680a;
 }
 
 .business-hours #day {
-  font-weight: 600;
-  margin-bottom: 0px;
+    font-weight: 600;
+    margin-bottom: 0px;
+}
+
+.col-1,
+.col-2 {
+    width: 100%;
+}
+
+@media only screen and (min-width: 768px) {
+    .intro {
+        margin-top: 56px;
+    }
+    .col-2 {
+        padding: 34px 37px 0px 37px;
+    }
+    .intro .buttons {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        width: 175px;
+    }
+    .intro .buttons button {
+        width: 75px;
+    }
+    .location {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: center;
+        -ms-flex-pack: center;
+        justify-content: center;
+        padding: 0px 37px 0px 37px;
+        margin: 0px 0px 0px 0px;
+    }
+    .location #map {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1;
+        width: 100%;
+        height: 400px;
+        padding-right: 0px;
+        margin-right: 0px;
+        max-width: 1800px;
+    }
+    .location-title {
+        margin-top: 40px;
+    }
+    .contact-info {
+        width: 100%;
+        margin: 0;
+        max-width: 1500px;
+    }
+    .about {
+        width: 100%;
+        margin: 0;
+        height: -webkit-fit-content;
+        height: -moz-fit-content;
+        height: fit-content;
+        padding: 0px 37px 0px 37px;
+        max-width: 1500px;
+    }
+    .col-1 {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        -webkit-box-pack: start;
+        -ms-flex-pack: start;
+        justify-content: flex-start;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+    }
+    .col-1 .location {
+        -webkit-box-ordinal-group: 3;
+        -ms-flex-order: 2;
+        order: 2;
+    }
+    .col-1 .col-2 {
+        -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+        order: 1;
+    }
+    .business-hours #hours-list {
+        padding: 25px;
+        width: 100%;
+        border: 1px solid #a5a5a5;
+        border-radius: 7px;
+        display: -ms-grid;
+        display: grid;
+        -ms-grid-columns: 1fr 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+    }
+    .business-hours #hours-list li p {
+        text-align: center;
+    }
+}
+
+@media only screen and (min-width: 768px) and (min-width: 1800px) {
+    .content {
+        margin-left: 400px;
+        margin-right: 400px;
+    }
 }
 
 .business_list {
-  padding-top: 7.5em;
-  list-style: none;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  padding: auto;
-  margin-left: 50px;
+    padding-top: 7.5em;
+    list-style: none;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+    padding: auto;
+    margin-left: 50px;
 }
 
 .business_list li {
-  display: inline;
+    display: inline;
 }
 
 .business_list .btn {
-  -webkit-box-pack: space-evenly;
-      -ms-flex-pack: space-evenly;
-          justify-content: space-evenly;
+    -webkit-box-pack: space-evenly;
+    -ms-flex-pack: space-evenly;
+    justify-content: space-evenly;
 }
 
 .business_list .btn img {
-  width: 100px;
+    width: 100px;
 }
+
+
 /*# sourceMappingURL=business-profile-styles.css.map */
