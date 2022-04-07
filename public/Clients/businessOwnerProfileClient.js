@@ -85,56 +85,6 @@ function displayMap(longitude, latitude) {
   }).addTo(map);
 }
 
-<<<<<<< HEAD
-
-$(document).ready(async function() {
-
-
-    let data = await fetchProfile();
-    let days = [data.hours.monday, data.hours.tuesday, data.hours.wednesday,
-        data.hours.thursday, data.hours.friday, data.hours.saturday, data.hours.sunday
-    ];
-
-    displayMap(data.address.longitude, data.address.latitude);
-
-    // add title to title div
-    $("<h1>" + data.name + "</h1>").appendTo('#title');
-
-    let catStr = '';
-
-    // format each category from the categories array
-    data.categories.forEach(element => {
-        if (data.categories.indexOf(element) < data.categories.length - 1) {
-            catStr += element + ', ';
-        } else {
-            catStr += element;
-        }
-    });
-
-    catStr += ' • ' + data.priceRange;
-
-    // add the generated categories and price range string to the categories div
-    $("<p>" + catStr + "</p>").appendTo('#categories');
-
-    // append description to about section
-    $("<p>" + data.about + "</p>").appendTo('#description');
-
-    // append address to location section
-    $("<p>" + data.address.address + "</p>").appendTo('#location-address');
-
-
-    // if data contains a website
-    if (data.website != '') {
-        $("<li id='website' style='border-bottom: 1px solid #A5A5A5'>" + "<a href='https://" + data.website + "'>" + data.website + "</a>" + "<img src='../Resources/icons8-external-link-64.png'>" + "</li>").appendTo('#contact-info-list')
-    }
-
-    // append phone number information to list
-    $("<li id='phone-num'>" + data.phoneNum + "<img src='../Resources/icons8-phone-50.png'> </li>").appendTo('#contact-info-list')
-
-    // append the business hour for each day.
-    for (let day of days) {
-        appendBusinessHours(day);
-=======
 $(document).ready(async function () {
   let data = await fetchProfile();
   let days = [
@@ -160,7 +110,6 @@ $(document).ready(async function () {
       catStr += element + ", ";
     } else {
       catStr += element;
->>>>>>> a5f67456ed1f09d0aa0d755be82388e1b183539c
     }
   });
 
