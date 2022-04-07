@@ -8,7 +8,6 @@ const { response } = require("express");
 const { del } = require("express/lib/application");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
-const expressjwt = require("express-jwt");
 const cookieParser = require("cookie-parser");
 
 const app = express();
@@ -136,7 +135,7 @@ app.get("/business-get/:id", async (req, res) => {
   let oId = new ObjectId(req.params.id);
   let businessData = await getBusinessById(client, oId);
   res.send(businessData[0]);
-  console.log(businessData[0]);
+  // console.log(businessData[0]);
   client.close();
 });
 
@@ -307,7 +306,7 @@ app.post("/submit-form-edit/:id", async (req, res) => {
   let formRequest = req.body;
   formRequest["businessOwner"] = new ObjectId(formRequest["businessOwner"]);
   let objId = new ObjectId(req.params.id);
-  console.log(formRequest);
+  //console.log(formRequest);
 
   let client = await connectDatabase();
   await updateBusiness(client, objId, formRequest);
