@@ -9,8 +9,8 @@ $(document).ready(async function() {
         //console.log(businessID);
         a.setAttribute("href", "/business-profile-owner/" + businessID);
         a.setAttribute("class", "btn btn-outline-dark");
-        a.innerHTML = results[i].name;
-        img.setAttribute("src", "../Resources/store.jpg");
+        a.innerHTML = '<h6>' + results[i].name + '</h6>';
+        img.setAttribute("src", "../Resources/store.png");
         a.appendChild(img);
         li.appendChild(a);
         //console.log(a.href);
