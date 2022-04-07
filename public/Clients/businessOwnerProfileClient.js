@@ -85,6 +85,7 @@ function displayMap(longitude, latitude) {
   }).addTo(map);
 }
 
+<<<<<<< HEAD
 
 $(document).ready(async function() {
 
@@ -133,6 +134,33 @@ $(document).ready(async function() {
     // append the business hour for each day.
     for (let day of days) {
         appendBusinessHours(day);
+=======
+$(document).ready(async function () {
+  let data = await fetchProfile();
+  let days = [
+    data.hours.monday,
+    data.hours.tuesday,
+    data.hours.wednesday,
+    data.hours.thursday,
+    data.hours.friday,
+    data.hours.saturday,
+    data.hours.sunday,
+  ];
+
+  displayMap(data.address.longitude, data.address.latitude);
+
+  // add title to title div
+  $("<h1>" + data.name + "</h1>").appendTo("#title");
+
+  let catStr = "";
+
+  // format each category from the categories array
+  data.categories.forEach((element) => {
+    if (data.categories.indexOf(element) < data.categories.length - 1) {
+      catStr += element + ", ";
+    } else {
+      catStr += element;
+>>>>>>> a5f67456ed1f09d0aa0d755be82388e1b183539c
     }
   });
 
