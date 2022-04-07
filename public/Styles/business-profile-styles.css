@@ -124,15 +124,25 @@ h2 {
 }
 
 .business_list {
+  padding-top: 7.5em;
+  list-style: none;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
   padding: auto;
-  display: inline-block;
-  margin-left: 5px;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
+  margin-left: 50px;
 }
 
-.business_list #businesses_list {
-  list-style: none;
+.business_list li {
+  display: inline;
+}
+
+.business_list .btn {
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+}
+
+.business_list .btn img {
+  width: 100px;
 }
 /*# sourceMappingURL=business-profile-styles.css.map */

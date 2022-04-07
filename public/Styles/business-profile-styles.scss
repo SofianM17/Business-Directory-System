@@ -86,12 +86,20 @@ h2 {
 }
 
 .business_list {
+  padding-top: 7.5em;
+  list-style: none;
+  justify-content: space-around;
   padding: auto;
-  display: inline-block;
-  margin-left: 5px;
-  justify-content: space-between;
+  margin-left: 50px;
 
-  #businesses_list {
-    list-style: none;
+  li {
+    display: inline;
+  }
+
+  .btn {
+    justify-content: space-evenly;
+    img {
+      width: 100px;
+    }
   }
 }

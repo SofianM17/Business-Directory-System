@@ -8,14 +8,13 @@ $(document).ready(async function () {
         var businessID = results[i]._id;
         console.log(businessID);
         a.setAttribute('href', "/business-profile-owner/" + businessID);
-        a.setAttribute('class', "btn");
+        a.setAttribute('class', "btn btn-outline-dark");
         a.innerHTML = results[i].name;
         img.setAttribute('src', "../Resources/store.jpg");
-        img.setAttribute('width', "40px");
         a.appendChild(img);
         li.appendChild(a);
         console.log(a.href);
-        document.getElementById('businesses_list').appendChild(li);
+        document.getElementsByClassName("business_list")[0].appendChild(li);
     }
 });
 
