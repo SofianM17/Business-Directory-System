@@ -177,3 +177,20 @@ h2 {
         }
     }
 }
+
+.business_list {
+    padding-top: 7.5em;
+    list-style: none;
+    justify-content: space-around;
+    padding: auto;
+    margin-left: 50px;
+    li {
+        display: inline;
+    }
+    .btn {
+        justify-content: space-evenly;
+        img {
+            width: 100px;
+        }
+    }
+}
