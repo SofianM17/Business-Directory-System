@@ -65,7 +65,9 @@ function displayMap(longitude, latitude) {
     }).addTo(map);
 }
 
+
 $(document).ready(async function() {
+
 
     let data = await fetchProfile();
     let days = [data.hours.monday, data.hours.tuesday, data.hours.wednesday,
