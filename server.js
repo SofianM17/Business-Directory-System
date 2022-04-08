@@ -9,6 +9,7 @@ const { del } = require("express/lib/application");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const { ObjectID } = require("bson");
 
 const app = express();
 const server = http.createServer(app);
@@ -290,12 +291,23 @@ app.get("/search/generate/:query", async (req, res) => {
   client.close();
 });
 
+app.get("/favorites", async (req, res) => {
+  res.sendFile(__dirname + "/public/Views/favorites.html");
+});
+// Favorites endpoint, gets the favorites for a customer
+app.get("/favorites/find", customerLoggedIn, async (req, res) => {
+  let client = await connectDatabase();
+  let businesses = await getFavorites(client, req.cookies.user);
+  res.status(200).send(businesses);
+  client.close();
+});
+
 // Handle post request for add business page
 app.post("/submit-form-create", async (req, res) => {
   let formRequest = req.body;
   formRequest["_id"] = new ObjectId();
   formRequest["businessOwner"] = new ObjectId(formRequest["businessOwner"]);
-  curId = formRequest["businessOwner"];
+  curId = formRequest["_id"];
   //   console.log(formRequest);
 
   let client = await connectDatabase();
@@ -362,6 +374,15 @@ async function findUserByUsername(client, username) {
     .db("businessesDB")
     .collection("users")
     .findOne({ username: username });
+  return user;
+}
+
+// Find a user by their id
+async function findUserByID(client, userID) {
+  const user = await client
+    .db("businessesDB")
+    .collection("users")
+    .findOne({ _id: ObjectID(userID) });
   return user;
 }
 
@@ -439,4 +460,17 @@ async function deleteBusiness(client, businessId) {
     .db("businessesDB")
     .collection("businesses")
     .deleteOne({ _id: businessId });
+}
+
+// Find user favorites
+async function getFavorites(client, userID) {
+  let favorites = [];
+  let count = 0;
+  let user = await findUserByID(client, userID);
+  for (let businessID of user.favorites) {
+    let business = await getBusinessById(client, businessID);
+    favorites[count] = business[0];
+    count = count + 1;
+  }
+  return favorites;
 }

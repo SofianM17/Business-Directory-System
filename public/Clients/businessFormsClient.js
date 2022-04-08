@@ -122,7 +122,6 @@ function getCookie(cname) {
 // containing form data
 async function submitData() {
   let geoApResponse = await validateAddress();
-  alert("here");
   let formattedAddress = geoApResponse.address;
   let latitude = geoApResponse.latitude;
   let longitude = geoApResponse.longitude;
