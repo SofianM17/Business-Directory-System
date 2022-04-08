@@ -23,6 +23,9 @@ app.use(cors());
 // set up cookie parsing to handle logins
 app.use(cookieParser());
 
+// display favicon
+app.use("/favicon.ico", express.static("public/Resources/favicon.ico"));
+
 // set up the port to run on
 const PORT = 3000 || process.env.PORT;
 server.listen(PORT, console.log(`server running on port ${PORT}`));
