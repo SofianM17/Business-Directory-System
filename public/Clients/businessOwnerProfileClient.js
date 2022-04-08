@@ -159,4 +159,10 @@ $(document).ready(async function () {
   $("#delete-btn").on("click", () => {
     window.location.href = "/delete-business/" + data["_id"];
   });
+
+  // Handle the favoriting functionality
+  // TODO: add server side code to add/ delete a favorite
+  // add code here to change color by applying / unapplying the
+  // favorited class. Also add code to get favorited status on document load
+  $(".feather-heart").on("click", () => {});
 });

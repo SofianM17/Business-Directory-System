@@ -5,20 +5,6 @@ async function fetchResults() {
   return results;
 }
 
-// function for page redirects
-async function redirects() {
-  // Redirect page if new search is initiated
-  $("#search-bar").keypress(function (event) {
-    if (event.which == 13) {
-      event.preventDefault();
-      //redirect to search page after pressing enter in search bar
-      if ($("#search-bar").val() != null) {
-        window.location.href = "/search/" + $("#search-bar").val();
-      }
-    }
-  });
-}
-
 $(document).ready(async function () {
   let results = await fetchResults();
 
@@ -26,16 +12,21 @@ $(document).ready(async function () {
   let resultsContainerDiv = document.createElement("div");
   resultsContainerDiv.classList.add("result", "container");
 
-  // loop through data containing the search results
+  // loop through data containing the results
   for (let i = 0; i < results.length; i++) {
+    if (i == 0) {
+      // there is a result, remove placeholder text
+      let placeholder = document.getElementById("placeholder-text");
+      placeholder.remove();
+    }
     let hLine = document.createElement("hr");
     resultsContainerDiv.appendChild(hLine);
 
-    // create wrapper div to contain the respective information of 1 search result
+    // create wrapper div to contain the respective information of 1 business
     let wrapperDiv = document.createElement("div");
     wrapperDiv.classList.add("row", "row-cols-2");
 
-    // Add image/icon for the search result
+    // Add image/icon for the business
     let imgDiv = document.createElement("div");
     imgDiv.classList.add("image", "col-2");
     let shopImg = document.createElement("img");
@@ -102,6 +93,4 @@ $(document).ready(async function () {
 
     document.body.appendChild(resultsContainerDiv);
   }
-
-  redirects();
 });

@@ -177,6 +177,7 @@ app.post("/submit-form-create-account", async (req, res) => {
   let formRequest = req.body;
   formRequest["_id"] = new ObjectId();
   curId = formRequest["_id"];
+  formRequest["favorites"] = new Array();
 
   let client = await connectDatabase();
   createAccount(client, formRequest).then(
