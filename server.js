@@ -272,7 +272,7 @@ app.get("/search/generate/:query", async (req, res) => {
   let searchQuery = req.params.query;
   let regex = new RegExp(searchQuery, "i");
 
-  switch (req.params.query) {
+  switch (regex) {
     // search by category
     case "dining":
     case "shopping":

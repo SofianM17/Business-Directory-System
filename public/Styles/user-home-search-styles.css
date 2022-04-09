@@ -34,6 +34,10 @@ input[type='image'] {
 }
 
 @media (max-width: 350px) {
+    #search-bar{
+        font-size: small;
+    }
+
     #search-bar:placeholder-shown{
         font-size: small;
     }
@@ -44,7 +48,11 @@ input[type='image'] {
 }
 
 @media (max-width: 992px) {
-   #search-bar {
+    #search-bar{
+        font-size: medium;
+    }
+
+    #search-bar:placeholder-shown {
         font-size: medium;
     }
 

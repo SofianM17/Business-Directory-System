@@ -27,7 +27,7 @@
 		<div class="text-nav-btns">
 			<button class="text-bus-icon home text-light">Home</button>
 			<div class="col col-lg-8 col-md-8 ms-3 me-3">
-				<input id="search-bar" class="form-control" type="search"
+				<input id="desktop-search" class="form-control search-bar" type="search"
 					placeholder="Search for a business or category" />
 			</div>
 			<button class="text-logout-icon logout text-light">Logout</button>
@@ -41,6 +41,16 @@
 				<rect stroke="#000" height="8.36792" width="10.12312" y="15.35605" x="15.01626" fill="black" />
 			</svg>
 		</button>
+		<button class="search btn search-icon-btn float-right" data-bs-toggle="dropdown">
+			<svg width="40" height="36" xmlns="http://www.w3.org/2000/svg" fill="none">
+				<ellipse stroke-width="2" ry="10.7404" rx="10.95459" cy="13.7928" cx="16.26643" stroke="#000"/>
+				<path transform="rotate(45 29.7914 27.407)" d="m24.64571,27.31523l10.29128,0l0,0c1.34819,0 2.44111,0.0411 2.44111,0.0918c0,0.0507 -1.09292,0.0918 -2.44111,0.0918l-10.29128,0l0,0c-1.34819,0 -2.44111,-0.0411 -2.44111,-0.0918c0,-0.0507 1.09292,-0.0918 2.44111,-0.0918z" stroke="#000" stroke-width="3"/>
+			</svg>
+		</button>
+		<div class="dropdown-menu ps-3 pe-3">
+			<input id="mobile-search" class="form-control search-bar" type="search" 
+				placeholder="Search for a business or category" />
+		</div>
 		<button class="logout btn logout-icon-btn">
 			<svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path
