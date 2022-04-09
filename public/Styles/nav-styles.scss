@@ -14,8 +14,19 @@
     .logo {
         display: none;
     }
-    #search-bar {
+    .search-bar {
         border-radius: 30px;
+    }
+    .search-bar:placeholder-shown{
+        font-size: small;
+    }
+    .dropdown-menu {
+		width: 100%;
+    }
+    .search-icon-btn {
+        position: fixed;
+        right: 80px;
+        top: 15px;
     }
     height: 80px;
     @media only screen and (min-width: 768px) {
@@ -42,7 +53,9 @@
             justify-content: space-between;
         }
         .home-icon-btn,
-        .logout-icon-btn {
+        .logout-icon-btn,
+        .search-icon-btn,
+        .dropdown-menu {
             display: none;
         }
     }
