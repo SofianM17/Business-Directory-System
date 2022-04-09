@@ -4,8 +4,24 @@ async function fetchProfile() {
     "/business-get/" + window.location.href.split("/")[4]
   );
   let businessData = await response.json();
-
   return businessData;
+}
+
+async function changeFavorite() {
+  let response = await fetch(
+    "/change-favorite/" + window.location.href.split("/")[4],
+    { method: "POST" }
+  );
+  let favoriteResponse = await response.json();
+  return favoriteResponse.wasFavorite;
+}
+
+async function checkFavorite() {
+  let response = await fetch(
+    "/is-favorite/" + window.location.href.split("/")[4]
+  );
+  let favoriteResponse = await response.json();
+  return favoriteResponse.wasFavorite;
 }
 
 // Displays a formatted list of business hour data
@@ -86,6 +102,14 @@ function displayMap(longitude, latitude) {
 }
 
 $(document).ready(async function () {
+  // properly show favorite status
+  let isFavorite = await checkFavorite();
+  favButton = document.getElementById("favorite-button");
+  if (isFavorite) {
+    // add the favorited class from the element
+    favButton.classList.add("favorited");
+  }
+
   let data = await fetchProfile();
   let days = [
     data.hours.monday,
@@ -161,8 +185,17 @@ $(document).ready(async function () {
   });
 
   // Handle the favoriting functionality
-  // TODO: add server side code to add/ delete a favorite
-  // add code here to change color by applying / unapplying the
-  // favorited class. Also add code to get favorited status on document load
-  $(".feather-heart").on("click", () => {});
+  $("#favorite-wrapper").on("click", async () => {
+    let wasFavorite = await changeFavorite();
+
+    favButton = document.getElementById("favorite-button");
+    if (wasFavorite) {
+      // remove the favorited class from the element
+      favButton.classList.remove("favorited");
+      alert("Business was removed from your favorites!");
+    } else {
+      favButton.classList.add("favorited");
+      alert("Business added to your favorites!");
+    }
+  });
 });

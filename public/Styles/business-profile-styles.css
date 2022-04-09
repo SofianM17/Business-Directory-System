@@ -369,13 +369,15 @@ h2 {
   padding-top: 56px;
 }
 
-.feather-heart {
-  -webkit-transform: translateY(-15px);
-          transform: translateY(-15px);
+.favorited {
+  fill: #e71212;
+  stroke: #e71212;
 }
 
-.favorited {
-  fill: #ac0000;
-  stroke: #ac0000;
+#favorite-wrapper {
+  -webkit-transform: translateY(-15px);
+          transform: translateY(-15px);
+  background-color: transparent;
+  border: none;
 }
 /*# sourceMappingURL=business-profile-styles.css.map */
