@@ -375,8 +375,6 @@ h2 {
 }
 
 #favorite-wrapper {
-  -webkit-transform: translateY(-15px);
-          transform: translateY(-15px);
   background-color: transparent;
   border: none;
 }
