@@ -18,61 +18,73 @@
     ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="../Styles/user-home-search-styles.css" />
+    <link rel="stylesheet" href="../Styles/nav-styles.css" />
   </head>
 
   <body>
-    <header
-      class="desktop-nav navbar mb-3 ps-2 pe-2"
-      style="background-color: #3cbea0"
-    >
-      <button class="home btn text-light">Home</button>
-      <button class="logout btn text-light">Logout</button>
-    </header>
+    <header class="navbar mb-3 ps-2 pe-2" style="background-color: #3cbe9f">
+      <img
+        src="../Resources/logo_transparent.png"
+        class="logo"
+        width="60px"
+        alt=""
+      />
 
-    <header
-      class="mobile-nav navbar mb-3 ps-2 pe-2"
-      style="background-color: #3cbea0"
-    >
-      <button class="home btn">
-        <svg
-          width="40"
-          height="36"
-          viewBox="0 0 40 36"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            stroke="#000"
-            d="m2.34938,16.08773l17.60757,-15.22521l17.60757,15.22521l-35.21514,0z"
-            fill="black"
-          />
-          <rect
-            stroke="#000"
-            x="5.70307"
-            y="15.40125"
-            width="9.53743"
-            height="19.92686"
-            fill="black"
-          />
-          <rect
-            stroke="#000"
-            x="24.70732"
-            y="15.32436"
-            width="9.53743"
-            height="20.07436"
-            fill="black"
-          />
-          <rect
-            stroke="#000"
-            height="8.36792"
-            width="10.12312"
-            y="15.35605"
-            x="15.01626"
-            fill="black"
-          />
-        </svg>
-      </button>
-      <button class="logout btn">
+      <div class="text-nav-btns">
+        <div class="nav-left">
+          <button class="text-bus-icon home text-light">Home</button>
+          <button class="text-bus-icon home text-light text-fav fav-btn-nav">
+            Favorites
+          </button>
+        </div>
+        <button class="text-logout-icon logout text-light">Logout</button>
+      </div>
+
+      <div class="nav-left-icons">
+        <button class="home btn home-icon-btn">
+          <svg
+            width="40"
+            height="36"
+            viewBox="0 0 40 36"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke="#000"
+              d="m2.34938,16.08773l17.60757,-15.22521l17.60757,15.22521l-35.21514,0z"
+              fill="black"
+            />
+            <rect
+              stroke="#000"
+              x="5.70307"
+              y="15.40125"
+              width="9.53743"
+              height="19.92686"
+              fill="black"
+            />
+            <rect
+              stroke="#000"
+              x="24.70732"
+              y="15.32436"
+              width="9.53743"
+              height="20.07436"
+              fill="black"
+            />
+            <rect
+              stroke="#000"
+              height="8.36792"
+              width="10.12312"
+              y="15.35605"
+              x="15.01626"
+              fill="black"
+            />
+          </svg>
+        </button>
+        <button class="icon-fav fav-btn-nav btn">
+          <img src="../Resources/favourite.png" alt="" width="50" />
+        </button>
+      </div>
+      <button class="logout btn logout-icon-btn">
         <svg
           width="40"
           height="36"
