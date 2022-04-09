@@ -17,16 +17,14 @@
     .search-bar {
         border-radius: 30px;
     }
-    .search-bar:placeholder-shown{
+    .search-icon-btn {
+        margin-right: 10px;
+    }
+    .search-bar:placeholder-shown {
         font-size: small;
     }
     .dropdown-menu {
-		width: 100%;
-    }
-    .search-icon-btn {
-        position: fixed;
-        right: 80px;
-        top: 15px;
+        width: 100%;
     }
     height: 80px;
     @media only screen and (min-width: 768px) {
