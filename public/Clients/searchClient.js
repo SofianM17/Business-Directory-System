@@ -29,6 +29,7 @@ $(document).ready(async function() {
     resultsContainerDiv.classList.add("result", "container");
 
     let resultsString = document.createElement("h2");
+    resultsString.classList.add("resultsString");
     let string =
         'Showing results for "' + window.location.href.split("/")[4] + '"';
     let node = document.createTextNode(string);
@@ -59,11 +60,12 @@ $(document).ready(async function() {
 
         // add business name
         let name = document.createElement("h4");
+        name.classList.add("b-name");
         let elem = document.createTextNode(results[i].name);
         name.appendChild(elem);
 
         // add business address
-        let address = document.createElement("h5");
+        let address = document.createElement("p");
         elem = document.createTextNode(results[i].address.address);
         address.appendChild(elem);
 
