@@ -19,6 +19,33 @@
   display: none;
 }
 
+.navbar .nav-left {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 180px;
+}
+
+.navbar .nav-left-icons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  justify-self: center;
+}
+
+.navbar .nav-left-icons .icon-fav {
+  margin-left: 20px;
+}
+
 .navbar .logo {
   display: none;
 }
@@ -74,6 +101,7 @@
   .navbar .home-icon-btn,
   .navbar .logout-icon-btn,
   .navbar .search-icon-btn,
+  .navbar .icon-fav,
   .navbar .dropdown-menu {
     display: none;
   }
