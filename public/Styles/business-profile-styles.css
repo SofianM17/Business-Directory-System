@@ -36,13 +36,8 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .intro {
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: flex-start;
-  }
   .intro .fav-btn-wrapper {
-    margin-left: 25px;
+    margin-right: 25px;
   }
 }
 
