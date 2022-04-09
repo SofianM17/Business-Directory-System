@@ -30,8 +30,9 @@ $(document).ready(async function() {
 
     let resultsString = document.createElement("h2");
     resultsString.classList.add("resultsString");
-    let string =
-        'Showing results for "' + window.location.href.split("/")[4] + '"';
+
+    let query = window.location.href.split("/")[4];
+    let string = 'Showing results for "' + decodeURI(query) + '"';
     let node = document.createTextNode(string);
     resultsString.appendChild(node);
     resultsContainerDiv.appendChild(resultsString);
