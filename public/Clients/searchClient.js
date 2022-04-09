@@ -32,10 +32,20 @@ $(document).ready(async function() {
     resultsString.classList.add("resultsString");
 
     let query = window.location.href.split("/")[4];
-    let string = 'Showing results for "' + decodeURI(query) + '"';
-    let node = document.createTextNode(string);
-    resultsString.appendChild(node);
-    resultsContainerDiv.appendChild(resultsString);
+    let decode = decodeURI(query);
+
+    if (!results.length){
+        let string = 'No results for "' + decode + '"';
+        let node = document.createTextNode(string);
+        resultsString.appendChild(node);
+        resultsContainerDiv.appendChild(resultsString);
+        document.body.appendChild(resultsContainerDiv);
+    } else {
+        let string = 'Showing results for "' + decode + '"';
+        let node = document.createTextNode(string);
+        resultsString.appendChild(node);
+        resultsContainerDiv.appendChild(resultsString);
+    }
 
     // loop through data containing the search results
     for (let i = 0; i < results.length; i++) {
