@@ -44,11 +44,7 @@ input[type='image'] {
 }
 
 @media (max-width: 992px) {
-    .desktop-nav {
-        display: none;
-    }
-
-    #search-bar {
+   #search-bar {
         font-size: medium;
     }
 
@@ -58,26 +54,36 @@ input[type='image'] {
 }
 
 @media (min-width: 993px) and (max-width: 1200px) {
-    .mobile-nav {
-        display: none;
-    }
-
     .search {
         padding-bottom: 3vw;
     }
 }
 
 @media (min-width: 1201px) {
-    .mobile-nav {
-        display: none;
-    }
-
-    .btn {
-        font-size: large;
+    input[type='image'] {
+        max-width: 60%;
+        height: auto;
     }
 
     .search {
         padding-top: 2vw;
         padding-bottom: 3vw;
+    }
+}
+
+@media (min-width: 1903px) {
+    input[type='image'] {
+        max-width: 45%;
+        height: auto;
+    }
+
+    .search {
+        padding-top: 2vw;
+        padding-bottom: 3vw;
+    }
+
+    .shop-img {
+        max-width: 70%;
+        height: auto;
     }
 }
