@@ -11,6 +11,20 @@
     .text-nav-btns {
         display: none;
     }
+    .nav-left {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 180px;
+    }
+    .nav-left-icons {
+        display: flex;
+        align-items: center;
+        justify-self: center;
+        .icon-fav {
+            margin-left: 20px;
+        }
+    }
     .logo {
         display: none;
     }
@@ -53,6 +67,7 @@
         .home-icon-btn,
         .logout-icon-btn,
         .search-icon-btn,
+        .icon-fav,
         .dropdown-menu {
             display: none;
         }
