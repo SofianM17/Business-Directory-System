@@ -51,14 +51,14 @@ input[type='image'] {
 }
 
 .b-name {
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 .details {
     background-color: #E2FAF3;
     border-color: #929292;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
 }
 
 @media screen and (max-width: 768px) {
