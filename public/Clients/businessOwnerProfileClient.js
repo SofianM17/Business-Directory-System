@@ -174,6 +174,18 @@ $(document).ready(async function () {
     appendBusinessHours(day);
   }
 
+  // Handle reviews
+  for (let review of data.reviews) {
+    // append review to list
+    $(
+      "<li><p>" +
+        review.review +
+        "</p><p id='review-name'>~ " +
+        review.username +
+        "</p></li>"
+    ).appendTo("#reviews-list");
+  }
+
   // Redirect to edit page of this business
   $("#edit-btn").on("click", () => {
     window.location.href = "/edit-business/" + data["_id"];
