@@ -1,11 +1,8 @@
-.container {
-    margin-bottom: 5vw;
-}
+
 
 .categories {
     padding-top: 0px;
     font-style: italic;
-    margin-top: -10px;
 }
 
 .resultsString {
@@ -23,6 +20,21 @@ input[type='image'] {
 
 .row {
     row-gap: 40px;
+}
+
+.container-cats{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.home-page-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 #search-bar {
