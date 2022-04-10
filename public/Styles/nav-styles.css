@@ -3,6 +3,10 @@
   font-family: 'Roboto', sans-serif;
 }
 
+header {
+  height: 90px !important;
+}
+
 .navbar {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
@@ -61,7 +65,7 @@
   width: 300px;
 }
 
-@media screen and (min-width: 950px) {
+@media screen and (min-width: 980px) {
   .navbar .search-bar {
     width: 500px;
   }
