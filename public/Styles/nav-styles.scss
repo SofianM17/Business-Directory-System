@@ -23,6 +23,9 @@
         justify-self: center;
         .icon-fav {
             margin-left: 20px;
+            @media screen and (max-width: 380px) {
+                margin-left: 0px;
+            }
         }
     }
     .logo {
@@ -30,9 +33,19 @@
     }
     .search-bar {
         border-radius: 30px;
+        width: 300px;
+        @media screen and (min-width: 950px) {
+            width: 500px;
+        }
+        @media screen and (min-width: 1400px) {
+            width: 800px;
+        }
     }
     .search-icon-btn {
-        margin-right: 10px;
+        margin-right: 20px;
+        @media screen and (max-width: 380px) {
+            margin-right: 0px;
+        }
     }
     .search-bar:placeholder-shown {
         font-size: small;
