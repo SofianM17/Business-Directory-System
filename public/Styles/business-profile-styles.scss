@@ -272,3 +272,41 @@ h2 {
   background-color: transparent;
   border: none;
 }
+
+.reviews {
+  margin: 34px 37px 0px 37px;
+  ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    margin-right: 12px;
+    background: #e2faf3;
+    border-radius: 20px;
+    padding: 20px 1.5rem 10px 1.5rem;
+  }
+  form > div {
+    display: flex;
+  }
+  #review-send-btn {
+    background-color: transparent;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+  #review-input {
+    flex: 1;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  #reviews-list {
+    max-height: 50vh; // half the screen size vertically
+    overflow-y: auto;
+  }
+  #review-name {
+    align-self: flex-end;
+  }
+  margin-bottom: 40px;
+}

@@ -378,4 +378,59 @@ h2 {
   background-color: transparent;
   border: none;
 }
+
+.reviews {
+  margin: 34px 37px 0px 37px;
+  margin-bottom: 40px;
+}
+
+.reviews ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.reviews li {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 20px;
+  margin-right: 12px;
+  background: #e2faf3;
+  border-radius: 20px;
+  padding: 20px 1.5rem 10px 1.5rem;
+}
+
+.reviews form > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.reviews #review-send-btn {
+  background-color: transparent;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.reviews #review-input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.reviews #reviews-list {
+  max-height: 50vh;
+  overflow-y: auto;
+}
+
+.reviews #review-name {
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
 /*# sourceMappingURL=business-profile-styles.css.map */
