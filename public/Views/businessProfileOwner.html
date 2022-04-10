@@ -1,112 +1,159 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Business Profile</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="../Styles/business-profile-styles.css" />
 
     <!-- leaflet imports -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
+    />
     <link rel="stylesheet" href="../Styles/nav-styles.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="navbar mb-3 ps-2 pe-2" style="background-color: #c1e5ec">
-        <img src="../Resources/logo_transparent.png" class="logo" width="60px" alt="">
+      <img
+        src="../Resources/logo_transparent.png"
+        class="logo"
+        width="60px"
+        alt=""
+      />
 
-        <div class="text-nav-btns">
-            <button class="text-bus-icon home">My Businessess</button>
-            <button class="text-logout-icon logout">Logout</button>
-        </div>
-        <button class="home btn home-icon-btn">
-			<svg width="55" height="55" viewBox="0 0 55 55" fill="none" xmlns="http://www.w3.org/2000/svg"
-				xmlns:xlink="http://www.w3.org/1999/xlink">
-				<rect width="55" height="55" fill="url(#pattern0)" />
-				<defs>
-					<pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
-						<use xlink:href="#image0_49_637" transform="scale(0.01)" />
-					</pattern>
-					<image id="image0_49_637" width="100" height="100"
-						xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAACS0lEQVR4nO3cPU5bQRTF8eMoDT1SKoqkipQSKSlgD5FA0Ecu2YRbFkBpZQ3swUBDKiiokOgjsQRT8ApjOe/duXdG7+L8f5ILy0/j0ZyZI8tfEgAAAAAAAPA+TCqM8VXSzwrjbINLSQ9jT+JE0pKblt1ahHyIDoC6CCQZAkmGQJIhkGQIJJmPFcZ4lvSnwjjb4HnsCQAAAABAqRofUP2SdFZhnG1wIen32JO40fgfDGW5XQfXMnxC9iQ9VRhnWywlfdbrmrhE31w8EWGsmkg6igxQIxC8FVqTyO6mrjYL1VbkhFBXm4VqKxoINnOvjXeHU1f93LXlPSHUVT93bUUCQT/XGnl2OXVl46otzwmhrmxcteUNBDbFa1W606mrMsW1VXpCqKsyxbXlCQRlitasZLdTVz5FtVVyQk5FGB4TScfWi0sCoa78zGtn3fHUVYy5tqwnhLqKMdeWNRDqKs60hpZdT13VYaotywmhruow1ZYlkO/xuaDzY+gCSyCcjnoG15IffSZDIMkQSDIEkgyBJEMgyVj+yeFS0uPK/UNJBz3X/5U0j0zKYFfSdOCaeTeXlqbdXP7lStJi5f5di0nM1P+jlfsWT7rm28Aclt01rd0PzGFWOiCVlQyBJEMgyRBIMgSSDIEkQyDJEEgyBJIMgSRDIMkQSDIEkgyBJEMgydT4q/F1XyTdNhh31U7j8UfTIpAdSfsNxv0vUFnJEEgyBJIMgSRDIMkQSDKel70LSee1J9JA6y/JSa9fxvvU8/ii5zEAAAAAAADgXXsBR4vVclA5yhwAAAAASUVORK5CYII=" />
-				</defs>
-			</svg>
-		</button>
-        <button class="logout btn logout-icon-btn">
-			<svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path
-					d="M30 8L27.18 10.82L32.34 16H12V20H32.34L27.18 25.16L30 28L40 18L30 8ZM4 4H20V0H4C1.8 0 0 1.8 0 4V32C0 34.2 1.8 36 4 36H20V32H4V4Z"
-					fill="black" />
-			</svg>
-		</button>
+      <div class="text-nav-btns">
+        <button class="text-bus-icon home">My Businessess</button>
+        <button class="text-logout-icon logout">Logout</button>
+      </div>
+      <button class="home btn home-icon-btn">
+        <svg
+          width="55"
+          height="55"
+          viewBox="0 0 55 55"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+        >
+          <rect width="55" height="55" fill="url(#pattern0)" />
+          <defs>
+            <pattern
+              id="pattern0"
+              patternContentUnits="objectBoundingBox"
+              width="1"
+              height="1"
+            >
+              <use xlink:href="#image0_49_637" transform="scale(0.01)" />
+            </pattern>
+            <image
+              id="image0_49_637"
+              width="100"
+              height="100"
+              xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABmJLR0QA/wD/AP+gvaeTAAACS0lEQVR4nO3cPU5bQRTF8eMoDT1SKoqkipQSKSlgD5FA0Ecu2YRbFkBpZQ3swUBDKiiokOgjsQRT8ApjOe/duXdG7+L8f5ILy0/j0ZyZI8tfEgAAAAAAAPA+TCqM8VXSzwrjbINLSQ9jT+JE0pKblt1ahHyIDoC6CCQZAkmGQJIhkGQIJJmPFcZ4lvSnwjjb4HnsCQAAAABAqRofUP2SdFZhnG1wIen32JO40fgfDGW5XQfXMnxC9iQ9VRhnWywlfdbrmrhE31w8EWGsmkg6igxQIxC8FVqTyO6mrjYL1VbkhFBXm4VqKxoINnOvjXeHU1f93LXlPSHUVT93bUUCQT/XGnl2OXVl46otzwmhrmxcteUNBDbFa1W606mrMsW1VXpCqKsyxbXlCQRlitasZLdTVz5FtVVyQk5FGB4TScfWi0sCoa78zGtn3fHUVYy5tqwnhLqKMdeWNRDqKs60hpZdT13VYaotywmhruow1ZYlkO/xuaDzY+gCSyCcjnoG15IffSZDIMkQSDIEkgyBJEMgyVj+yeFS0uPK/UNJBz3X/5U0j0zKYFfSdOCaeTeXlqbdXP7lStJi5f5di0nM1P+jlfsWT7rm28Aclt01rd0PzGFWOiCVlQyBJEMgyRBIMgSSDIEkQyDJEEgyBJIMgSRDIMkQSDIEkgyBJEMgydT4q/F1XyTdNhh31U7j8UfTIpAdSfsNxv0vUFnJEEgyBJIMgSRDIMkQSDKel70LSee1J9JA6y/JSa9fxvvU8/ii5zEAAAAAAADgXXsBR4vVclA5yhwAAAAASUVORK5CYII="
+            />
+          </defs>
+        </svg>
+      </button>
+      <button class="logout btn logout-icon-btn">
+        <svg
+          width="40"
+          height="36"
+          viewBox="0 0 40 36"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            d="M30 8L27.18 10.82L32.34 16H12V20H32.34L27.18 25.16L30 28L40 18L30 8ZM4 4H20V0H4C1.8 0 0 1.8 0 4V32C0 34.2 1.8 36 4 36H20V32H4V4Z"
+            fill="black"
+          />
+        </svg>
+      </button>
     </header>
 
     <div class="content">
-        <div class="intro intro-alt">
-            <div class="main-wrapper">
-                <div id="title"></div>
-                <div id="categories"></div>
-            </div>
-
-            <div class="buttons">
-                <button id="edit-btn" class="btn btn-dark">
-					Edit
-				</button>
-                <button id="delete-btn" class="btn btn-danger">
-					Delete
-				</button>
-            </div>
+      <div class="intro intro-alt">
+        <div class="main-wrapper">
+          <div id="title"></div>
+          <div id="categories"></div>
         </div>
 
-        <div class="about">
-            <h2>About</h2>
-            <div id="description"></div>
+        <div class="buttons">
+          <button id="edit-btn" class="btn btn-dark">Edit</button>
+          <button id="delete-btn" class="btn btn-danger">Delete</button>
+        </div>
+      </div>
+
+      <div class="about">
+        <h2>About</h2>
+        <div id="description"></div>
+      </div>
+
+      <div class="col-1">
+        <div class="location">
+          <div class="location-title">
+            <h2>Location</h2>
+            <img
+              src="https://img.icons8.com/ios-filled/50/000000/marker.png"
+              width="25px"
+            />
+          </div>
+
+          <div id="location-address"></div>
+
+          <div id="map"></div>
         </div>
 
-        <div class="col-1">
-            <div class="location">
-                <div class="location-title">
-                    <h2>Location</h2>
-                    <img src="https://img.icons8.com/ios-filled/50/000000/marker.png" width="25px" />
-                </div>
+        <div class="col-2">
+          <div class="contact-info">
+            <h2>Contact</h2>
 
-                <div id="location-address"></div>
-
-                <div id="map"></div>
+            <div id="contact-info-cont">
+              <ul id="contact-info-list"></ul>
             </div>
-
-            <div class="col-2">
-                <div class="contact-info">
-                    <h2>Contact</h2>
-
-                    <div id="contact-info-cont">
-                        <ul id="contact-info-list"></ul>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- <div class="reviews">
+      <!-- <div class="reviews">
             <h2>Customer Reviews</h2>
         </div> -->
 
-        <div class="b-hour-container">
-            <div class="business-hours">
-                <h2>Hours</h2>
-                <ul id="hours-list"></ul>
-            </div>
+      <div class="b-hour-container">
+        <div class="business-hours">
+          <h2>Hours</h2>
+          <ul id="hours-list"></ul>
         </div>
+      </div>
+
+      <div class="reviews-container">
+        <div class="reviews">
+          <h2 id="review-title">Reviews</h2>
+          <ul id="reviews-list"></ul>
+        </div>
+      </div>
     </div>
 
     <script src="../Clients/businessOwnerProfileClient.js"></script>
     <script src="../Clients/header.js"></script>
-</body>
-
+  </body>
 </html>

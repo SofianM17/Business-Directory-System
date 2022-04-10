@@ -538,6 +538,7 @@ app.get("/is-favorite/:businessID", async (req, res) => {
     req.params.businessID
   );
   res.status(200).send({ wasFavorite: wasFavorite });
+  client.close();
 });
 
 // Change favorite status of a business
@@ -549,4 +550,45 @@ app.post("/change-favorite/:businessID", async (req, res) => {
     req.params.businessID
   );
   res.status(200).send({ wasFavorite: wasFavorite });
+  client.close();
+});
+
+async function getBusinessReviews(client, businessID) {
+  let business = await getBusinessById(client, ObjectID(businessID));
+  return business[0].reviews;
+}
+
+//test review adding
+app.post("/add-review/:businessID", async (req, res) => {
+  let client = await connectDatabase();
+  //   let reviews = await getBusinessReviews(client, req.params.businessID);
+  //   let thisUser = req.cookies.user;
+  //   for (let review of reviews) {
+  //     console.log(review);
+  //     // if (thisUser == review.userID) { // user already added review
+
+  //     // } else {
+
+  //     // }
+  //   }
+  let response = await getBusinessById(client, ObjectID(req.params.businessID));
+  let user = await findUserByID(client, req.cookies.user);
+  let business = response[0];
+  let review = {
+    reviewID: new ObjectID(),
+    username: user.username,
+    review: req.body.review,
+  };
+  if (business.reviews) {
+    business.reviews.push(review);
+  } else {
+    business.reviews = new Array();
+    business.reviews.push(review);
+  }
+  await updateBusiness(client, ObjectID(req.params.businessID), business);
+  res.status(200).send({ reviewAdded: true, review: review });
+});
+
+app.post("add-reply/:businessID/:reviewID", async (req, res) => {
+  let client = await connectDatabase();
 });

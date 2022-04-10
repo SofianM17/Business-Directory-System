@@ -410,6 +410,33 @@ h2 {
   display: flex;
 }
 
+.reviews .review-reply-con {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.reviews .review-reply-con li {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+.reviews .reply-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 90%;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+  margin-bottom: 20px;
+  margin-right: 12px;
+}
+
 .reviews #review-send-btn {
   background-color: transparent;
   border-top-right-radius: 10px;
@@ -417,6 +444,14 @@ h2 {
 }
 
 .reviews #review-input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.reviews .reply-text {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
@@ -432,5 +467,11 @@ h2 {
 .reviews #review-name {
   -ms-flex-item-align: end;
       align-self: flex-end;
+}
+
+#placeholder-review {
+  margin-top: 15px;
+  font-size: medium;
+  font-weight: normal;
 }
 /*# sourceMappingURL=business-profile-styles.css.map */
