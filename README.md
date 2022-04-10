@@ -1,6 +1,8 @@
 # Business Directory System
 
-This system allows business owners to add a profile of their business which is searchable by customers, where they may leave reviews and comments on that business. ArcGIS API is used for geospatial visualization of business locations.
+## General Information:
+
+This system allows business owners to add a profile of their business which is searchable by customers, where they may leave reviews and comments on that business. Geoapify Geocoding API was used for validating and acquiring positional information about addresses, and Geoapify Maps API along with Leaflet was used for displaying maps marking the location of validated addresses.
 
 - http://localhost:3000/ displays the login page
 - http://localhost:3000/add-business displays a business creation form if a business user is logged in
@@ -12,10 +14,12 @@ This system allows business owners to add a profile of their business which is s
 - http://localhost:3000/search/SEARCHQUERY displays a page with search results based on the customers search query
 - http://localhost:3000/business-profile-user/ID displays a business profile for the customer with the specified ID
 
-## Notes about login:
+## Notes About Login:
 
 A successful login request (either upon account creation or login) returns the following cookies:
 
 - access_token = the JSON web token used by the server for authentication
 - accountType = the account type of the user. Either "business" or "customer", this can be used to direct the user to the correct page
 - user = the user id to use when making requests to, say, the business profile owner page. The server will verify that they are the correct user type and user to view the page they want using this id.
+
+## Instructions
