@@ -3,6 +3,10 @@
     font-family: 'Roboto', sans-serif;
 }
 
+header {
+    height: 90px!important;
+}
+
 .navbar {
     justify-content: space-between;
     align-items: center;
@@ -34,7 +38,7 @@
     .search-bar {
         border-radius: 30px;
         width: 300px;
-        @media screen and (min-width: 950px) {
+        @media screen and (min-width: 980px) {
             width: 500px;
         }
         @media screen and (min-width: 1400px) {
