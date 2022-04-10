@@ -6,8 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Homepage</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link rel="stylesheet" href="../Styles/user-home-search-styles.css" />
     <link rel="stylesheet" href="../Styles/nav-styles.css" />
@@ -15,44 +18,84 @@
 </head>
 
 <body>
-    <header class="navbar mb-3 ps-2 pe-2" style="background-color: #3cbe9f">
-        <img src="../Resources/logo_transparent.png" class="logo" width="60px" alt="">
-
+    <header class="navbar mb-3 ps-2 pe-2" style="background-color: #3cbe9f;">
+        <img src="../Resources/logo_transparent.png" class="logo" width="60px" alt="" />
+    
         <div class="text-nav-btns">
-            <div class="nav-left">
-                <button class="text-bus-icon home text-light">Home</button>
-                <button class="text-bus-icon home text-light text-fav fav-btn-nav">Favorites</button>
-            </div>
-            <button class="text-logout-icon logout text-light">Logout</button>
+          <div class="nav-left">
+            <button class="text-bus-icon home text-light">Home</button>
+            <button class="text-bus-icon home text-light text-fav fav-btn-nav">
+              Favorites
+            </button>
+          </div>
+    
+          <div class="">
+            <input id="desktop-search" class="form-control search-bar" type="search"
+              placeholder="Search for a business or category" />
+          </div>
+    
+          <button class="text-logout-icon logout text-light">Logout</button>
         </div>
-
         <div class="nav-left-icons">
-            <button class="home btn home-icon-btn">
-				<svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path stroke="#000" d="m2.34938,16.08773l17.60757,-15.22521l17.60757,15.22521l-35.21514,0z"
-						fill="black" />
-					<rect stroke="#000" x="5.70307" y="15.40125" width="9.53743" height="19.92686" fill="black" />
-					<rect stroke="#000" x="24.70732" y="15.32436" width="9.53743" height="20.07436" fill="black" />
-					<rect stroke="#000" height="8.36792" width="10.12312" y="15.35605" x="15.01626" fill="black" />
-				</svg>
-			</button>
-            <button class="icon-fav fav-btn-nav btn">
-				<img src="../Resources/favourite.png" alt="" width="50">
-			</button>
+          <button class="home btn home-icon-btn">
+            <svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path stroke="#000" d="m2.34938,16.08773l17.60757,-15.22521l17.60757,15.22521l-35.21514,0z" fill="black" />
+              <rect stroke="#000" x="5.70307" y="15.40125" width="9.53743" height="19.92686" fill="black" />
+              <rect stroke="#000" x="24.70732" y="15.32436" width="9.53743" height="20.07436" fill="black" />
+              <rect stroke="#000" height="8.36792" width="10.12312" y="15.35605" x="15.01626" fill="black" />
+            </svg>
+          </button>
         </div>
-        <button class="logout btn logout-icon-btn">
-			<svg width="40" height="36" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-				<path
-					d="M30 8L27.18 10.82L32.34 16H12V20H32.34L27.18 25.16L30 28L40 18L30 8ZM4 4H20V0H4C1.8 0 0 1.8 0 4V32C0 34.2 1.8 36 4 36H20V32H4V4Z"
-					fill="black" />
-			</svg>
-		</button>
-    </header>
+    
+        <div class="navbar-right">
+          <!-- <button class="search btn search-icon-btn" data-bs-toggle="dropdown">
+            <svg width="40" height="36" xmlns="http://www.w3.org/2000/svg" fill="none">
+              <ellipse stroke-width="3.5" ry="10.7404" rx="10.95459" cy="13.7928" cx="16.26643" stroke="#000" />
+              <path transform="rotate(45 29.7914 27.407)"
+                d="m24.64571,27.31523l10.29128,0l0,0c1.34819,0 2.44111,0.0411 2.44111,0.0918c0,0.0507 -1.09292,0.0918 -2.44111,0.0918l-10.29128,0l0,0c-1.34819,0 -2.44111,-0.0411 -2.44111,-0.0918c0,-0.0507 1.09292,-0.0918 2.44111,-0.0918z"
+                stroke="#000" stroke-width="4.5" />
+            </svg>
+          </button>
+    
+          <div class="dropdown-menu ps-3 pe-3" style="background-color: #E2FAF3">
+            <input id="mobile-search" class="form-control search-bar" type="search"
+              placeholder="Search for a business or category" style="width: 100%; margin: 20px 0px 20px 0px; padding: 10px 20px 10px 20px;" />
+          </div> -->
+    
+          <button class="btn menu-icon-btn" data-bs-toggle="dropdown">
+            <img src="../Resources/menu.png" alt="" width="40">
+          </button>
+          <ul class="dropdown-menu" style="background-color: #E2FAF3"> 
+            <li style="text-align: center;">
+              <button class="icon-fav fav-btn-nav btn fw-bold " style=" padding: 46px 0px 46px 0px; width: 100%; display: flex; justify-content: center; align-items: center; column-gap: 12px; border-bottom: 1px solid rgb(200, 200, 200);">
+    
+              <div class="options-text" style="font-size: 24px">
+                Favorites
+              </div>
+                <img src="../Resources/favourite.png" alt="" width="34" />
+              </button>
+            </li>
+            <li style="text-align: center;">
+              <button class="logout btn logout-icon-btn fw-bold" style=" padding: 46px 0px 46px 0px; width: 100%; display: flex; justify-content: center; align-items: center; column-gap: 12px;" >
+                <div class="options-text" style="font-size: 24px">
+                  Logout
+                </div>
+                <svg width="34" height="34" viewBox="0 0 40 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M30 8L27.18 10.82L32.34 16H12V20H32.34L27.18 25.16L30 28L40 18L30 8ZM4 4H20V0H4C1.8 0 0 1.8 0 4V32C0 34.2 1.8 36 4 36H20V32H4V4Z"
+                    fill="black" />
+                </svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </header>
 
     <div class="search container mb-5">
         <div class="row justify-content-md-center">
             <div class="col col-lg-8 ms-3 me-3">
-                <input id="search-bar" class="form-control form-control-lg" type="search" placeholder="Search for a business or category" />
+                <input id="search-bar" class="form-control form-control-lg" type="search"
+                    placeholder="Search for a business or category" />
             </div>
         </div>
     </div>

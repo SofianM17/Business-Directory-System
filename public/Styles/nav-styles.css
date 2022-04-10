@@ -132,7 +132,8 @@ header {
   .navbar .logout-icon-btn,
   .navbar .search-icon-btn,
   .navbar .icon-fav,
-  .navbar .dropdown-menu {
+  .navbar .menu-icon.btn,
+  .navbar .menu-icon-btn {
     display: none;
   }
 }
