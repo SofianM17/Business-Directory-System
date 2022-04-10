@@ -23,7 +23,7 @@ function getCookie(cname) {
 // request data from the server based on the id in the url
 async function fetchProfile() {
   let response = await fetch(
-    "/business-get/" + window.location.href.split("/")[4]
+    "/business-get/" + window.location.href.split("/")[4].replace("?", "")
   );
   let businessData = await response.json();
   return businessData;
@@ -32,7 +32,7 @@ async function fetchProfile() {
 // Toggle the favoriting for customers
 async function changeFavorite() {
   let response = await fetch(
-    "/change-favorite/" + window.location.href.split("/")[4],
+    "/change-favorite/" + window.location.href.split("/")[4].replace("?", ""),
     { method: "POST" }
   );
   let favoriteResponse = await response.json();
@@ -42,7 +42,7 @@ async function changeFavorite() {
 // Check if this business is a customer's favorite
 async function checkFavorite() {
   let response = await fetch(
-    "/is-favorite/" + window.location.href.split("/")[4]
+    "/is-favorite/" + window.location.href.split("/")[4].replace("?", "")
   );
   let favoriteResponse = await response.json();
   return favoriteResponse.wasFavorite;
@@ -54,7 +54,7 @@ async function submitReview() {
     review: reviewInput.val(),
   };
   let response = await fetch(
-    "/add-review/" + window.location.href.split("/")[4],
+    "/add-review/" + window.location.href.split("/")[4].replace("?", ""),
     {
       method: "POST",
       headers: {
@@ -65,6 +65,30 @@ async function submitReview() {
   );
   let reviewResponse = await response.json();
   return reviewResponse;
+}
+
+//Used to handle replies
+async function submitReply(reviewID) {
+  let elementID = "#text-" + reviewID;
+  let replyInput = $(elementID);
+  let reply = {
+    message: replyInput.val(),
+  };
+  let response = await fetch(
+    "/add-reply/" +
+      window.location.href.split("/")[4].replace("?", "") +
+      "/" +
+      reviewID,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reply),
+    }
+  );
+  let replyResponse = await response.json();
+  return replyResponse;
 }
 
 // Displays a formatted list of business hour data
@@ -229,16 +253,14 @@ $(document).ready(async function () {
       if (userType == "business") {
         // add business reply feature
         $(
-          "<div class='review-reply-con'><li id='" +
-            review.reviewID +
-            "'><p>" +
+          "<div class='review-reply-con'><li><p>" +
             review.review +
             "</p><p id='review-name'>~ " +
             review.username +
             "</p></li> " +
             '<form class="reply-box" id="' +
             review.reviewID +
-            '"><textarea class="form-control reply-text" id="' +
+            '"><textarea class="form-control reply-text" id="text-' +
             review.reviewID +
             '" autocomplete="off" placeholder="Leave a reply..." rows="2"></textarea><button id="review-send-btn"><img src="https://img.icons8.com/small/30/000000/filled-sent.png"/></button></form></div>'
         ).appendTo("#reviews-list");
@@ -290,8 +312,23 @@ $(document).ready(async function () {
   //handle reply submission
   $(".reply-box").on("submit", (e) => {
     e.preventDefault();
-    //alert("clicked " + this.classList);
-    console.log(e.target.id);
+    submitReply(e.target.id).then((reply) => {
+      if (reply.ok) {
+        // add to bottom of list and clear textbox
+        let elementID = "#" + e.target.id;
+        $(
+          "<li class='reply-li'><p>" +
+            reply.reply.message +
+            "</p><p id='review-name'>~ Owner</p></li>"
+        ).insertBefore(elementID);
+
+        let formtextID = "#text-" + e.target.id;
+        $(formtextID).val("");
+        alert("Reply submitted successfully!");
+      } else {
+        alert("Reply submission failed.");
+      }
+    });
   });
 
   // Redirect to edit page of this business
