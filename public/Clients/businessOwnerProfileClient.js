@@ -250,31 +250,35 @@ $(document).ready(async function () {
     for (let review of data.reviews) {
       hasReviews = true;
       // append review to list
+      let htmlToAdd =
+        "<div class='review-reply-con'><li><p>" +
+        review.review +
+        "</p><p id='review-name'>~ " +
+        review.username +
+        "</p></li> ";
+
+      // append replies
+      if (review.replies) {
+        for (let reply of review.replies) {
+          htmlToAdd =
+            htmlToAdd +
+            "<li class='reply-li'><p>" +
+            reply.message +
+            "</p><p id='review-name'>~ Owner</p></li>";
+        }
+      }
       if (userType == "business") {
         // add business reply feature
-        $(
-          "<div class='review-reply-con'><li><p>" +
-            review.review +
-            "</p><p id='review-name'>~ " +
-            review.username +
-            "</p></li> " +
-            '<form class="reply-box" id="' +
-            review.reviewID +
-            '"><textarea class="form-control reply-text" id="text-' +
-            review.reviewID +
-            '" autocomplete="off" placeholder="Leave a reply..." rows="2"></textarea><button id="review-send-btn"><img src="https://img.icons8.com/small/30/000000/filled-sent.png"/></button></form></div>'
-        ).appendTo("#reviews-list");
-      } else {
-        $(
-          "<li id='" +
-            review.reviewID +
-            "'><p>" +
-            review.review +
-            "</p><p id='review-name'>~ " +
-            review.username +
-            "</p></li>"
-        ).appendTo("#reviews-list");
+        htmlToAdd =
+          htmlToAdd +
+          '<form class="reply-box" id="' +
+          review.reviewID +
+          '"><textarea class="form-control reply-text" id="text-' +
+          review.reviewID +
+          '" autocomplete="off" placeholder="Leave a reply..." rows="2"></textarea><button id="review-send-btn"><img src="https://img.icons8.com/small/30/000000/filled-sent.png"/></button></form>';
       }
+      htmlToAdd = htmlToAdd + "</div>";
+      $(htmlToAdd).appendTo("#reviews-list");
     }
   }
 
