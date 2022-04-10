@@ -589,6 +589,30 @@ app.post("/add-review/:businessID", async (req, res) => {
   res.status(200).send({ reviewAdded: true, review: review });
 });
 
-app.post("add-reply/:businessID/:reviewID", async (req, res) => {
+app.post("/add-reply/:businessID/:reviewID", async (req, res) => {
   let client = await connectDatabase();
+  let response = await getBusinessById(client, ObjectID(req.params.businessID));
+  let business = response[0];
+  let sent = false;
+  for (let review of business.reviews) {
+    //find the relevant review
+    if (review.reviewID == req.params.reviewID) {
+      let reply = { message: req.body.message };
+      if (review.replies) {
+        review.replies.push(reply);
+      } else {
+        review.replies = new Array();
+        review.replies.push(reply);
+      }
+      await updateBusiness(client, ObjectID(req.params.businessID), business);
+      res
+        .status(200)
+        .send({ ok: true, reply: reply, reviewID: req.params.reviewID });
+      sent = true;
+      break;
+    }
+  }
+  if (sent == false) {
+    res.status(400).send({ ok: false });
+  }
 });

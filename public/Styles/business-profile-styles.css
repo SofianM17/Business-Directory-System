@@ -404,6 +404,13 @@ h2 {
   padding: 20px 1.5rem 10px 1.5rem;
 }
 
+.reviews .reply-li {
+  background: #c5e5ec;
+  width: 90%;
+  -ms-flex-item-align: end;
+      align-self: flex-end;
+}
+
 .reviews form > div {
   display: -webkit-box;
   display: -ms-flexbox;
