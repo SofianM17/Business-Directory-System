@@ -46,16 +46,41 @@
   margin-left: 20px;
 }
 
+@media screen and (max-width: 380px) {
+  .navbar .nav-left-icons .icon-fav {
+    margin-left: 0px;
+  }
+}
+
 .navbar .logo {
   display: none;
 }
 
 .navbar .search-bar {
   border-radius: 30px;
+  width: 300px;
+}
+
+@media screen and (min-width: 950px) {
+  .navbar .search-bar {
+    width: 500px;
+  }
+}
+
+@media screen and (min-width: 1400px) {
+  .navbar .search-bar {
+    width: 800px;
+  }
 }
 
 .navbar .search-icon-btn {
-  margin-right: 10px;
+  margin-right: 20px;
+}
+
+@media screen and (max-width: 380px) {
+  .navbar .search-icon-btn {
+    margin-right: 0px;
+  }
 }
 
 .navbar .search-bar:placeholder-shown {

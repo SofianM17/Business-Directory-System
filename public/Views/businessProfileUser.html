@@ -1,64 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Business Profile</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-      crossorigin="anonymous"
-    ></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <link rel="stylesheet" href="../Styles/business-profile-styles.css" />
     <link rel="stylesheet" href="../Styles/nav-styles.css" />
     <!-- leaflet imports -->
-    <script
-      type="text/javascript"
-      src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
-    ></script>
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
-    />
-  </head>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+</head>
 
-  <body>
+<body>
     <header class="navbar mb-3 ps-2 pe-2" style="background-color: #3cbe9f">
-      <img
-        src="../Resources/logo_transparent.png"
-        class="logo"
-        width="60px"
-        alt=""
-      />
+        <img src="../Resources/logo_transparent.png" class="logo" width="60px" alt="" />
 
-      <div class="text-nav-btns">
-        <button class="text-bus-icon home text-light">Home</button>
-        <button class="text-bus-icon home text-light text-fav fav-btn-nav">
-          Favorites
-        </button>
-        <div class="col col-lg-8 col-md-8 ms-3 me-3">
-          <input
-            id="desktop-search"
-            class="form-control search-bar"
-            type="search"
-            placeholder="Search for a business or category"
-          />
+        <div class="text-nav-btns">
+            <div class="nav-left">
+                <button class="text-bus-icon home text-light">Home</button>
+                <button class="text-bus-icon home text-light text-fav fav-btn-nav">
+                Favorites
+                </button>
+            </div>
+
+            <div class="">
+                <input id="desktop-search" class="form-control search-bar" type="search" placeholder="Search for a business or category" />
+            </div>
+
+            <button class="text-logout-icon logout text-light">Logout</button>
         </div>
-
-        <button class="text-logout-icon logout text-light">Logout</button>
-      </div>
-      <div class="nav-left-icons">
-        <button class="home btn home-icon-btn">
+        <div class="nav-left-icons">
+            <button class="home btn home-icon-btn">
           <svg
             width="40"
             height="36"
@@ -97,13 +75,13 @@
             />
           </svg>
         </button>
-        <button class="icon-fav fav-btn-nav btn">
+            <button class="icon-fav fav-btn-nav btn">
           <img src="../Resources/favourite.png" alt="" width="50" />
         </button>
-      </div>
+        </div>
 
-      <div class="navbar-right">
-        <button class="search btn search-icon-btn" data-bs-toggle="dropdown">
+        <div class="navbar-right">
+            <button class="search btn search-icon-btn" data-bs-toggle="dropdown">
           <svg
             width="40"
             height="36"
@@ -127,15 +105,10 @@
           </svg>
         </button>
 
-        <div class="dropdown-menu ps-3 pe-3">
-          <input
-            id="mobile-search"
-            class="form-control search-bar"
-            type="search"
-            placeholder="Search for a business or category"
-          />
-        </div>
-        <button class="logout btn logout-icon-btn">
+            <div class="dropdown-menu ps-3 pe-3">
+                <input id="mobile-search" class="form-control search-bar" type="search" placeholder="Search for a business or category" />
+            </div>
+            <button class="logout btn logout-icon-btn">
           <svg
             width="40"
             height="36"
@@ -149,18 +122,18 @@
             />
           </svg>
         </button>
-      </div>
+        </div>
     </header>
 
     <div class="content">
-      <div class="intro">
-        <div class="main-wrapper">
-          <div id="title"></div>
-          <div id="categories"></div>
-        </div>
-        <div class="fav-btn-wrapper">
-          <!--Icon from https://feathericons.com/?query=heart-->
-          <button id="favorite-wrapper">
+        <div class="intro">
+            <div class="main-wrapper">
+                <div id="title"></div>
+                <div id="categories"></div>
+            </div>
+            <div class="fav-btn-wrapper">
+                <!--Icon from https://feathericons.com/?query=heart-->
+                <button id="favorite-wrapper">
             <svg
               class="fav-btn feather feather-heart"
               xmlns="http://www.w3.org/2000/svg"
@@ -179,52 +152,50 @@
               ></path>
             </svg>
           </button>
-        </div>
-      </div>
-
-      <div class="about">
-        <h2>About</h2>
-        <div id="description"></div>
-      </div>
-
-      <div class="col-1">
-        <div class="location">
-          <div class="location-title">
-            <h2>Location</h2>
-            <img
-              src="https://img.icons8.com/ios-filled/50/000000/marker.png"
-              width="25px"
-            />
-          </div>
-
-          <div id="location-address"></div>
-
-          <div id="map"></div>
-        </div>
-        <div class="col-2">
-          <div class="contact-info">
-            <h2>Contact</h2>
-
-            <div id="contact-info-cont">
-              <ul id="contact-info-list"></ul>
             </div>
-          </div>
         </div>
-      </div>
 
-      <!-- <div class="reviews">
+        <div class="about">
+            <h2>About</h2>
+            <div id="description"></div>
+        </div>
+
+        <div class="col-1">
+            <div class="location">
+                <div class="location-title">
+                    <h2>Location</h2>
+                    <img src="https://img.icons8.com/ios-filled/50/000000/marker.png" width="25px" />
+                </div>
+
+                <div id="location-address"></div>
+
+                <div id="map"></div>
+            </div>
+            <div class="col-2">
+                <div class="contact-info">
+                    <h2>Contact</h2>
+
+                    <div id="contact-info-cont">
+                        <ul id="contact-info-list"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="reviews">
 			<h2>Customer Reviews</h2>
 		</div> -->
 
-      <div class="b-hours-container">
-        <div class="business-hours">
-          <h2>Hours</h2>
-          <ul id="hours-list"></ul>
+        <div class="b-hours-container">
+            <div class="business-hours">
+                <h2>Hours</h2>
+                <ul id="hours-list"></ul>
+            </div>
         </div>
-      </div>
     </div>
 
     <script src="../Clients/businessOwnerProfileClient.js"></script>
     <script src="../Clients/header.js"></script>
-  </body>
+</body>
+
 </html>
