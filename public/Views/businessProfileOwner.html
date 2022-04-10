@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -16,12 +15,19 @@
     <link rel="stylesheet" href="../Styles/business-profile-styles.css" />
 
     <!-- leaflet imports -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css"
+    />
     <link rel="stylesheet" href="../Styles/nav-styles.css" />
-</head>
+  </head>
 
-<body>
+  <body>
     <header class="navbar mb-3 ps-2 pe-2" style="background-color: #c1e5ec">
         <img src="../Resources/logo_transparent.png" class="logo" width="60px" alt="">
 
@@ -67,49 +73,59 @@
                 </button>
             </div>
         </div>
+      </div>
 
-        <div class="about">
-            <h2>About</h2>
-            <div id="description"></div>
+      <div class="about">
+        <h2>About</h2>
+        <div id="description"></div>
+      </div>
+
+      <div class="col-1">
+        <div class="location">
+          <div class="location-title">
+            <h2>Location</h2>
+            <img
+              src="https://img.icons8.com/ios-filled/50/000000/marker.png"
+              width="25px"
+            />
+          </div>
+
+          <div id="location-address"></div>
+
+          <div id="map"></div>
         </div>
 
-        <div class="col-1">
-            <div class="location">
-                <div class="location-title">
-                    <h2>Location</h2>
-                    <img src="https://img.icons8.com/ios-filled/50/000000/marker.png" width="25px" />
-                </div>
+        <div class="col-2">
+          <div class="contact-info">
+            <h2>Contact</h2>
 
-                <div id="location-address"></div>
-
-                <div id="map"></div>
+            <div id="contact-info-cont">
+              <ul id="contact-info-list"></ul>
             </div>
-
-            <div class="col-2">
-                <div class="contact-info">
-                    <h2>Contact</h2>
-
-                    <div id="contact-info-cont">
-                        <ul id="contact-info-list"></ul>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
 
-        <!-- <div class="reviews">
+      <!-- <div class="reviews">
             <h2>Customer Reviews</h2>
         </div> -->
 
-        <div class="b-hour-container">
-            <div class="business-hours">
-                <h2>Hours</h2>
-                <ul id="hours-list"></ul>
-            </div>
+      <div class="b-hour-container">
+        <div class="business-hours">
+          <h2>Hours</h2>
+          <ul id="hours-list"></ul>
         </div>
+      </div>
+
+      <div class="reviews-container">
+        <div class="reviews">
+          <h2 id="review-title">Reviews</h2>
+          <ul id="reviews-list"></ul>
+        </div>
+      </div>
     </div>
 
     <script src="../Clients/businessOwnerProfileClient.js"></script>
     <script src="../Clients/header.js"></script>
-</body>
-
+  </body>
 </html>

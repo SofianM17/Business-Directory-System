@@ -288,8 +288,27 @@ h2 {
     border-radius: 20px;
     padding: 20px 1.5rem 10px 1.5rem;
   }
+  .reply-li {
+    background: #c5e5ec;
+    width: 90%;
+    align-self: flex-end;
+  }
   form > div {
     display: flex;
+  }
+  .review-reply-con {
+    display: flex;
+    flex-direction: column;
+    li {
+      flex: 1;
+    }
+  }
+  .reply-box {
+    display: flex;
+    width: 90%;
+    align-self: flex-end;
+    margin-bottom: 20px;
+    margin-right: 12px;
   }
   #review-send-btn {
     background-color: transparent;
@@ -297,6 +316,11 @@ h2 {
     border-bottom-right-radius: 10px;
   }
   #review-input {
+    flex: 1;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+  }
+  .reply-text {
     flex: 1;
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
@@ -309,4 +333,10 @@ h2 {
     align-self: flex-end;
   }
   margin-bottom: 40px;
+}
+
+#placeholder-review {
+  margin-top: 15px;
+  font-size: medium;
+  font-weight: normal;
 }

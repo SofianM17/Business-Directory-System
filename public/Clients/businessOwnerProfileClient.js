@@ -1,3 +1,25 @@
+let reviewForm = $("#review-input-form");
+let reviewInput = $("#review-input");
+
+// Find a specific cookie by name
+// This code is adapted from https://www.w3schools.com/js/js_cookies.asp
+function getCookie(cname) {
+  let name = cname + "=";
+  let decodedCookie = decodeURIComponent(document.cookie);
+  let ca = decodedCookie.split(";");
+
+  for (let i = 0; i < ca.length; i++) {
+    let c = ca[i];
+    while (c.charAt(0) == " ") {
+      c = c.substring(1);
+    }
+    if (c.indexOf(name) == 0) {
+      return c.substring(name.length, c.length);
+    }
+  }
+  return "";
+}
+
 // request data from the server based on the id in the url
 async function fetchProfile() {
   let response = await fetch(
@@ -7,6 +29,7 @@ async function fetchProfile() {
   return businessData;
 }
 
+// Toggle the favoriting for customers
 async function changeFavorite() {
   let response = await fetch(
     "/change-favorite/" + window.location.href.split("/")[4],
@@ -16,12 +39,32 @@ async function changeFavorite() {
   return favoriteResponse.wasFavorite;
 }
 
+// Check if this business is a customer's favorite
 async function checkFavorite() {
   let response = await fetch(
     "/is-favorite/" + window.location.href.split("/")[4]
   );
   let favoriteResponse = await response.json();
   return favoriteResponse.wasFavorite;
+}
+
+// Used to handle reviews
+async function submitReview() {
+  let review = {
+    review: reviewInput.val(),
+  };
+  let response = await fetch(
+    "/add-review/" + window.location.href.split("/")[4],
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(review),
+    }
+  );
+  let reviewResponse = await response.json();
+  return reviewResponse;
 }
 
 // Displays a formatted list of business hour data
@@ -102,12 +145,15 @@ function displayMap(longitude, latitude) {
 }
 
 $(document).ready(async function () {
-  // properly show favorite status
-  let isFavorite = await checkFavorite();
-  favButton = document.getElementById("favorite-button");
-  if (isFavorite) {
-    // add the favorited class from the element
-    favButton.classList.add("favorited");
+  let userType = getCookie("accountType");
+  if (userType == "customer") {
+    // properly show favorite status for customer
+    let isFavorite = await checkFavorite();
+    favButton = document.getElementById("favorite-button");
+    if (isFavorite) {
+      // add the favorited class from the element
+      favButton.classList.add("favorited");
+    }
   }
 
   let data = await fetchProfile();
@@ -174,17 +220,79 @@ $(document).ready(async function () {
     appendBusinessHours(day);
   }
 
-  // Handle reviews
-  for (let review of data.reviews) {
-    // append review to list
-    $(
-      "<li><p>" +
-        review.review +
-        "</p><p id='review-name'>~ " +
-        review.username +
-        "</p></li>"
-    ).appendTo("#reviews-list");
+  let hasReviews = false;
+  // append reviews
+  if (data.reviews) {
+    for (let review of data.reviews) {
+      hasReviews = true;
+      // append review to list
+      if (userType == "business") {
+        // add business reply feature
+        $(
+          "<div class='review-reply-con'><li id='" +
+            review.reviewID +
+            "'><p>" +
+            review.review +
+            "</p><p id='review-name'>~ " +
+            review.username +
+            "</p></li> " +
+            '<form class="reply-box" id="' +
+            review.reviewID +
+            '"><textarea class="form-control reply-text" id="' +
+            review.reviewID +
+            '" autocomplete="off" placeholder="Leave a reply..." rows="2"></textarea><button id="review-send-btn"><img src="https://img.icons8.com/small/30/000000/filled-sent.png"/></button></form></div>'
+        ).appendTo("#reviews-list");
+      } else {
+        $(
+          "<li id='" +
+            review.reviewID +
+            "'><p>" +
+            review.review +
+            "</p><p id='review-name'>~ " +
+            review.username +
+            "</p></li>"
+        ).appendTo("#reviews-list");
+      }
+    }
   }
+
+  if (hasReviews == false) {
+    $("<p id='placeholder-review'>There are no reviews yet.</p>").appendTo(
+      "#review-title"
+    );
+  }
+
+  // handle review submission
+  reviewForm.on("submit", (e) => {
+    e.preventDefault();
+    // submit review, then add to page
+    submitReview().then((review) => {
+      if (review.reviewAdded) {
+        // add to bottom of list and clear textbox
+        $("#placeholder-review").remove();
+        $(
+          "<li><p>" +
+            review.review.review +
+            "</p><p id='review-name'>~ " +
+            review.review.username +
+            "</p></li>"
+        ).appendTo("#reviews-list");
+        let reviewsList = document.getElementById("reviews-list").lastChild;
+        reviewsList.scrollIntoView();
+        reviewInput.val("");
+        alert("Review submitted successfully!");
+      } else {
+        alert("Review submission failed.");
+      }
+    });
+  });
+
+  //handle reply submission
+  $(".reply-box").on("submit", (e) => {
+    e.preventDefault();
+    //alert("clicked " + this.classList);
+    console.log(e.target.id);
+  });
 
   // Redirect to edit page of this business
   $("#edit-btn").on("click", () => {
