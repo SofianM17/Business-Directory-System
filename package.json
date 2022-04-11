@@ -5,7 +5,6 @@
   "main": "server.js",
   "scripts": {
     "server": "node server.js",
-    "install": "npm i"
   },
   "repository": {
     "type": "git",
