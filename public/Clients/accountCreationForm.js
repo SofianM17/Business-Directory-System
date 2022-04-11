@@ -120,8 +120,7 @@ async function checkConditions() {
       criteriaSatisfied = false;
     },
     () => {
-      // if username doesn't exist
-      // alert("username is unique");
+      // if username doesn't exist, we're good
     }
   );
 
@@ -147,13 +146,10 @@ $(document).ready(() => {
         // if all conditions are satisfied
         // Submit the data to the server, then redirect to either the customer or
         // business owner page
-        let data = submitData().then(() => {
-          // alert("submission successful!");
-        });
+        let data = submitData().then(() => {});
       },
       () => {
         // if there are any errors
-        // alert("no success");
         window.scrollTo(0, 0);
       }
     );

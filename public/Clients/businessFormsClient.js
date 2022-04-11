@@ -76,15 +76,9 @@ async function validateAddress() {
   let response = await fetch(url);
   let data = await response.json();
 
-  //console.log(data);
-
   const address = data.features[0].properties;
 
-  //console.log(address.rank.confidence);
-
   // formatted address (predicted if not fully provided)
-  //console.log(address.formatted);
-
   return {
     address: address.formatted,
     longitude: address.lon,
@@ -555,8 +549,6 @@ $(document).ready(() => {
 
   // mask for time input
   $(".time-field").mask("99:99");
-
-  // $('.dropdown-toggle')
 
   // return to the previous page if the edit form is canceled
   $("#submit-btn-cancel").on("click", () => {

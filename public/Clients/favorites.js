@@ -1,4 +1,4 @@
-// request data from server based on the search query in the url
+// request favorite businesses from the server
 async function fetchResults() {
   let response = await fetch("/favorites/find");
   let results = await response.json();
