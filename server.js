@@ -44,7 +44,7 @@ function getAccessToken(req) {
   return null;
 }
 
-// Used to make requests for the correct page
+// Used to verify requests are authorized for the correct page
 async function makeSecret(req, accountType) {
   if (req.params.user) {
     // for user base pages
@@ -75,7 +75,6 @@ const customerLoggedIn = async function (req, res, next) {
     res
       .status(403)
       .send("<h2>Error: You are not authorized to view this page.</h2>");
-    //.send({ error: "You are not authorized to view this page." });
   }
 };
 
@@ -140,7 +139,6 @@ app.get("/business-get/:id", async (req, res) => {
   let oId = new ObjectId(req.params.id);
   let businessData = await getBusinessById(client, oId);
   res.send(businessData[0]);
-  // console.log(businessData[0]);
   client.close();
 });
 
@@ -154,6 +152,7 @@ app.get("/login", (req, res) => {
   res.sendFile(__dirname + "/public/Views/login.html");
 });
 
+// get the businesses for the business owner with the specified id
 app.get("/businesses/:id", async (req, res) => {
   let client = await connectDatabase();
   let result = await getBusinessesByBusinessOwner(client, req.params.id);
@@ -312,7 +311,6 @@ app.post("/submit-form-create", async (req, res) => {
   formRequest["_id"] = new ObjectId();
   formRequest["businessOwner"] = new ObjectId(formRequest["businessOwner"]);
   curId = formRequest["_id"];
-  //   console.log(formRequest);
 
   let client = await connectDatabase();
   await addBusiness(client, formRequest);
@@ -325,7 +323,6 @@ app.post("/submit-form-edit/:id", async (req, res) => {
   let formRequest = req.body;
   formRequest["businessOwner"] = new ObjectId(formRequest["businessOwner"]);
   let objId = new ObjectId(req.params.id);
-  //console.log(formRequest);
 
   let client = await connectDatabase();
   await updateBusiness(client, objId, formRequest);
@@ -355,14 +352,7 @@ async function connectDatabase() {
   } catch (e) {
     console.error(e);
   }
-
-  // finally {
-  //     await client.close();
-  // }
 }
-
-// deals with case of rejected promise
-//connectDatabase().catch(console.error);
 
 // adds a single new account as a new document into the database
 async function createAccount(client, newAccount) {
@@ -398,6 +388,7 @@ async function addBusiness(client, newBusiness) {
     .insertOne(newBusiness);
 }
 
+// Find a business by its ID
 async function getBusinessById(client, id) {
   const cursor = client
     .db("businessesDB")
@@ -406,6 +397,7 @@ async function getBusinessById(client, id) {
   return cursor.toArray();
 }
 
+// Find all the businesses for a business owner
 async function getBusinessesByBusinessOwner(client, ownerID) {
   const cursor = client
     .db("businessesDB")
