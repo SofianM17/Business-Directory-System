@@ -552,6 +552,6 @@ $(document).ready(() => {
 
   // return to the previous page if the edit form is canceled
   $("#submit-btn-cancel").on("click", () => {
-    window.history.back();
+    window.location.replace(document.referrer);
   });
 });
