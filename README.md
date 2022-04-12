@@ -15,7 +15,7 @@ This application requires Node.js (and npm) to be installed in order to run. Add
 To run this:
 
 - Navigate to the root folder containing "server.js" and "package.json" in your terminal.
-- Run the command "npm i" to install the required packages from package.json.
+- Run the command "npm install" to install the required packages from package.json.
 - Run "node server.js" to start the server on localhost:3000
 - Navigate to http://localhost:3000/ in your preferred web browser to reach the homepage
 
